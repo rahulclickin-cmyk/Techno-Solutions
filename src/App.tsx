@@ -1,0 +1,54 @@
+import React, { useEffect } from "react";
+import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+// Pages
+import Home from "./pages/Home";
+import About from "./pages/About";
+import ServiceDetail from "./pages/ServiceDetail";
+import BlogList from "./pages/BlogList";
+import BlogDetail from "./pages/BlogDetail";
+import Contact from "./pages/Contact";
+
+// ScrollToTop helper on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
+export default function App() {
+  return (
+    <HashRouter>
+      <ScrollToTop />
+      <div className="relative min-h-screen overflow-x-hidden antialiased font-sans bg-white text-[#1B1B1B]">
+        {/* Absolute Global Backdrop Effects */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-50/30 rounded-full blur-3xl pointer-events-none -z-10" />
+        <div className="absolute top-[20%] left-0 w-[500px] h-[500px] bg-amber-500/[0.01] rounded-full blur-3xl pointer-events-none -z-10" />
+
+        {/* Header Navigation */}
+        <Header />
+
+        {/* Main Routed Content */}
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services/:id" element={<ServiceDetail />} />
+            <Route path="/blog" element={<BlogList />} />
+            <Route path="/blog/:slug" element={<BlogDetail />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+
+        {/* Footer Section */}
+        <Footer />
+      </div>
+    </HashRouter>
+  );
+}

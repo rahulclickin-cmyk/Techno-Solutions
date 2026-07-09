@@ -1,0 +1,465 @@
+MCP Client Created
+[LOG] Spawning MCP-remote process...
+[LOG] Sending initialize request...
+[LOG] STDERR: [132] Using automatically selected callback port: 29059
+
+[LOG] STDERR: [132] Using custom headers: {"Authorization":"Basic dGVqZ29tbDFqamxvOmxESWQgUnQwcCB4YnQ2IDZ5VW8gOEdHUCByWGY4","Cookie":"zipwp_access=abc123xyz789"}
+[132] Discovering OAuth server configuration...
+
+[LOG] STDERR: [132] [132] Connecting to remote server: https://annual-albus-tr.zipwp.top/wp-json/mcp/elementor-mcp-server
+
+[LOG] STDERR: [132] Using transport strategy: http-first
+
+[LOG] STDERR: [132] Connected to remote server using StreamableHTTPClientTransport
+
+[LOG] STDERR: [132] Local STDIO server running
+[132] Proxy established successfully between local STDIO and remote StreamableHTTPClientTransport
+[132] Press Ctrl+C to exit
+
+[LOG] STDERR: [132] [Local→Remote] initialize
+
+[LOG] STDERR: [132] {
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "initialize",
+  "params": {
+    "protocolVersion": "2024-11-05",
+    "capabilities": {},
+    "clientInfo": {
+      "name": "automation-client (via mcp-remote 0.1.37)",
+      "version": "1.0.0"
+    }
+  }
+}
+
+[LOG] STDERR: [132] [Remote→Local] 1
+
+[LOG] Received MSG ID: 1 (method: Response)
+[LOG] Handshake: Received initialize response. Sending notifications/initialized...
+[LOG] Calling tool "elementor-mcp-delete-page-content" [ID: 2]
+[LOG] STDERR: [132] [Local→Remote] notifications/initialized
+
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 2
+
+[LOG] Received MSG ID: 2 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-container" [ID: 3]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 3
+
+[LOG] Received MSG ID: 3 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-element" [ID: 4]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 4
+
+[LOG] Received MSG ID: 4 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-html" [ID: 5]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 5
+
+[LOG] Received MSG ID: 5 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-page-settings" [ID: 6]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 6
+
+[LOG] Received MSG ID: 6 (method: Response)
+[LOG] Calling tool "elementor-mcp-delete-page-content" [ID: 7]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 7
+
+[LOG] Received MSG ID: 7 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-container" [ID: 8]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 8
+
+[LOG] Received MSG ID: 8 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-element" [ID: 9]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 9
+
+[LOG] Received MSG ID: 9 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-html" [ID: 10]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 10
+
+[LOG] Received MSG ID: 10 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-page-settings" [ID: 11]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 11
+
+[LOG] Received MSG ID: 11 (method: Response)
+[LOG] Calling tool "elementor-mcp-delete-page-content" [ID: 12]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 12
+
+[LOG] Received MSG ID: 12 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-container" [ID: 13]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 13
+
+[LOG] Received MSG ID: 13 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-element" [ID: 14]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 14
+
+[LOG] Received MSG ID: 14 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-html" [ID: 15]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 15
+
+[LOG] Received MSG ID: 15 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-page-settings" [ID: 16]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 16
+
+[LOG] Received MSG ID: 16 (method: Response)
+[LOG] Calling tool "elementor-mcp-delete-page-content" [ID: 17]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 17
+
+[LOG] Received MSG ID: 17 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-container" [ID: 18]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 18
+
+[LOG] Received MSG ID: 18 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-element" [ID: 19]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 19
+
+[LOG] Received MSG ID: 19 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-html" [ID: 20]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 20
+
+[LOG] Received MSG ID: 20 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-page-settings" [ID: 21]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 21
+
+[LOG] Received MSG ID: 21 (method: Response)
+[LOG] Calling tool "elementor-mcp-delete-page-content" [ID: 22]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 22
+
+[LOG] Received MSG ID: 22 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-container" [ID: 23]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 23
+
+[LOG] Received MSG ID: 23 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-element" [ID: 24]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 24
+
+[LOG] Received MSG ID: 24 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-html" [ID: 25]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 25
+
+[LOG] Received MSG ID: 25 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-page-settings" [ID: 26]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 26
+
+[LOG] Received MSG ID: 26 (method: Response)
+[LOG] Calling tool "elementor-mcp-delete-page-content" [ID: 27]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 27
+
+[LOG] Received MSG ID: 27 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-container" [ID: 28]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 28
+
+[LOG] Received MSG ID: 28 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-element" [ID: 29]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 29
+
+[LOG] Received MSG ID: 29 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-html" [ID: 30]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 30
+
+[LOG] Received MSG ID: 30 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-page-settings" [ID: 31]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 31
+
+[LOG] Received MSG ID: 31 (method: Response)
+[LOG] Calling tool "elementor-mcp-delete-page-content" [ID: 32]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 32
+
+[LOG] Received MSG ID: 32 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-container" [ID: 33]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 33
+
+[LOG] Received MSG ID: 33 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-element" [ID: 34]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 34
+
+[LOG] Received MSG ID: 34 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-html" [ID: 35]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 35
+
+[LOG] Received MSG ID: 35 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-page-settings" [ID: 36]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 36
+
+[LOG] Received MSG ID: 36 (method: Response)
+[LOG] Calling tool "elementor-mcp-delete-page-content" [ID: 37]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 37
+
+[LOG] Received MSG ID: 37 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-container" [ID: 38]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 38
+
+[LOG] Received MSG ID: 38 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-element" [ID: 39]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 39
+
+[LOG] Received MSG ID: 39 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-html" [ID: 40]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 40
+
+[LOG] Received MSG ID: 40 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-page-settings" [ID: 41]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 41
+
+[LOG] Received MSG ID: 41 (method: Response)
+[LOG] Calling tool "elementor-mcp-delete-page-content" [ID: 42]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 42
+
+[LOG] Received MSG ID: 42 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-container" [ID: 43]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 43
+
+[LOG] Received MSG ID: 43 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-element" [ID: 44]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 44
+
+[LOG] Received MSG ID: 44 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-html" [ID: 45]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 45
+
+[LOG] Received MSG ID: 45 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-page-settings" [ID: 46]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 46
+
+[LOG] Received MSG ID: 46 (method: Response)
+[LOG] Calling tool "elementor-mcp-delete-page-content" [ID: 47]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 47
+
+[LOG] Received MSG ID: 47 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-container" [ID: 48]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 48
+
+[LOG] Received MSG ID: 48 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-element" [ID: 49]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 49
+
+[LOG] Received MSG ID: 49 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-html" [ID: 50]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 50
+
+[LOG] Received MSG ID: 50 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-page-settings" [ID: 51]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 51
+
+[LOG] Received MSG ID: 51 (method: Response)
+[LOG] Calling tool "elementor-mcp-delete-page-content" [ID: 52]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 52
+
+[LOG] Received MSG ID: 52 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-container" [ID: 53]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 53
+
+[LOG] Received MSG ID: 53 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-element" [ID: 54]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 54
+
+[LOG] Received MSG ID: 54 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-html" [ID: 55]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 55
+
+[LOG] Received MSG ID: 55 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-page-settings" [ID: 56]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 56
+
+[LOG] Received MSG ID: 56 (method: Response)
+[LOG] Calling tool "elementor-mcp-delete-page-content" [ID: 57]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 57
+
+[LOG] Received MSG ID: 57 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-container" [ID: 58]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 58
+
+[LOG] Received MSG ID: 58 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-element" [ID: 59]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 59
+
+[LOG] Received MSG ID: 59 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-html" [ID: 60]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 60
+
+[LOG] Received MSG ID: 60 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-page-settings" [ID: 61]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 61
+
+[LOG] Received MSG ID: 61 (method: Response)
+[LOG] Calling tool "elementor-mcp-delete-page-content" [ID: 62]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 62
+
+[LOG] Received MSG ID: 62 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-container" [ID: 63]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 63
+
+[LOG] Received MSG ID: 63 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-element" [ID: 64]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 64
+
+[LOG] Received MSG ID: 64 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-html" [ID: 65]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 65
+
+[LOG] Received MSG ID: 65 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-page-settings" [ID: 66]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 66
+
+[LOG] Received MSG ID: 66 (method: Response)
+[LOG] Calling tool "elementor-mcp-delete-page-content" [ID: 67]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 67
+
+[LOG] Received MSG ID: 67 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-container" [ID: 68]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 68
+
+[LOG] Received MSG ID: 68 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-element" [ID: 69]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 69
+
+[LOG] Received MSG ID: 69 (method: Response)
+[LOG] Calling tool "elementor-mcp-add-html" [ID: 70]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 70
+
+[LOG] Received MSG ID: 70 (method: Response)
+[LOG] Calling tool "elementor-mcp-update-page-settings" [ID: 71]
+[LOG] STDERR: [132] [Local→Remote] tools/call
+
+[LOG] STDERR: [132] [Remote→Local] 71
+
+[LOG] Received MSG ID: 71 (method: Response)
+[LOG] Closing MCP Client connection...
+[LOG] STDERR: [132] 
+Shutting down...
+
+[LOG] MCP process closed with code null
