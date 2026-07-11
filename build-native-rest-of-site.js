@@ -849,40 +849,12 @@ async function main() {
       }
     };
 
-    // 1. Loop and build native static pages
-    for (const key of Object.keys(PAGES)) {
-      const pageInfo = PAGES[key];
-      console.log(`\n==============================================`);
-      console.log(`REBUILDING NATIVE STATIC PAGE: ${pageInfo.name} (ID: ${pageInfo.id})...`);
-      console.log(`==============================================`);
-      
-      console.log('Clearing old page content...');
-      await client.callTool('elementor-mcp-delete-page-content', { post_id: pageInfo.id });
-      await sleep(1500);
+    // 1. Loop and build native static pages (SKIPPED: Already completed)
+    console.log('Skipping static pages (About Us, Services List, Blog List, Contact Us) - Already Built Natively.');
 
-      // Force canvas layout
-      await client.callTool('elementor-mcp-update-page-settings', {
-        post_id: pageInfo.id,
-        settings: {
-          template: 'elementor_canvas',
-          page_template: 'elementor_canvas'
-        }
-      });
-      await sleep(1500);
-
-      // Add Header
-      await addHeader(client, pageInfo.id);
-
-      // Build content
-      await pageInfo.builder(pageInfo.id);
-
-      // Add Footer
-      await addFooter(client, pageInfo.id);
-
-      console.log(`SUCCESS: Rebuilt ${pageInfo.name}`);
-    }
-
-    // 2. Loop and build native service subpages
+    // 2. Loop and build native service subpages (SKIPPED: Already completed)
+    console.log('Skipping service subpages - Already Built Natively.');
+    /*
     const SERVICES_MAP = {
       "digital-transformation": 33,
       "business-automation": 37,
@@ -1043,6 +1015,7 @@ async function main() {
 
       console.log(`SUCCESS: Rebuilt ${service.title}`);
     }
+    */
 
     // 3. Loop and build native blog subpages
     const BLOG_MAP = {
@@ -1088,6 +1061,10 @@ async function main() {
     };
 
     for (const post of BLOG_POSTS) {
+      if (post.slug === "digital-transformation-delhi" || post.slug === "business-automation-solutions-smes") {
+        console.log(`Skipping blog page: ${post.title} - Already Built Natively.`);
+        continue;
+      }
       const pageId = BLOG_MAP[post.slug];
       if (!pageId) continue;
       
