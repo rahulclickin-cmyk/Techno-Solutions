@@ -23,206 +23,223 @@ interface ServiceContent {
 
 const SERVICES_DATA: Record<string, ServiceContent> = {
   "digital-transformation": {
-    title: "Digital Transformation Solutions",
-    badge: "Enterprise Modernization",
-    heroDesc: "Modernize your organization with secure, cloud-enabled, and digital-first strategies.",
-    longDesc: "At Techno-Solutions, we help businesses transition their legacy infrastructures into responsive, digital-first ecosystems. Our custom-engineered digital strategies build high-efficiency pipelines, ensuring startups, SMEs, and large scale enterprises can grow, adapt, and scale securely without manual setbacks.",
+    title: "Digital Transformation Consulting & Training Services",
+    badge: "Strategic Advisory & Upskilling",
+    heroDesc: "Empowering businesses for the future. Assess, upskill, and transform with expert-led digital solutions.",
+    longDesc: "In today’s rapidly evolving digital landscape, businesses must adapt, innovate, and transform to stay competitive. Digital transformation is no longer a luxury—it’s a necessity. However, many organizations struggle with implementing digital strategies effectively due to outdated infrastructure, workforce resistance, and unclear transformation roadmaps.\n\nWith expert guidance, businesses can leverage AI, cloud computing, automation, and data analytics to enhance efficiency, customer experience, and profitability. We help organizations across various industries navigate technological advancements and integrate AI, Cloud, IoT, Big Data, and Industry 4.0 into their business operations.",
     icon: "Server",
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
     highlights: [
-      "Digital Transformation Consulting",
-      "Enterprise Digitization",
-      "Cloud Adoption & Secure Migrations",
-      "AI System Integrations",
-      "Process Bottleneck Optimization",
-      "Customer Experience (CX) Transformation",
-      "Strategic Digital Roadmaps & Audits"
+      "Assess current digital maturity and identify operational gaps",
+      "Develop customized digital strategy roadmaps",
+      "Assist in technology selection & implementation",
+      "Ensure business process optimization & automation",
+      "Enable AI-driven decision-making & predictive analytics",
+      "Corporate Digital Upskilling & hands-on workshops",
+      "Guide organizations in adopting Cloud Computing & AI",
+      "Seamless integration support with change management"
     ],
     subServices: [
-      "Operational Readiness Assessment",
-      "AWS/Azure/GCP Infrastructure Provisioning",
-      "Corporate Upskilling Strategy Development",
-      "SLA & Disaster Recovery Architectural Audits"
+      "Strategy & Leadership Program (2-3 Days)",
+      "AI, IoT & Emerging Technologies in Business (3-5 Days)",
+      "Digital Transformation for Industry 4.0 (3 Days)",
+      "Corporate Digital Upskilling & Workshops"
     ],
     metrics: [
-      { value: "3.2x", label: "Speed to Market Boost" },
-      { value: "40%", label: "Operational Cost Reduction" },
-      { value: "99.99%", label: "Cloud Ingress SLA uptime" }
+      { value: "4 Steps", label: "Consulting Approach" },
+      { value: "2-5 Days", label: "Workshop Duration" },
+      { value: "Industry 4.0", label: "Ready Solutions" }
     ],
     accentColor: "from-blue-600 to-indigo-700",
     faq: [
-      { q: "What is Digital Consulting?", a: "It's an exhaustive strategic assessment of your current technological setup to construct a safe cloud roadmap matching your operational budgets." },
-      { q: "How long does a digital transition audit take?", a: "A standard preliminary blueprint is dispatched within 24-48 hours. Comprehensive migration execution is milestone-based." }
+      { q: "What is your Consulting Approach?", a: "We follow a 4-step framework: 1. Assessment & Digital Readiness Check, 2. Strategy Development & Roadmap Design, 3. Technology Implementation & Change Management, and 4. Performance Monitoring & Continuous Optimization." },
+      { q: "Who should attend the Digital Transformation Strategy & Leadership training?", a: "This 2-3 day program is designed for Executives, Managers, and Decision-Makers to equip them with strategic insights on digital disruption, roadmap building, and driving organizational change." },
+      { q: "What emerging technologies are covered in the training programs?", a: "Our courses cover AI & Automation for business growth, IoT & Smart Connected Devices, Cloud Computing, Blockchain & Digital Trust, and Cybersecurity & Digital Risk Management." },
+      { q: "Why should we invest in Digital Transformation Training & Consulting?", a: "Companies that invest in expert consulting and workforce training are better positioned to thrive in the digital age. It helps you optimize operations, implement AI, and ensure your team is ready to leverage modern systems effectively." }
     ]
   },
   "business-automation": {
     title: "Business Automation Solutions",
-    badge: "Workflow Optimization",
-    heroDesc: "Automate repetitive corporate tasks and exponentially increase employee productivity.",
-    longDesc: "Free your talented personnel from exhausting manual workflows. Our business automation solutions integrate custom CRM, ERP, and database pipelines with low-code and RPA platforms, reducing operational error rates to absolute zero.",
+    badge: "Automating Businesses. Accelerating Growth.",
+    heroDesc: "Streamline operations, eliminate repetitive tasks, and accelerate digital enterprise growth.",
+    longDesc: "TECHNO-SOLUTIONS is a leading provider of Business Automation Solutions. We help startups, SMEs, large enterprises, and public organizations streamline operations, eliminate repetitive tasks, improve productivity, reduce operational costs, and accelerate digital transformation.\n\nWe combine business consulting expertise with Artificial Intelligence (AI), Robotic Process Automation (RPA), Cloud Computing, Low-Code Platforms, and Intelligent Workflow Automation to create future-ready, agile organizations.",
     icon: "Settings",
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
     highlights: [
-      "Workflow Automation",
-      "CRM & Sales Automation",
-      "HR & Finance Streamlining",
-      "Automated Inventory Management",
-      "Intelligent Document Management (IDP)",
-      "ERP System Integration",
-      "AI-Powered Customer Support Chatbots",
-      "Robotic Process Automation (RPA)"
+      "Business Process Automation (Workflows, Approval routing, Digital forms)",
+      "Robotic Process Automation (RPA for Data Entry, Payroll, Reconciliations)",
+      "Artificial Intelligence Automation (AI Chatbots, AI Agents, Intelligent OCR)",
+      "CRM Automation (Sales Pipeline & Support for Salesforce, HubSpot, Zoho)",
+      "HR Automation (Recruitment, Onboarding, Attendance, Self-Service portals)",
+      "Finance Automation (Invoice Automation, Accounts Payable/Receivable, Expenses)",
+      "Procurement Automation (Vendor Registration, PO Automation, RFQs)",
+      "Microsoft Power Platform (Power Apps, Power Automate, Power BI, Dataverse)",
+      "ERP Integration (Seamless connections for SAP, Oracle, Tally, Odoo, Zoho)",
+      "Secure Document Management (Version control, e-Signatures, Search & Retrieval)"
     ],
     subServices: [
-      "Custom Microsoft Power Platform Integration",
-      "Automated Invoice Approval Pipelines",
-      "Zapier & Make Custom Connector Infrastructure",
-      "HubSpot & Salesforce Synchronization"
+      "Business Process & Workflow Automation",
+      "Robotic Process Automation (RPA) Bots",
+      "CRM & ERP Systems Integration Services",
+      "Microsoft Power Platform Custom Development"
     ],
     metrics: [
-      { value: "85%", label: "Manual Overhead Saved" },
-      { value: "10x", label: "Invoice Processing Speed" },
-      { value: "0%", label: "Filing & Entry Error Rates" }
+      { value: "Up to 90%", label: "Manual Effort Saved" },
+      { value: "Faster", label: "Cycle & Approval Times" },
+      { value: "Real-time", label: "Power BI Analytics" }
     ],
     accentColor: "from-purple-600 to-pink-700",
     faq: [
-      { q: "Can automation connect with our existing ERP?", a: "Yes. We design and compile custom secure API gateways to connect modern automated flows directly to legacy SAP, Tally, or custom databases." },
-      { q: "What is Robotic Process Automation?", a: "RPA uses software bots to mimic human desktop interactions (such as copying data between windows) to handle repetitive work rapidly." }
+      { q: "What business benefits can we expect from automation?", a: "RPA and AI can reduce manual effort by up to 90%. Digital Workflows ensure faster approvals and shorter cycle times. Document Management Systems improve compliance, and ERP Integrations unify disconnected legacy systems." },
+      { q: "Which ERPs and CRMs can you integrate with?", a: "We provide end-to-end integration for SAP, Oracle, Microsoft Dynamics 365, Tally, Odoo, Zoho, Salesforce, HubSpot, and custom built-in-house ERP platforms." },
+      { q: "What is your Business Automation Framework?", a: "Our process has 7 clear phases: 1. Business Discovery & Process Mapping, 2. Process Analysis & ROI Calculation, 3. Solution Design & Technology Selection, 4. Workflow & API Development, 5. Functional & Security Testing, 6. Deployment & User Training, and 7. Continuous SLA Optimization." },
+      { q: "Why Choose TECHNO-SOLUTIONS for business automation?", a: "We align our efforts with clear business outcomes, customize solutions exactly to your processes, are vendor-neutral, and build secure, scalable solutions in full compliance with industry standards." }
     ]
   },
   "ai-solutions": {
-    title: "Artificial Intelligence Solutions",
-    badge: "Cognitive Intelligence",
-    heroDesc: "Unlock the next layer of business intelligence with Generative and Agentic AI models.",
-    longDesc: "Integrate cognitive decision-making directly into your products. From deploying self-guided smart agents to ChatGPT/Gemini custom integrations, we build high-converting predictive solutions that understand text, images, and user intents in real-time.",
+    title: "Artificial Intelligence (AI) Training & Consulting",
+    badge: "Cognitive AI Core",
+    heroDesc: "Unlock the power of AI. Identify high-impact AI use cases, develop AI strategies, and upskill your teams.",
+    longDesc: "In today’s fast-evolving digital landscape, AI consulting and training have become essential for businesses looking to harness the power of artificial intelligence. Our AI consulting helps organizations identify high-impact AI use cases, develop robust AI strategies, and implement AI-driven solutions that enhance efficiency, automation, and decision-making.\n\nSimultaneously, our corporate AI training programs, hands-on workshops, and executive coaching ensure your teams are fully upskilled and ready to utilize artificial intelligence to maintain competitive advantage.",
     icon: "Cpu",
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
     highlights: [
-      "AI Strategy & Implementation Planning",
-      "Generative AI & LLM Finetuning",
-      "ChatGPT & Gemini API Integration",
-      "Agentic AI Custom Workflows",
-      "Predictive Data Analytics Models",
-      "Intelligent Document Processing (OCR)",
-      "Computer Vision & Pattern Recognition",
-      "Machine Learning Algorithm Training"
+      "AI Strategy & Consulting (AI Readiness & Roadmap Design)",
+      "Custom AI Software & Model Development",
+      "Corporate AI Training & Hands-on Upskilling Workshops",
+      "AI System Deployment, Monitoring, & Support Services",
+      "Predictive Analytics & Enterprise Data Science Solutions",
+      "AI-Powered Automation & Robotic Process Automation (RPA)",
+      "Integration with existing ERP, CRM, and Cloud Workflows",
+      "AI Governance, Ethics, Compliance & Security Standards"
     ],
     subServices: [
-      "Vector Database Setup & RAG Architectures",
-      "Autonomous Multi-Agent Collaboration Networks",
-      "Sentiment and Behavioral Data Classifiers",
-      "Speech-to-Text & Custom TTS Voice Integrations"
+      "AI Consulting & Strategy Roadmap",
+      "Custom AI Software Development",
+      "AI Training & Executive Upskilling",
+      "AI Deployment, Compliance & Security"
     ],
     metrics: [
-      { value: "95%", label: "Customer Query Resolution" },
-      { value: "18x", label: "Faster Data Mining Audits" },
-      { value: "50%", label: "Customer Retention Increase" }
+      { value: "10+", label: "Industries Served" },
+      { value: "End-to-End", label: "Implementation" },
+      { value: "Custom", label: "Model Architecture" }
     ],
     accentColor: "from-teal-600 to-cyan-700",
     faq: [
-      { q: "Is our proprietary data secure with AI?", a: "Yes. We configure safe enterprise-only API keys and local hosting frameworks where your training data is never shared with public model pools." },
-      { q: "What is Agentic AI?", a: "Agentic AI refers to autonomous systems capable of executing multi-step complex workflows, reasoning, and using tools to achieve goals independently." }
+      { q: "How can AI help my industry/sector?", a: "AI provides custom solutions across sectors. For instance, in Manufacturing we implement Predictive Maintenance and Quality Control; in Retail, Personalized Recommendations and Chatbots; in Finance, Fraud Detection and Credit Scoring; and in HR, AI-Powered Hiring and Employee Sentiment Analysis." },
+      { q: "What does your AI Software Development service cover?", a: "We design and develop custom AI-powered models, automate repetitive workflows using RPA, build predictive analytics solutions, and integrate AI features seamlessly into your existing ERP, CRM, and cloud architectures." },
+      { q: "What does your AI Training Program cover?", a: "We offer customized upskilling for corporate teams, including: AI for Executives & Business Leaders, AI for IT & Data Science Teams, and AI for HR, Marketing, & Finance professionals, supported by hands-on workshops." },
+      { q: "Why Choose Techno-Solutions for Artificial Intelligence?", a: "We combine deep cross-industry expertise, deliver tailored AI strategies mapped strictly to your objectives, handle end-to-end implementation from strategy to execution, and ensure data privacy and security." }
     ]
   },
   "blockchain-crypto": {
     title: "Blockchain & Crypto Solutions",
-    badge: "Decentralized Trust",
-    heroDesc: "Establish secure, transparent, and immutable digital transactions with Web3 networks.",
-    longDesc: "Mitigate double-spending, secure sensitive supplies, and develop robust consensus structures. We build customized decentralized smart contract nodes, encrypted wallets, and identity managers to optimize absolute digital trust.",
+    badge: "Decentralized Trust & Web3",
+    heroDesc: "Establish secure, transparent, and decentralized technology architectures for your organization.",
+    longDesc: "At TECHNO-SOLUTIONS, we build decentralized architectures that establish immutable trust, automate multi-party compliance, and protect vital transaction logs. From deploying audited smart contracts to building custom Web3 portals and token networks, we help organizations eliminate single-point operational failures.",
     icon: "ShieldCheck",
     image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=80",
     highlights: [
-      "Blockchain Advisory & Consulting",
-      "Audited Smart Contracts Development",
-      "Crypto Wallet & Ledger Integration",
-      "Custom Token Development (ERC-20/721/1155)",
-      "Enterprise NFT Platforms",
-      "Secure Web3 Product Solutions",
-      "Supply Chain Traceability Blockchain",
-      "Decentralized Identity Management (DID)"
+      "Blockchain Advisory & Consulting services",
+      "Audited Smart Contracts Development & Deployment",
+      "Crypto Wallet Development & API Integrations",
+      "Custom Token Development (Utility, Security, Governance)",
+      "NFT Platforms & Digital Asset Tokenization Solutions",
+      "Secure Web3 Business Applications & Interfaces",
+      "Supply Chain Traceability & Blockchain Ledger Solutions",
+      "Decentralized Identity & Access Management (DID)"
     ],
     subServices: [
-      "Solidity & Rust Smart Contract Development",
-      "IPFS Decentralized File Hosting Solutions",
-      "Web3.js & Ethers.js Frontend Integrations",
-      "Ethereum, Polygon, & Solana Layer 2 Solutions"
+      "Solidity & Rust Smart Contract Dev",
+      "Private Consortium Ledger Architecture",
+      "Web3 API & Crypto Wallet Integration",
+      "Supply Chain Tracking Ledger Setup"
     ],
     metrics: [
-      { value: "100%", label: "Immutable Transaction Logs" },
-      { value: "$0", label: "Intermediary Settlement Fees" },
-      { value: "0ms", label: "Double-spending Latency" }
+      { value: "100%", label: "Immutable Ledger Logs" },
+      { value: "0ms", label: "Double-spending Latency" },
+      { value: "Secured", label: "Smart Contracts Auditing" }
     ],
     accentColor: "from-amber-600 to-orange-700",
     faq: [
-      { q: "Can we use blockchain privately?", a: "Absolutely. We develop private consortium blockchains (Hyperledger, private EVM) with custom access control lists specifically for secure B2B tracking." },
-      { q: "Are your smart contracts audited?", a: "Yes. Every contract we construct goes through automated testing rigs and manual audits to guarantee secure and error-free deployments." }
+      { q: "Can we deploy private blockchain ledgers?", a: "Yes. We develop secure, private consortium blockchain networks (such as Hyperledger, private EVM, or Corda) with fine-grained access control lists optimized specifically for enterprise operations." },
+      { q: "What is smart contract auditing?", a: "Every smart contract we compile goes through intensive automated and manual security testing to identify vulnerabilities, logical loopholes, or gas inefficiencies before mainnet deployment." }
     ]
   },
   "smart-home": {
-    title: "Smart Home Installation",
-    badge: "Intelligent Living",
-    heroDesc: "Transform your residential and corporate spaces into secure, responsive smart nodes.",
-    longDesc: "Achieve unprecedented luxury, absolute convenience, and maximum energy conservation. We design and install high-security mesh smart systems in Delhi NCR, integrating climate control, biometrics, and voice commands.",
+    title: "Smart Home Installation Services",
+    badge: "Smarter, Safer, Connected",
+    heroDesc: "Transform Your Home into a Smarter, Safer, and More Connected Living Space with certified automation specialists.",
+    longDesc: "At TECHNO-SOLUTIONS, we design and install intelligent Smart Home solutions that bring convenience, comfort, security, and energy efficiency to your living space. Our advanced home automation systems integrate lighting, security, entertainment, climate, and kitchen appliances into one seamless, unified ecosystem controlled from anywhere via your smartphone, tablet, or voice assistants.",
     icon: "Home",
     image: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80",
     highlights: [
-      "Smart Lighting & Ambience Presets",
-      "Military-Grade Smart Security Networks",
-      "High-Definition CCTV Monitoring",
-      "Encrypted Smart Door Locks & Biometrics",
-      "Video Door Phones & Intercom Meshes",
-      "Full Home Automation Hubs",
-      "Siri, Alexa, & Google Assistant Voice Controls",
-      "Smart Energy & Utility Management"
+      "Smart Lighting Automation (Mood scenes, schedule timers, voice lights)",
+      "Smart Security Systems (CCTV Cameras, intrusion alarms, alerts)",
+      "Smart Door Locks & Access Control (Fingerprint, PIN, remote lock)",
+      "Video Door Phone Systems (HD camera, two-way audio, app lock)",
+      "Smart Climate Control (Automated temperature schedules, energy saving AC)",
+      "Smart Entertainment Systems (Multi-room audio, Home Theatre setup)",
+      "Smart Curtains & Blinds (Motorized opening/closing via sensors)",
+      "Smart Kitchen & Energy Management (Gas/water leak detectors, smart plugs)",
+      "Smart Home Networking (Mesh Wi-Fi installation, Structured cabling)",
+      "Voice Assistant Integration (Amazon Alexa, Google Assistant, Apple HomeKit)"
     ],
     subServices: [
-      "Zigbee & Z-Wave Mesh Grid Deployment",
-      "Central Touch Panel and App Interface Syncing",
-      "Intelligent Motion & Leak Sensor Integrations",
-      "Custom Home Theatre and Audio Multizone Control"
+      "Smart Lighting & Ambience Design",
+      "Comprehensive Smart Security & Locks",
+      "Climate & Motorized Curtain Controls",
+      "Whole-Home Mesh Wi-Fi & IoT Setup"
     ],
     metrics: [
-      { value: "100%", label: "Connected Living Coverage" },
-      { value: "28%", label: "HVAC Energy Conservation" },
-      { value: "256-bit", label: "Local Device Encryption" }
+      { value: "7 Steps", label: "Installation Process" },
+      { value: "Alexa/Google", label: "Voice Enabled" },
+      { value: "Mesh Wi-Fi", label: "Seamless Cover" }
     ],
     accentColor: "from-violet-600 to-indigo-700",
     faq: [
-      { q: "Can I manage my smart home when away?", a: "Yes. All security, CCTV feeds, and lock controls are securely accessible via your personalized encrypted smartphone application." },
-      { q: "What happens during a power failure?", a: "Our installations are equipped with fallback local memory and automated offline triggers to maintain physical lock security." }
+      { q: "Can I control my smart home remotely?", a: "Yes. Our solutions allow you to monitor and control your home's lighting, locks, climate, and security feeds from anywhere in the world using a secure mobile application." },
+      { q: "Can I automate my existing home?", a: "Absolutely. Most existing homes can be retrofitted and upgraded with modern smart switches, sensors, and cameras without requiring major structural changes or rewiring." },
+      { q: "Will smart home devices work during internet outages?", a: "Many core automation functions and local sensor communications continue to work reliably on your local home network, while remote access and cloud-based features will require an active internet connection." },
+      { q: "What is your Smart Home installation process?", a: "Our process consists of 7 professional steps: 1. Consultation, 2. Site Survey, 3. Customized Solution Design, 4. Professional Certified Installation, 5. Configuration & Device Integration, 6. User Hands-on Training, and 7. Maintenance & After-Sales Support." }
     ]
   },
   "solar-energy": {
-    title: "Solar Panel Installation",
-    badge: "Clean Energy Grids",
-    heroDesc: "Save money on electricity bills while reducing your carbon footprint.",
-    longDesc: "Harness high-conversion clean telemetry. We plan, execute, and maintain residential, commercial, and industrial solar rooftop setups in Delhi and NCR, combining high-yield monocrystalline panels with hybrid backup net-metering structures.",
+    title: "Solar Panel Installation Services",
+    badge: "Clean Energy Solutions",
+    heroDesc: "Power your future with solar energy. Custom solar grids for homes, offices, schools, and heavy industries.",
+    longDesc: "At TECHNO-SOLUTIONS, we provide professional Solar Panel Installation Services that help homeowners, businesses, educational institutions, and industries reduce electricity costs, achieve energy independence, and contribute to a sustainable future.\n\nOur end-to-end solar solutions include personalized consultation, detailed site assessments, optimal structural engineering design, certified installation, grid integration net-metering commissioning, and long-term preventive Maintenance contracts.",
     icon: "Sun",
     image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=800&q=80",
     highlights: [
-      "Residential Solar Panel Fitting",
-      "Commercial Rooftop Solar Arrays",
-      "Industrial High-Yield Clean Energy Solutions",
-      "Custom Rooftop Grid Planning",
-      "Post-Install Solar Maintenance & Cleans",
-      "High-Capacity Battery Backup Integration",
-      "Hybrid Solar Grid Systems",
-      "Comprehensive Energy Audits & Sizing"
+      "Residential Solar Panel Installation (On-grid, Off-grid, or Hybrid setups)",
+      "Commercial Solar Solutions (Offices, Hotels, Schools, Hospitals, Malls)",
+      "Industrial Solar Solutions (Factory roofs, Ground-mounted solar plants)",
+      "Solar Water Heating Systems & Solar Street Lighting applications",
+      "Solar Battery Storage Solutions (Lithium-ion systems, Smart monitors)",
+      "Solar System Maintenance, Performance Sizing, & Annual Contracts (AMC)",
+      "Grid-Connected Systems (Route surplus power back via net-metering)",
+      "Hybrid Systems combining grid electricity, solar, and battery backup",
+      "Complete Energy Audits, Structural Load checks, and Shading Analysis"
     ],
     subServices: [
-      "Monocrystalline PERC Panel Sizing",
-      "Net-Metering Regional Approval Assistance",
-      "On-Grid, Off-Grid, and Hybrid Inverter Setups",
-      "Structural Load and Shading Analysis Audits"
+      "Residential Rooftop Solar System",
+      "Commercial & Industrial Solar Plant",
+      "Solar Battery Storage & Hybrid Inverter",
+      "System Sizing, AMC, & Panel Maintenance"
     ],
     metrics: [
-      { value: "up to 85%", label: "Electricity Bill Reduction" },
-      { value: "4.5 Years", label: "Average ROI Payback Period" },
-      { value: "25 Years", label: "Linear Power SLA Guarantee" }
+      { value: "Up to 85%", label: "Electricity Savings" },
+      { value: "25+ Years", label: "Panel Lifetime" },
+      { value: "4.5 Years", label: "Avg Payback Period" }
     ],
     accentColor: "from-emerald-600 to-green-700",
     faq: [
-      { q: "What is Net-Metering?", a: "Net-metering allows you to route surplus solar energy back into the local grid, earning utility bill credits for negative usage." },
-      { q: "Does solar work during cloudy days?", a: "Yes. High-performance monocrystalline cells capture scattered ambient light, producing power even during overcast weather." }
+      { q: "How much can I save with a solar power system?", a: "Savings depend on your electricity consumption, local tariffs, system size, and sunlight availability. During our consultation, we provide an estimated return on investment and projected energy savings." },
+      { q: "How long do solar panels last?", a: "Most high-quality monocrystalline solar panels are designed to operate efficiently for 25 years or more with proper care and maintenance." },
+      { q: "Do solar panels work on cloudy days?", a: "Yes. Solar panels continue to generate electricity under cloudy conditions, although output is generally lower than on bright sunny days." },
+      { q: "Do I need battery storage?", a: "Battery storage is optional. It is recommended if you require backup power during outages, want to maximize self-generated solar energy, or reside in areas with limited grid access." },
+      { q: "What is your Solar installation process?", a: "Our process consists of: 1. Free Consultation, 2. Site Survey & Shading analysis, 3. Customized System Design, 4. Proposal & Cost Estimation, 5. Professional Installation, 6. Testing & Commissioning, and 7. Monitoring & AMC support." }
     ]
   }
 };
