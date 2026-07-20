@@ -170,8 +170,8 @@ export default function Header() {
       <style>{`
         @media (max-width: 1023px) {
           main {
-            padding-top: 84px !important;
-            padding-bottom: 76px !important;
+            padding-top: 56px !important;
+            padding-bottom: 64px !important;
           }
           #header-navigation {
             display: none !important;
@@ -179,34 +179,9 @@ export default function Header() {
         }
       `}</style>
 
-      {/* MOBILE APPLICATION APP SHELL (Visible ONLY on mobile/tablet below lg breakpoint) */}
+      {/* MOBILE APPLICATION APP SHELL HEADER (Visible ONLY on mobile/tablet below lg breakpoint) */}
       <div className="lg:hidden fixed top-0 left-0 w-full z-50 flex flex-col bg-white">
-        {/* Simulated Status Bar (Exactly like native iOS / Android) */}
-        <div className="h-7 bg-white text-[#1B1B1B] px-5 flex items-center justify-between text-[11px] font-bold select-none border-b border-[#ECECEC]/10">
-          <div className="flex items-center gap-1">
-            <span>{currentTime || "09:41 AM"}</span>
-          </div>
-          {/* Simulated phone notch/dynamic island aesthetic */}
-          <div className="w-24 h-4 rounded-full bg-[#1B1B1B] absolute left-1/2 -translate-x-1/2 top-1.5 hidden xs:block" />
-          
-          <div className="flex items-center gap-2">
-            {/* Cellular Signal strength bars */}
-            <div className="flex items-end gap-0.5 h-2.5">
-              <span className="w-0.5 h-[3px] bg-[#1B1B1B] rounded-xs" />
-              <span className="w-0.5 h-[5px] bg-[#1B1B1B] rounded-xs" />
-              <span className="w-0.5 h-[7px] bg-[#1B1B1B] rounded-xs" />
-              <span className="w-0.5 h-[9px] bg-[#1B1B1B] rounded-xs" />
-            </div>
-            <span className="text-[9px] font-mono tracking-tighter">5G</span>
-            <Wifi className="w-3.5 h-3.5 text-[#1B1B1B]" />
-            <div className="flex items-center gap-0.5">
-              <Battery className="w-4 h-4 text-[#1B1B1B] -mr-1" />
-              <span className="text-[9px] scale-[0.95]">88%</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Streamlined App Bar (Fixed right below status bar) */}
+        {/* Streamlined App Bar (Fixed top of screen on mobile devices) */}
         <div className="h-14 bg-white/95 backdrop-blur-md border-b border-[#ECECEC]/60 px-5 flex items-center justify-between shadow-[0_2px_15px_rgba(0,0,0,0.02)]">
           {/* Left Action: Brand logo/name or Back button */}
           <div className="flex items-center">
