@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import WhatsAppWidget from "./components/WhatsAppWidget";
+import AIChatbot from "./components/AIChatbot";
 
 // Pages
 import Home from "./pages/Home";
@@ -56,6 +58,10 @@ export default function App() {
 
         {/* Footer Section */}
         <Footer />
+
+        {/* Floating Widgets */}
+        <WhatsAppWidget />
+        <AIChatbot />
       </div>
     </HashRouter>
   );
