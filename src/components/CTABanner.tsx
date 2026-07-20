@@ -49,7 +49,7 @@ export default function CTABanner() {
               </h2>
 
               <p className="text-white/70 text-sm leading-relaxed max-w-lg">
-                Submit your request below. Our expert engineering and consulting team will review your requirements, design a customized solution blueprint, and contact you to schedule a free deep-discovery session.
+                Whether you need business automation, AI implementation, blockchain consulting, smart home installation, or solar solutions, our experts are ready to help.
               </p>
 
               {/* Secure certifications */}

@@ -63,15 +63,15 @@ export default function IndustriesServed() {
             <span>INDUSTRIES WE SERVE</span>
           </div>
           <h2 className="font-serif text-3xl md:text-5xl font-bold text-[#1B1B1B] leading-tight">
-            Tailored Industry Solutions
+            Industries We Serve
           </h2>
           <p className="text-[#5B6470] text-lg">
-            We adapt our advanced workflow automation and intelligent digital architectures to fit your unique compliance and productivity requirements.
+            We provide customized technology solutions for:
           </p>
         </div>
 
         {/* Responsive Industries Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
           {INDUSTRIES.map((industry, index) => (
             <motion.div
               key={industry.name}
@@ -80,17 +80,17 @@ export default function IndustriesServed() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
               whileHover={{ y: -5, boxShadow: "0 12px 30px rgba(15, 45, 99, 0.05)", borderColor: "rgba(15, 45, 99, 0.1)" }}
-              className="bg-[#F8F9FC] border border-[#ECECEC] p-8 rounded-2xl flex flex-col gap-4 text-left transition-all duration-300 group"
+              className="bg-[#F8F9FC] border border-[#ECECEC] p-3.5 md:p-8 rounded-[16px] md:rounded-2xl flex flex-col gap-2.5 md:gap-4 text-left transition-all duration-300 group"
             >
-              <div className="flex items-center gap-4">
-                <div className="p-3.5 rounded-xl bg-white text-[#0F2D63] shadow-sm transition-colors duration-300 group-hover:bg-[#0F2D63] group-hover:text-white shrink-0">
-                  {getIcon(industry.name, "w-6 h-6")}
+              <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-4">
+                <div className="p-1.5 md:p-3.5 rounded-xl bg-white text-[#0F2D63] shadow-sm transition-colors duration-300 group-hover:bg-[#0F2D63] group-hover:text-white shrink-0 w-fit">
+                  {getIcon(industry.name, "w-4 h-4 md:w-6 md:h-6")}
                 </div>
-                <h3 className="font-serif font-bold text-lg text-[#1B1B1B] group-hover:text-[#0F2D63] transition-colors">
+                <h3 className="font-serif font-bold text-xs sm:text-sm md:text-lg text-[#1B1B1B] group-hover:text-[#0F2D63] transition-colors leading-tight">
                   {industry.name}
                 </h3>
               </div>
-              <p className="text-[#5B6470] text-sm leading-relaxed">
+              <p className="text-[#5B6470] text-[10px] sm:text-xs md:text-sm leading-relaxed">
                 {industry.desc}
               </p>
             </motion.div>

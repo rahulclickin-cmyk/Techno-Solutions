@@ -4,103 +4,116 @@ export const SERVICES: ServiceItem[] = [
   {
     id: "digital-transformation",
     title: "Digital Transformation Solutions",
-    description: "Modernize your organization with digital-first strategies, cloud adoption, and AI integration plans.",
+    description: "Modernize your organization with digital-first strategies.",
     longDescription: "In today’s rapidly evolving digital landscape, businesses must adapt, innovate, and transform to stay competitive. Our Digital Transformation Consulting & Training Services assess your current digital maturity, identify technological gaps, and build tailored strategic roadmaps for sustainable corporate upskilling and modern deployment.",
     iconName: "Monitor",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
     badge: "Strategy & Advisory",
     details: [
-      "Digital Transformation Consulting & Mature Audits",
-      "Enterprise Digitization and Cloud Adoption Models",
-      "AI Integration & Predictive Analytics Implementation",
-      "Process Optimization & Technology Selection Roadmaps",
-      "Customer Experience (CX) Transformation Consulting",
-      "Corporate Digital Upskilling & Training Programs"
+      "Digital Transformation Consulting",
+      "Enterprise Digitization",
+      "Cloud Adoption",
+      "AI Integration",
+      "Process Optimization",
+      "Customer Experience Transformation",
+      "Digital Strategy Roadmaps"
     ]
   },
   {
     id: "business-automation",
     title: "Business Automation Solutions",
-    description: "Automate repetitive manual processes across departments to increase productivity and reduce costs.",
+    description: "Automate repetitive tasks and increase productivity.",
     longDescription: "TECHNO-SOLUTIONS is a leading provider of Business Automation Solutions. We streamline operations, eliminate paper-based processes, and accelerate workflows. By connecting low-code platforms and custom ERPs, we help startups, SMEs, and large enterprises transition into zero-bottleneck organizations.",
     iconName: "Settings",
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
     badge: "Automation Core",
     details: [
-      "Workflow & CRM Automation (HubSpot, Zoho, Salesforce)",
-      "HR, leave, and Onboarding Automation",
-      "Finance, Expense, and Invoice Approvals Routing",
-      "Inventory Management and Sales Automation",
-      "Robotic Process Automation (RPA) & AI Chatbots",
-      "ERP Integration (SAP, Oracle, Odoo, Zoho, Tally)"
+      "Workflow Automation",
+      "CRM Automation",
+      "HR Automation",
+      "Finance Automation",
+      "Sales Automation",
+      "Inventory Management",
+      "Document Management",
+      "ERP Integration",
+      "AI Chatbots",
+      "Robotic Process Automation (RPA)"
     ]
   },
   {
     id: "ai-solutions",
     title: "Artificial Intelligence Solutions",
-    description: "Unlock the power of neural engines, Generative AI models, and custom Agentic systems.",
+    description: "Unlock the power of AI.",
     longDescription: "Bridge manual operational gaps with the power of modern artificial intelligence. We develop customized strategies, implement ChatGPT/Gemini APIs, deploy self-guided AI agents, build intelligent document parsers (OCR), and configure deep computer-vision models tailored to your industry's telemetry.",
     iconName: "Cpu",
     image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?auto=format&fit=crop&w=800&q=80",
     badge: "Cognitive AI",
     details: [
-      "AI Strategy Advisory & Implementation Support",
-      "Generative AI & ChatGPT/Gemini API Integrations",
-      "Intelligent Autonomous AI Agents & Custom Workflows",
-      "Predictive Analytics & Real-time KPI Telemetry",
-      "Intelligent Document Processing & Advanced OCR",
-      "Computer Vision & Industrial Machine Learning Models"
+      "AI Strategy",
+      "Generative AI",
+      "ChatGPT Integration",
+      "AI Agents",
+      "Predictive Analytics",
+      "Intelligent Document Processing",
+      "Computer Vision",
+      "Machine Learning"
     ]
   },
   {
     id: "blockchain-crypto",
     title: "Blockchain & Crypto Solutions",
-    description: "Secure, transparent, decentralized ledger integrations, Web3 portals, and audited smart contracts.",
+    description: "Secure, transparent, decentralized technology.",
     longDescription: "Construct private trustless transaction systems, automate multi-party compliance protocols, audit complex smart contracts, and build resilient distributed logistics networks with optimized security to prevent vulnerabilities and eliminate single-point operational failures.",
     iconName: "Database",
     image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=80",
     badge: "Distributed Web3",
     details: [
-      "Strategic Blockchain Consulting & Web3 Architecture",
-      "Secure Smart Contracts Auditing & Execution Protocols",
-      "Crypto Wallet & Custom Token Development",
-      "Decentralized NFT Platforms & Asset Tokenization",
-      "Supply Chain Traceability Blockchain Integrations",
-      "Secured Decentralized Identity & Access Management"
+      "Blockchain Consulting",
+      "Smart Contracts",
+      "Crypto Wallet Development",
+      "Token Development",
+      "NFT Platforms",
+      "Web3 Solutions",
+      "Supply Chain Blockchain",
+      "Identity Management"
     ]
   },
   {
     id: "smart-home",
     title: "Smart Home Installation",
-    description: "Transform your residential or commercial space into a secure, responsive, intelligent living environment.",
+    description: "Transform your home into an intelligent living space.",
     longDescription: "Deploy unified IoT meshes that sense, adapt, and respond dynamically. We integrate voice assistants, smart CCTV arrays, advanced biometric locks, automated HVAC climate routines, and tailored building dashboard monitors that help save substantial energy overhead.",
     iconName: "Home",
     image: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80",
     badge: "Intelligent IoT",
     details: [
-      "Smart Lighting & Automated Ambience Control",
-      "High-Definition Security, CCTV, & Video Door Phones",
-      "End-to-End Encrypted Biometric Door Lock Integration",
-      "Voice Controls & Smart Centralized Touchscreens",
-      "Intelligent Energy Management & HVAC Controls",
-      "Custom Wireless Mesh IoT Infrastructure Setup"
+      "Smart Lighting",
+      "Smart Security",
+      "CCTV",
+      "Smart Door Locks",
+      "Video Door Phones",
+      "Home Automation",
+      "Voice Control",
+      "Smart Energy Management"
     ]
   },
   {
     id: "solar-energy",
     title: "Solar Panel Installation",
-    description: "Reduce overhead utility expenses and transition to modern carbon-negative operations.",
+    description: "Save money while protecting the environment.",
     longDescription: "Design, construct, and balance high-conversion rooftop solar arrays tailored for residential, commercial, or industrial architectures. Our solutions include high-capacity battery bank integration, net-metering telemetry tracking, and comprehensive carbon-offset reporting.",
     iconName: "Sun",
     image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=800&q=80",
     badge: "Clean Tech",
     details: [
-      "Residential, Commercial, and Industrial Solar Grids",
-      "Rooftop Solar Structural Feasibility Analysis",
-      "Intelligent Battery Storage & Power Backup Systems",
-      "Hybrid Solar Integration & Peak Load Balancing",
-      "Comprehensive Sustainability Audits & Carbon Offsets",
-      "Ongoing Maintenance, Safety Diagnostics & Calibration"
+      "Residential Solar",
+      "Commercial Solar",
+      "Industrial Solar",
+      "Rooftop Solar",
+      "Solar Maintenance",
+      "Battery Backup",
+      "Hybrid Solar Systems",
+      "Energy Audits"
     ]
   }
 ];
@@ -159,7 +172,7 @@ export const PROCESS_STEPS: ProcessStep[] = [
   },
   {
     step: "05",
-    title: "Hands-on Training",
+    title: "Training",
     description: "We run customized corporate workshops, hands-on tutorials, and documentation walkthroughs to ensure seamless adoption by all teams.",
     iconName: "Award"
   },
@@ -270,35 +283,43 @@ export const INDUSTRIES = [
 export const WHY_CHOOSE_US = [
   {
     title: "Experienced Professionals",
-    desc: "Technology experts with decades of industry experience across business, renewable grid modeling, and blockchain paradigms."
+    desc: "Technology experts with industry knowledge."
   },
   {
     title: "Customized Solutions",
-    desc: "Every business has unique workflows. We build tailored architectures that integrate perfectly into your legacy operations."
+    desc: "Every business is unique. We build solutions that match your objectives."
   },
   {
     title: "End-to-End Services",
-    desc: "We manage the entire lifecycle—from first blueprint consulting workshops to coding, deployment, and ongoing 24/7 SLA support."
+    desc: "From consulting to implementation and ongoing support."
   },
   {
-    title: "Latest Technologies (AI, ML, Generative AI, Blockchain, Cloud, IoT, RPA etc.)",
-    desc: "We stay on the absolute cutting edge, deploying Generative AI models, Agentic AI loops, high-conversion clean energy, and robust low-code tools."
+    title: "Latest Technologies",
+    desc: "AI, Automation, Cloud, IoT, Blockchain, and Smart Systems."
   },
   {
     title: "Affordable Pricing",
-    desc: "We engineer enterprise-quality, ISO-level software structures optimized safely within your project’s financial parameters."
+    desc: "Enterprise-quality solutions within your budget."
   },
   {
-    title: "Customer First Approach",
-    desc: "We focus heavily on measurable business value, transparent documentation, and long-term retainer partnerships."
+    title: "Customer First",
+    desc: "Long-term partnerships focused on measurable business value."
   }
 ];
 
 export const TECHNOLOGIES = [
-  { category: "Artificial Intelligence", items: ["Generative AI", "Agentic AI", "Machine Learning", "ChatGPT / Gemini APIs", "Intelligent OCR"] },
-  { category: "Software & Web3", items: ["Python", "Java", "Node.js", "Blockchain Ledger", "Smart Contracts", "Web3 APIs"] },
-  { category: "Cloud Infrastructure", items: ["AWS", "Microsoft Azure", "Google Cloud Platform", "CI/CD", "Secure API Gateway"] },
-  { category: "Automation & Low-Code", items: ["Power Automate", "Power BI", "Copilot Studio", "Robotic Process Automation", "ERP/CRM APIs"] }
+  {
+    category: "AI & Automation",
+    items: ["Artificial Intelligence", "Machine Learning", "Generative AI", "Agentic AI", "RPA", "Microsoft Power Platform"]
+  },
+  {
+    category: "Software & Web3",
+    items: ["Blockchain", "Web3", "Python", "Java", "ERP", "CRM"]
+  },
+  {
+    category: "Cloud & IoT",
+    items: ["Cloud Computing", "AWS", "Azure", "Google Cloud", "Power BI", "IoT"]
+  }
 ];
 
 export const BLOG_POSTS: BlogPost[] = [

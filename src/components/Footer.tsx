@@ -17,9 +17,9 @@ export default function Footer() {
 
   const servicesLinks = [
     { name: "Digital Transformation", path: "/digital-transformation" },
-    { name: "Business Automation", path: "/business-automation" },
     { name: "AI Solutions", path: "/artificial-intelligence" },
-    { name: "Blockchain & Crypto", path: "/blockchain-solutions" },
+    { name: "Business Automation", path: "/business-automation" },
+    { name: "Blockchain", path: "/blockchain-solutions" },
     { name: "Smart Home", path: "/smart-home-installation-services" },
     { name: "Solar Installation", path: "/solar-panel-installation" }
   ];
@@ -76,10 +76,22 @@ export default function Footer() {
                 <Link to="/" className="hover:text-white transition-colors">Home</Link>
               </li>
               <li>
-                <Link to="/about" className="hover:text-white transition-colors">About Us</Link>
+                <Link to="/about" className="hover:text-white transition-colors">About</Link>
+              </li>
+              <li>
+                <Link to="/services" className="hover:text-white transition-colors">Services</Link>
+              </li>
+              <li>
+                <a href="#industries" className="hover:text-white transition-colors">Industries</a>
+              </li>
+              <li>
+                <Link to="/services" className="hover:text-white transition-colors">Solutions</Link>
               </li>
               <li>
                 <Link to="/blog" className="hover:text-white transition-colors">Blog</Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-white transition-colors">Careers</Link>
               </li>
               <li>
                 <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>

@@ -127,7 +127,7 @@ export default function Hero() {
             variants={itemVariants}
             className="font-sans text-lg sm:text-xl text-[#E5AF2B] font-semibold tracking-wide"
           >
-            Digital Transformation | Business Automation | Robotic AI | Blockchain | Solar | Smart Homes
+            Digital Transformation | Business Automation | AI | Blockchain | Solar | Smart Homes
           </motion.h2>
 
           {/* Primary Text */}
@@ -135,7 +135,7 @@ export default function Hero() {
             variants={itemVariants}
             className="text-white/85 text-base md:text-lg leading-relaxed max-w-2xl font-sans"
           >
-            We help organizations modernize, automate, and scale using cutting-edge robotic solutions and elite digital engineering. Whether you are a startup, SME, educational institution, or enterprise, we design tailored systems that boost operational efficiency, secure communications, and accelerate sustainable growth.
+            At Techno-Solutions, we help businesses modernize, automate, and grow using cutting-edge technologies. Whether you are a startup, SME, enterprise, educational institution, or government organization, we deliver innovative solutions that improve efficiency, reduce costs, and accelerate digital transformation.
           </motion.p>
 
           {/* Action Buttons */}

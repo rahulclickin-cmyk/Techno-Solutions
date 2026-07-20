@@ -32,7 +32,7 @@ export default function TechnologiesStack() {
             </div>
             
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1B1B] leading-tight">
-              Delivering Enterprise-Level Engineering Excellence
+              Why Choose Techno-Solutions?
             </h2>
             
             <p className="text-[#5B6470] text-sm md:text-base leading-relaxed">
