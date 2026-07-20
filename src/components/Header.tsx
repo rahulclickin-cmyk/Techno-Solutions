@@ -205,23 +205,171 @@ export default function Header() {
             )}
           </div>
 
-          {/* Center Action: App Title */}
+          {/* Center Action: App Title (Only on sub-pages to prevent logo overlap on home page) */}
           <div className="absolute left-1/2 -translate-x-1/2 text-center pointer-events-none">
-            <span className="font-serif font-extrabold text-xs text-[#0F2D63] tracking-wide uppercase">
-              {mobileHeader.title}
-            </span>
+            {!mobileHeader.isMainTab && (
+              <span className="font-serif font-extrabold text-xs text-[#0F2D63] tracking-wide uppercase">
+                {mobileHeader.title}
+              </span>
+            )}
           </div>
 
-          {/* Right Action: Notifications or user profile avatar */}
+          {/* Right Action: Menu hamburger icon replacing bell & profile avatar */}
           <div className="flex items-center gap-2">
-            <button className="relative p-2 rounded-xl text-[#0F2D63] bg-[#0F2D63]/5 hover:bg-[#0F2D63]/10 transition-colors cursor-pointer">
-              <Bell className="w-3.5 h-3.5" />
-              <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+            <button 
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-xl text-[#0F2D63] bg-[#0F2D63]/5 hover:bg-[#0F2D63]/10 active:scale-95 transition-all cursor-pointer"
+              aria-label="Toggle mobile menu"
+            >
+              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
-            <Link to="/contact" className="w-7 h-7 rounded-full border border-amber-500/20 bg-cover bg-center overflow-hidden shadow-sm" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop')" }} />
           </div>
         </div>
       </div>
+
+      {/* MOBILE APPLICATION SIDE SLIDE-OUT MENU DRAWER */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Backdrop filter */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+              className="lg:hidden fixed inset-0 bg-[#06183B]/50 backdrop-blur-xs z-40"
+            />
+
+            {/* Slide-out Drawer Panel */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", bounce: 0.05, duration: 0.35 }}
+              className="lg:hidden fixed top-0 right-0 w-[80%] max-w-[300px] h-full bg-white shadow-2xl z-50 flex flex-col justify-between"
+            >
+              {/* Drawer Header */}
+              <div className="p-4 border-b border-[#ECECEC]/60 flex items-center justify-between">
+                <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2">
+                  <img 
+                    src="https://lh3.googleusercontent.com/d/1bcaOeIYNdxuqxCd8-yPBHc5YiGUEYfRh" 
+                    alt="TS Logo" 
+                    className="h-7 w-auto object-contain"
+                    referrerPolicy="no-referrer"
+                  />
+                </Link>
+                <button 
+                  onClick={() => setIsOpen(false)}
+                  className="p-1.5 rounded-xl text-[#5B6470] bg-[#ECECEC]/40 hover:bg-[#ECECEC]/70 transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Drawer Links Content */}
+              <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-1.5 text-left">
+                <Link
+                  to="/"
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center gap-3 p-2.5 rounded-xl transition-all ${
+                    location.pathname === "/" ? "bg-[#0F2D63]/5 text-[#0F2D63] font-bold" : "text-[#1B1B1B] hover:bg-slate-50 font-medium"
+                  }`}
+                >
+                  <Home className="w-4 h-4 text-[#0F2D63]" />
+                  <span className="text-sm">Home</span>
+                </Link>
+
+                <Link
+                  to="/about"
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center gap-3 p-2.5 rounded-xl transition-all ${
+                    location.pathname === "/about" ? "bg-[#0F2D63]/5 text-[#0F2D63] font-bold" : "text-[#1B1B1B] hover:bg-slate-50 font-medium"
+                  }`}
+                >
+                  <Bot className="w-4 h-4 text-[#0F2D63]" />
+                  <span className="text-sm">About Us</span>
+                </Link>
+
+                {/* Services Accordion Trigger */}
+                <div className="flex flex-col">
+                  <button
+                    onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                    className="flex items-center justify-between p-2.5 rounded-xl text-[#1B1B1B] hover:bg-slate-50 font-medium text-sm"
+                  >
+                    <div className="flex items-center gap-3">
+                      <LayoutGrid className="w-4 h-4 text-[#E5AF2B]" />
+                      <span>Our Solutions</span>
+                    </div>
+                    <ChevronDown className={`w-3.5 h-3.5 transition-transform text-[#5B6470] ${isMobileServicesOpen ? "rotate-180" : ""}`} />
+                  </button>
+
+                  <AnimatePresence>
+                    {isMobileServicesOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="pl-9 flex flex-col gap-1 overflow-hidden"
+                      >
+                        {services.map((srv) => (
+                          <Link
+                            key={srv.id}
+                            to={srv.path}
+                            onClick={() => setIsOpen(false)}
+                            className={`p-1.5 rounded-lg text-xs transition-colors block text-left ${
+                              location.pathname === srv.path ? "text-[#0F2D63] font-bold bg-[#0F2D63]/5" : "text-[#5B6470] hover:text-[#0F2D63]"
+                            }`}
+                          >
+                            {srv.name}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                <Link
+                  to="/blog"
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center gap-3 p-2.5 rounded-xl transition-all ${
+                    location.pathname.startsWith("/blog") ? "bg-[#0F2D63]/5 text-[#0F2D63] font-bold" : "text-[#1B1B1B] hover:bg-slate-50 font-medium"
+                  }`}
+                >
+                  <BookOpen className="w-4 h-4 text-[#0F2D63]" />
+                  <span className="text-sm">Knowledge Hub</span>
+                </Link>
+
+                <Link
+                  to="/contact"
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center gap-3 p-2.5 rounded-xl transition-all ${
+                    location.pathname === "/contact" ? "bg-[#0F2D63]/5 text-[#0F2D63] font-bold" : "text-[#1B1B1B] hover:bg-slate-50 font-medium"
+                  }`}
+                >
+                  <PhoneCall className="w-4 h-4 text-[#0F2D63]" />
+                  <span className="text-sm">Contact Desk</span>
+                </Link>
+              </div>
+
+              {/* Drawer Footer Consultation CTA */}
+              <div className="p-4 border-t border-[#ECECEC]/60 flex flex-col gap-3">
+                <Link
+                  to="/contact"
+                  onClick={() => setIsOpen(false)}
+                  className="w-full py-2.5 rounded-xl bg-[#0F2D63] text-white text-center font-bold text-xs shadow-md shadow-[#0F2D63]/10 hover:bg-[#1a448c] active:scale-98 transition-all flex items-center justify-center gap-2"
+                >
+                  <span>Book Consultation</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+                <div className="text-[9px] text-center text-[#5B6470] leading-snug">
+                  Designed & Developed with ❤️ by <br />
+                  <span className="text-[#E5AF2B] font-bold">Clickin DMA by Rahul Singh</span>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* MOBILE APP PERSISTENT BOTTOM TAB BAR (Sticky Navigation) */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white/95 backdrop-blur-md border-t border-[#ECECEC]/70 flex items-center justify-around px-3 pb-safe shadow-[0_-4px_25px_rgba(0,0,0,0.05)] z-50">

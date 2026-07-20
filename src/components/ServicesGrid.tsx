@@ -63,26 +63,26 @@ export default function ServicesGrid() {
           </p>
         </div>
 
-        {/* 3-Column Balanced Grid with hover-lift */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* 2-Column Responsive Grid on Mobile, 3-Column on Desktop with hover-lift */}
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
           {SERVICES.map((service, index) => (
             <motion.div
               key={service.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
               whileHover={{ 
-                y: -10, 
-                boxShadow: "0 20px 40px rgba(15, 45, 99, 0.08)",
-                borderColor: "rgba(15, 45, 99, 0.15)"
+                y: -6, 
+                boxShadow: "0 15px 30px rgba(15, 45, 99, 0.06)",
+                borderColor: "rgba(15, 45, 99, 0.12)"
               }}
-              className="bg-white rounded-[20px] p-6 border border-[#ECECEC] flex flex-col justify-between transition-all duration-300 group cursor-pointer h-full"
+              className="bg-white rounded-[16px] md:rounded-[20px] p-3.5 md:p-6 border border-[#ECECEC] flex flex-col justify-between transition-all duration-300 group cursor-pointer h-full"
               onClick={() => navigate(getServicePath(service.id))}
             >
               <div>
                 {/* Image header with relative badge */}
-                <div className="relative w-full h-32 rounded-xl overflow-hidden mb-6">
+                <div className="relative w-full h-20 xs:h-24 sm:h-32 rounded-xl overflow-hidden mb-3 md:mb-6">
                   <img
                     src={service.image}
                     alt={service.title}
@@ -90,23 +90,23 @@ export default function ServicesGrid() {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-[#0F2D63]/20 mix-blend-multiply" />
-                  <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-[#0F2D63] text-[10px] font-bold px-2.5 py-1 rounded-full shadow-xs">
+                  <span className="absolute top-1.5 left-1.5 md:top-3 md:left-3 bg-white/90 backdrop-blur-xs text-[#0F2D63] text-[7px] md:text-[10px] font-bold px-1.5 md:px-2.5 py-0.5 md:py-1 rounded-full shadow-xs">
                     {service.badge}
                   </span>
                 </div>
 
                 {/* Service Icon and Title */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2.5 rounded-xl bg-[#0F2D63]/5 text-[#0F2D63] transition-colors duration-300 group-hover:bg-[#0F2D63] group-hover:text-white">
-                    {renderIcon(service.iconName, "w-5 h-5")}
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3 mb-2 md:mb-4 text-left">
+                  <div className="p-1.5 md:p-2.5 rounded-xl bg-[#0F2D63]/5 text-[#0F2D63] transition-colors duration-300 group-hover:bg-[#0F2D63] group-hover:text-white shrink-0 w-fit">
+                    {renderIcon(service.iconName, "w-4 h-4 md:w-5 md:h-5")}
                   </div>
-                  <h3 className="font-serif font-bold text-base text-[#1B1B1B] group-hover:text-[#0F2D63] transition-colors duration-300">
+                  <h3 className="font-serif font-bold text-xs sm:text-sm md:text-base text-[#1B1B1B] group-hover:text-[#0F2D63] transition-colors duration-300 leading-tight">
                     {service.title}
                   </h3>
                 </div>
 
                 {/* Brief description */}
-                <p className="text-[#5B6470] text-xs leading-relaxed mb-6">
+                <p className="text-[#5B6470] text-[10px] sm:text-xs leading-relaxed mb-3 md:mb-6 text-left">
                   {service.description}
                 </p>
               </div>
@@ -117,10 +117,10 @@ export default function ServicesGrid() {
                   e.stopPropagation();
                   navigate(getServicePath(service.id));
                 }}
-                className="w-full inline-flex items-center justify-between text-xs font-semibold text-[#0F2D63] group-hover:text-[#E5AF2B] transition-colors mt-auto pt-4 border-t border-[#F8F9FC]"
+                className="w-full inline-flex items-center justify-between text-[10px] md:text-xs font-semibold text-[#0F2D63] group-hover:text-[#E5AF2B] transition-colors mt-auto pt-2.5 md:pt-4 border-t border-[#F8F9FC]"
               >
-                Learn More
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                <span>Learn More</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
               </button>
             </motion.div>
           ))}
