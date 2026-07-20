@@ -63,9 +63,10 @@ export default function BlogDetailPage() {
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-slate-100 overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80" 
+                    src="https://lh3.googleusercontent.com/d/1um71-j8a4UUlpBz_7R0HMzOgkCuXB4Un" 
                     alt={post.author} 
                     className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
                   />
                 </div>
                 <div className="flex flex-col">

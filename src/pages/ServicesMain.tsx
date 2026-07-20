@@ -12,7 +12,7 @@ export default function ServicesMainPage() {
       desc: "Modernize your organization with digital-first strategies, cloud adoption, and AI integration plans.",
       icon: <Server className="w-6 h-6 text-[#E5AF2B]" />,
       badge: "Strategy & Advisory",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
+      image: "https://lh3.googleusercontent.com/d/1Eb9lrtVuN1YDIx7ZeC-u0Nsen7QR-tv4"
     },
     {
       id: "business-automation",
@@ -21,7 +21,7 @@ export default function ServicesMainPage() {
       desc: "Automate repetitive manual processes across departments to increase productivity and reduce costs.",
       icon: <Settings className="w-6 h-6 text-[#E5AF2B]" />,
       badge: "Automation Core",
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+      image: "https://lh3.googleusercontent.com/d/10GF06bLKTywpp22R52W1EsH1ryhAHAc1"
     },
     {
       id: "ai-solutions",
@@ -30,7 +30,7 @@ export default function ServicesMainPage() {
       desc: "Unlock the power of neural engines, Generative AI models, and custom Agentic systems.",
       icon: <Bot className="w-6 h-6 text-[#E5AF2B]" />,
       badge: "Cognitive AI",
-      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80"
+      image: "https://lh3.googleusercontent.com/d/1aHBor2vvoOA5re8GchzgLnkxe9E-n60z"
     },
     {
       id: "blockchain-crypto",
@@ -39,7 +39,7 @@ export default function ServicesMainPage() {
       desc: "Secure, transparent, decentralized ledger integrations, Web3 portals, and audited smart contracts.",
       icon: <ShieldCheck className="w-6 h-6 text-[#E5AF2B]" />,
       badge: "Distributed Web3",
-      image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=80"
+      image: "https://lh3.googleusercontent.com/d/1GKXj96wh-3gOlAr7ltk3ndI958XnyR9X"
     },
     {
       id: "smart-home",
@@ -48,7 +48,7 @@ export default function ServicesMainPage() {
       desc: "Transform your residential or commercial space into a secure, responsive, intelligent living environment.",
       icon: <Home className="w-6 h-6 text-[#E5AF2B]" />,
       badge: "Intelligent IoT",
-      image: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80"
+      image: "https://lh3.googleusercontent.com/d/1UMvm_FBS9b0zuUhPmi51g9veaCGzlbqJ"
     },
     {
       id: "solar-energy",
@@ -57,7 +57,7 @@ export default function ServicesMainPage() {
       desc: "Reduce overhead utility expenses and transition to modern carbon-negative operations.",
       icon: <Sun className="w-6 h-6 text-[#E5AF2B]" />,
       badge: "Clean Tech",
-      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=800&q=80"
+      image: "https://lh3.googleusercontent.com/d/1F6j4zwTIDaAm7M66MobqoTYJBrk5Zbyp"
     }
   ];
 
@@ -68,10 +68,10 @@ export default function ServicesMainPage() {
         {/* Futuristic dark blue and purple digital landscape of a holographic neural network */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1507668077129-56e32842fceb?auto=format&fit=crop&w=1600&q=80" 
+            src="https://lh3.googleusercontent.com/d/1ieakaI_VI6a73hTk611Porf_BF5yzMxT" 
             alt="Futuristic cyber technology network background" 
             referrerPolicy="no-referrer"
-            className="w-full h-full object-cover opacity-25 mix-blend-screen scale-105"
+            className="w-full h-full object-cover opacity-20 scale-102"
           />
           {/* Glowing blue and purple ambient overlay */}
           <div className="absolute inset-0 bg-gradient-to-tr from-[#06183B] via-[#0A224E]/90 to-[#2A0E4E]/80 mix-blend-multiply" />

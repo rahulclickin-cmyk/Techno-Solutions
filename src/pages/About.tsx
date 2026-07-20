@@ -93,11 +93,12 @@ export default function AboutPage() {
           </div>
 
           <div className="max-w-xl mx-auto bg-white rounded-3xl border border-[#ECECEC] p-8 shadow-sm text-center flex flex-col items-center gap-6 group hover:shadow-md transition-all">
-            <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-[#0F2D63]/10 group-hover:border-[#E5AF2B]/40 transition-all duration-300">
+            <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-[#0F2D63]/10 group-hover:border-[#E5AF2B]/40 transition-all duration-300 bg-slate-50">
               <img 
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80" 
+                src="https://lh3.googleusercontent.com/d/1um71-j8a4UUlpBz_7R0HMzOgkCuXB4Un" 
                 alt="Sanjeev Goel" 
                 className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
               />
             </div>
             <div className="flex flex-col gap-1">

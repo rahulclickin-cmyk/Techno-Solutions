@@ -137,9 +137,10 @@ export default function BlogListPage() {
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 rounded-full bg-slate-100 overflow-hidden">
                       <img 
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=50&q=80" 
+                        src="https://lh3.googleusercontent.com/d/1um71-j8a4UUlpBz_7R0HMzOgkCuXB4Un" 
                         alt="Author" 
                         className="w-full h-full object-cover"
+                        referrerPolicy="no-referrer"
                       />
                     </div>
                     <span className="text-xs font-semibold text-[#1B1B1B]">{post.author}</span>

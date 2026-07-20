@@ -36,7 +36,7 @@ const SERVICES_DATA: Record<string, ServiceContent> = {
     heroDesc: "Empowering businesses for the future. Assess, upskill, and transform with expert-led digital solutions.",
     longDesc: "In today’s rapidly evolving digital landscape, businesses must adapt, innovate, and transform to stay competitive. Digital transformation is no longer a luxury—it’s a necessity. However, many organizations struggle with implementing digital strategies effectively due to outdated infrastructure, workforce resistance, and unclear transformation roadmaps.\n\nWith expert guidance, businesses can leverage AI, cloud computing, automation, and data analytics to enhance efficiency, customer experience, and profitability. We help organizations across various industries navigate technological advancements and integrate AI, Cloud, IoT, Big Data, and Industry 4.0 into their business operations.",
     icon: "Server",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    image: "https://lh3.googleusercontent.com/d/1Eb9lrtVuN1YDIx7ZeC-u0Nsen7QR-tv4",
     highlights: [
       "Assess current digital maturity and identify operational gaps",
       "Develop customized digital strategy roadmaps",
@@ -72,7 +72,7 @@ const SERVICES_DATA: Record<string, ServiceContent> = {
     heroDesc: "Streamline operations, eliminate repetitive tasks, and accelerate digital enterprise growth.",
     longDesc: "TECHNO-SOLUTIONS is a leading provider of Business Automation Solutions. We help startups, SMEs, large enterprises, and public organizations streamline operations, eliminate repetitive tasks, improve productivity, reduce operational costs, and accelerate digital transformation.\n\nWe combine business consulting expertise with Artificial Intelligence (AI), Robotic Process Automation (RPA), Cloud Computing, Low-Code Platforms, and Intelligent Workflow Automation to create future-ready, agile organizations.",
     icon: "Settings",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+    image: "https://lh3.googleusercontent.com/d/10GF06bLKTywpp22R52W1EsH1ryhAHAc1",
     highlights: [
       "Business Process Automation (Workflows, Approval routing, Digital forms)",
       "Robotic Process Automation (RPA for Data Entry, Payroll, Reconciliations)",
@@ -110,7 +110,7 @@ const SERVICES_DATA: Record<string, ServiceContent> = {
     heroDesc: "Unlock the power of AI. Identify high-impact AI use cases, develop AI strategies, and upskill your teams.",
     longDesc: "In today’s fast-evolving digital landscape, AI consulting and training have become essential for businesses looking to harness the power of artificial intelligence. Our AI consulting helps organizations identify high-impact AI use cases, develop robust AI strategies, and implement AI-driven solutions that enhance efficiency, automation, and decision-making.\n\nSimultaneously, our corporate AI training programs, hands-on workshops, and executive coaching ensure your teams are fully upskilled and ready to utilize artificial intelligence to maintain competitive advantage.",
     icon: "Cpu",
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
+    image: "https://lh3.googleusercontent.com/d/1aHBor2vvoOA5re8GchzgLnkxe9E-n60z",
     highlights: [
       "AI Strategy & Consulting (AI Readiness & Roadmap Design)",
       "Custom AI Software & Model Development",
@@ -146,7 +146,7 @@ const SERVICES_DATA: Record<string, ServiceContent> = {
     heroDesc: "Establish secure, transparent, and decentralized technology architectures for your organization.",
     longDesc: "At TECHNO-SOLUTIONS, we build decentralized architectures that establish immutable trust, automate multi-party compliance, and protect vital transaction logs. From deploying audited smart contracts to building custom Web3 portals and token networks, we help organizations eliminate single-point operational failures.",
     icon: "ShieldCheck",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=80",
+    image: "https://lh3.googleusercontent.com/d/1GKXj96wh-3gOlAr7ltk3ndI958XnyR9X",
     highlights: [
       "Blockchain Advisory & Consulting services",
       "Audited Smart Contracts Development & Deployment",
@@ -180,7 +180,7 @@ const SERVICES_DATA: Record<string, ServiceContent> = {
     heroDesc: "Transform Your Home into a Smarter, Safer, and More Connected Living Space with certified automation specialists.",
     longDesc: "At TECHNO-SOLUTIONS, we design and install intelligent Smart Home solutions that bring convenience, comfort, security, and energy efficiency to your living space. Our advanced home automation systems integrate lighting, security, entertainment, climate, and kitchen appliances into one seamless, unified ecosystem controlled from anywhere via your smartphone, tablet, or voice assistants.",
     icon: "Home",
-    image: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80",
+    image: "https://lh3.googleusercontent.com/d/1UMvm_FBS9b0zuUhPmi51g9veaCGzlbqJ",
     highlights: [
       "Smart Lighting Automation (Mood scenes, schedule timers, voice lights)",
       "Smart Security Systems (CCTV Cameras, intrusion alarms, alerts)",
@@ -218,7 +218,7 @@ const SERVICES_DATA: Record<string, ServiceContent> = {
     heroDesc: "Power your future with solar energy. Custom solar grids for homes, offices, schools, and heavy industries.",
     longDesc: "At TECHNO-SOLUTIONS, we provide professional Solar Panel Installation Services that help homeowners, businesses, educational institutions, and industries reduce electricity costs, achieve energy independence, and contribute to a sustainable future.\n\nOur end-to-end solar solutions include personalized consultation, detailed site assessments, optimal structural engineering design, certified installation, grid integration net-metering commissioning, and long-term preventive Maintenance contracts.",
     icon: "Sun",
-    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=800&q=80",
+    image: "https://lh3.googleusercontent.com/d/1F6j4zwTIDaAm7M66MobqoTYJBrk5Zbyp",
     highlights: [
       "Residential Solar Panel Installation (On-grid, Off-grid, or Hybrid setups)",
       "Commercial Solar Solutions (Offices, Hotels, Schools, Hospitals, Malls)",

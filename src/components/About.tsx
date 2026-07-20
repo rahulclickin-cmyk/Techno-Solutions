@@ -91,8 +91,8 @@ export default function About() {
             {/* Main Office Image */}
             <div className="relative rounded-[22px] overflow-hidden shadow-2xl aspect-[4/3] group border border-[#ECECEC]">
               <img
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
-                alt="Luxury Corporate Office Interior"
+                src="https://lh3.googleusercontent.com/d/1SgWtbqvysiJKRRWRHqAinvfN8cPRc5vc"
+                alt="Sanjeev Goel and Expert Consultant Collaboration"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />

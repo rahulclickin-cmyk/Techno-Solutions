@@ -78,28 +78,35 @@ export default function Hero() {
           animation: animate-background 6s infinite alternate linear;
           display: block;
         }
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.25; transform: scale(1.02); }
+          50% { opacity: 0.35; transform: scale(1.05); }
+        }
+        .animate-pulse-slow {
+          animation: pulse-slow 12s ease-in-out infinite;
+        }
       `}</style>
 
       {/* Futuristic dark blue and purple digital landscape of a holographic neural network */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 z-0 bg-[#06183B] w-full overflow-hidden pointer-events-none">
         <img 
-          src="https://images.unsplash.com/photo-1507668077129-56e32842fceb?auto=format&fit=crop&w=1600&q=80" 
-          alt="Holographic cyber network background" 
+          src="https://lh3.googleusercontent.com/d/1ieakaI_VI6a73hTk611Porf_BF5yzMxT" 
+          alt="Hero Background" 
           referrerPolicy="no-referrer"
-          className="w-full h-full object-cover opacity-20 mix-blend-screen scale-105"
+          className="w-full h-full object-cover opacity-25 scale-102 animate-pulse-slow block"
         />
-        {/* Deep navy, purple, and gold ambient light overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#06183B] via-[#0A224E]/90 to-[#2A0E4E]/80 mix-blend-multiply" />
+        {/* Deep navy, purple, and gold ambient light overlay to keep text 100% readable */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#06183B]/40 via-[#06183B]/75 to-[#06183B] pointer-events-none" />
       </div>
 
       {/* Decorative Glowing Background Gradients */}
-      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-3xl -z-10 pointer-events-none" />
-      <div className="absolute bottom-10 right-0 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-3xl -z-10 pointer-events-none" />
+      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-3xl z-0 pointer-events-none" />
+      <div className="absolute bottom-10 right-0 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-3xl z-0 pointer-events-none" />
       
       {/* High-tech subtle cybergrid background pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(229,175,43,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(229,175,43,0.025)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] -z-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(229,175,43,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(229,175,43,0.025)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] z-0 pointer-events-none" />
 
-      <div className="max-w-[1320px] mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      <div className="relative z-10 max-w-[1320px] mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         {/* Left-Side Contents */}
         <motion.div 
           variants={containerVariants}
@@ -194,8 +201,8 @@ export default function Hero() {
 
               <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-inner">
                 <img 
-                  src="https://images.unsplash.com/photo-1527474305487-b87b222841cc?auto=format&fit=crop&w=800&q=80" 
-                  alt="Futuristic glowing 3D AI brain and holographic neural network" 
+                  src="https://lh3.googleusercontent.com/d/1aHBor2vvoOA5re8GchzgLnkxe9E-n60z" 
+                  alt="Intelligent Deep Learning Systems (Neural AI)" 
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
