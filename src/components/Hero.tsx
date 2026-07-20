@@ -36,7 +36,7 @@ export default function Hero() {
 
   return (
     <section id="home" className="relative min-h-screen pt-36 pb-20 flex items-center bg-[#06183B] text-white overflow-hidden">
-      {/* Dynamic Marquee Styles */}
+      {/* Dynamic Marquee & Text Masking Styles */}
       <style>{`
         @keyframes slide-left {
           0% { transform: translateX(0); }
@@ -51,6 +51,32 @@ export default function Hero() {
         }
         .animate-slide-right {
           animation: slide-right 30s linear infinite;
+        }
+        @keyframes animate-background {
+          0% {
+            background-position: 0% 50%;
+          }
+          100% {
+            background-position: 100% 50%;
+          }
+        }
+        .hero-masked-heading {
+          background-image: linear-gradient(
+            to right,
+            #ffffff 0%,
+            #E5AF2B 25%,
+            #60A5FA 50%,
+            #E5AF2B 75%,
+            #ffffff 100%
+          );
+          background-size: 200% auto;
+          background-position: 0% 50%;
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: transparent;
+          animation: animate-background 6s infinite alternate linear;
+          display: block;
         }
       `}</style>
 
@@ -91,7 +117,7 @@ export default function Hero() {
           {/* Majestic Hero Primary Heading */}
           <motion.h1 
             variants={itemVariants}
-            className="font-serif text-4xl sm:text-5xl md:text-[54px] text-white font-extrabold leading-[1.12] tracking-tight"
+            className="font-serif text-4xl sm:text-5xl md:text-[54px] font-extrabold leading-[1.12] tracking-tight hero-masked-heading"
           >
             Transform Your Business with Intelligent Digital Solutions
           </motion.h1>

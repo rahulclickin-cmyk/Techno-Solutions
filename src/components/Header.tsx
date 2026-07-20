@@ -3,15 +3,46 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   Menu, X, ArrowRight, ChevronDown, Sparkles, 
-  Settings, Server, ShieldCheck, Home, Sun, Mail, Bot 
+  Settings, Server, ShieldCheck, Home, Sun, Mail, Bot,
+  ArrowLeft, Bell, Search, Wifi, Battery, LayoutGrid, BookOpen, PhoneCall
 } from "lucide-react";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [currentTime, setCurrentTime] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
+
+  // Dynamic status bar clock
+  useEffect(() => {
+    const updateClock = () => {
+      const now = new Date();
+      let hrs = now.getHours();
+      const mins = now.getMinutes().toString().padStart(2, "0");
+      const ampm = hrs >= 12 ? "PM" : "AM";
+      hrs = hrs % 12;
+      hrs = hrs ? hrs : 12; // hour '0' should be '12'
+      setCurrentTime(`${hrs}:${mins} ${ampm}`);
+    };
+    updateClock();
+    const timer = setInterval(updateClock, 30000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 15) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Close menus on page navigation
   useEffect(() => {
@@ -30,6 +61,51 @@ export default function Header() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  // Dynamic back button and titles for app-style header
+  const getMobileHeaderState = () => {
+    const path = location.pathname;
+    
+    // Main tabs
+    if (path === "/") {
+      return { title: "Techno Solutions", isMainTab: true, backTo: null };
+    }
+    if (path === "/services" || path === "/services/") {
+      return { title: "Our Solutions", isMainTab: true, backTo: null };
+    }
+    if (path === "/blog" || path === "/blog/") {
+      return { title: "Knowledge Hub", isMainTab: true, backTo: null };
+    }
+    if (path === "/contact" || path === "/contact/") {
+      return { title: "Contact Desk", isMainTab: true, backTo: null };
+    }
+    
+    // Sub-pages with Back Button
+    if (path === "/about") {
+      return { title: "About Us", isMainTab: false, backTo: "/" };
+    }
+    if (path.startsWith("/blog/")) {
+      return { title: "Knowledge Base", isMainTab: false, backTo: "/blog" };
+    }
+    
+    // Services sub-pages
+    const isServiceSubpage = [
+      "/digital-transformation", 
+      "/business-automation", 
+      "/artificial-intelligence", 
+      "/blockchain-solutions", 
+      "/smart-home-installation-services", 
+      "/solar-panel-installation"
+    ].some(p => path === p) || path.startsWith("/services/");
+    
+    if (isServiceSubpage) {
+      return { title: "Solution Detail", isMainTab: false, backTo: "/services" };
+    }
+    
+    return { title: "Techno Solutions", isMainTab: false, backTo: "/" };
+  };
+
+  const mobileHeader = getMobileHeaderState();
 
   const services = [
     {
@@ -90,219 +166,296 @@ export default function Header() {
   };
 
   return (
-    <motion.header
-      id="header-navigation"
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="fixed top-0 left-0 w-full z-50 bg-white shadow-[0_2px_15px_rgba(0,0,0,0.04)] border-b border-[#ECECEC]/75 py-4 transition-all duration-300"
-    >
-      <div className="max-w-[1320px] mx-auto px-6 flex items-center justify-between">
-        {/* Logo - transparent background, increased size, completely clean */}
-        <Link to="/" className="flex items-center gap-3 group transition-transform duration-300 hover:scale-[1.02] active:scale-98">
-          <img 
-            src="https://lh3.googleusercontent.com/d/1bcaOeIYNdxuqxCd8-yPBHc5YiGUEYfRh" 
-            alt="Techno Solutions Logo" 
-            className="h-14 md:h-16 w-auto object-contain"
-            referrerPolicy="no-referrer"
-          />
-        </Link>
+    <>
+      <style>{`
+        @media (max-width: 1023px) {
+          main {
+            padding-top: 84px !important;
+            padding-bottom: 76px !important;
+          }
+          #header-navigation {
+            display: none !important;
+          }
+        }
+      `}</style>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-10">
-          {/* Home Link */}
-          <Link
-            to="/"
-            className={`py-1 transition-colors duration-200 ${getLinkColorClass("/")}`}
-          >
-            Home
-          </Link>
-
-          {/* About Link */}
-          <Link
-            to="/about"
-            className={`py-1 transition-colors duration-200 ${getLinkColorClass("/about")}`}
-          >
-            About Us
-          </Link>
-
-          {/* Services Dropdown Trigger - styled in elegant gold to match the screenshot */}
-          <div 
-            className="relative" 
-            ref={dropdownRef}
-            onMouseEnter={() => setIsDropdownOpen(true)}
-            onMouseLeave={() => setIsDropdownOpen(false)}
-          >
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center gap-1 font-semibold text-[15px] text-[#E5AF2B] hover:text-[#d49f24] py-1 transition-colors duration-200 focus:outline-hidden cursor-pointer"
-            >
-              <span>Services</span>
-              <ChevronDown className="w-4 h-4 text-[#E5AF2B] transition-transform duration-300 group-hover:rotate-180" />
-            </button>
-
-            {/* Dropdown Card */}
-            <AnimatePresence>
-              {isDropdownOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[450px] bg-white border border-[#ECECEC] shadow-xl rounded-2xl p-4 grid grid-cols-2 gap-2 text-left z-50"
-                >
-                  <div className="col-span-2 px-3 pb-2 border-b border-[#F8F9FC] flex justify-between items-center mb-1">
-                    <span className="text-[10px] font-bold text-[#5B6470] uppercase tracking-wider font-mono">Our Solutions</span>
-                    <Sparkles className="w-3.5 h-3.5 text-[#E5AF2B]" />
-                  </div>
-                  {services.map((srv) => (
-                    <Link
-                      key={srv.id}
-                      to={srv.path}
-                      className="p-2.5 rounded-xl hover:bg-[#F8F9FC] border border-transparent hover:border-[#ECECEC]/30 transition-all flex items-start gap-3 group/item"
-                    >
-                      <div className="p-2 rounded-lg bg-[#0F2D63]/5 text-[#0F2D63] group-hover/item:bg-[#0F2D63] group-hover/item:text-white transition-all">
-                        {srv.icon}
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="text-xs font-bold text-[#1B1B1B] group-hover/item:text-[#0F2D63] transition-colors leading-tight">
-                          {srv.name}
-                        </span>
-                        <span className="text-[10px] text-[#5B6470] mt-0.5 leading-tight">
-                          {srv.desc}
-                        </span>
-                      </div>
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
+      {/* MOBILE APPLICATION APP SHELL (Visible ONLY on mobile/tablet below lg breakpoint) */}
+      <div className="lg:hidden fixed top-0 left-0 w-full z-50 flex flex-col bg-white">
+        {/* Simulated Status Bar (Exactly like native iOS / Android) */}
+        <div className="h-7 bg-white text-[#1B1B1B] px-5 flex items-center justify-between text-[11px] font-bold select-none border-b border-[#ECECEC]/10">
+          <div className="flex items-center gap-1">
+            <span>{currentTime || "09:41 AM"}</span>
           </div>
-
-          {/* Blog Link */}
-          <Link
-            to="/blog"
-            className={`py-1 transition-colors duration-200 ${getLinkColorClass("/blog")}`}
-          >
-            Blog
-          </Link>
-
-          {/* Contact Link */}
-          <Link
-            to="/contact"
-            className={`py-1 transition-colors duration-200 ${getLinkColorClass("/contact")}`}
-          >
-            Contact Us
-          </Link>
-        </nav>
-
-        {/* CTA Button - Pill shaped deep blue button with white text and white arrow */}
-        <div className="hidden lg:block">
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#0F2D63] text-white font-bold text-[15px] transition-all duration-300 hover:bg-[#1a448c] hover:shadow-lg hover:shadow-blue-950/15 active:scale-95 group"
-          >
-            <span>Book Consultation</span>
-            <ArrowRight className="w-4 h-4 text-white transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
+          {/* Simulated phone notch/dynamic island aesthetic */}
+          <div className="w-24 h-4 rounded-full bg-[#1B1B1B] absolute left-1/2 -translate-x-1/2 top-1.5 hidden xs:block" />
+          
+          <div className="flex items-center gap-2">
+            {/* Cellular Signal strength bars */}
+            <div className="flex items-end gap-0.5 h-2.5">
+              <span className="w-0.5 h-[3px] bg-[#1B1B1B] rounded-xs" />
+              <span className="w-0.5 h-[5px] bg-[#1B1B1B] rounded-xs" />
+              <span className="w-0.5 h-[7px] bg-[#1B1B1B] rounded-xs" />
+              <span className="w-0.5 h-[9px] bg-[#1B1B1B] rounded-xs" />
+            </div>
+            <span className="text-[9px] font-mono tracking-tighter">5G</span>
+            <Wifi className="w-3.5 h-3.5 text-[#1B1B1B]" />
+            <div className="flex items-center gap-0.5">
+              <Battery className="w-4 h-4 text-[#1B1B1B] -mr-1" />
+              <span className="text-[9px] scale-[0.95]">88%</span>
+            </div>
+          </div>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden p-2 rounded-xl text-[#0F2D63] hover:bg-[#F8F9FC] transition-colors"
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        {/* Streamlined App Bar (Fixed right below status bar) */}
+        <div className="h-14 bg-white/95 backdrop-blur-md border-b border-[#ECECEC]/60 px-5 flex items-center justify-between shadow-[0_2px_15px_rgba(0,0,0,0.02)]">
+          {/* Left Action: Brand logo/name or Back button */}
+          <div className="flex items-center">
+            {!mobileHeader.isMainTab && mobileHeader.backTo ? (
+              <Link 
+                to={mobileHeader.backTo}
+                className="flex items-center gap-1 text-xs font-bold text-[#0F2D63] py-1.5 px-3 rounded-full bg-[#0F2D63]/5 hover:bg-[#0F2D63]/10 active:scale-95 transition-all"
+              >
+                <ArrowLeft className="w-3.5 h-3.5" />
+                <span>Back</span>
+              </Link>
+            ) : (
+              <Link to="/" className="flex items-center gap-2">
+                <img 
+                  src="https://lh3.googleusercontent.com/d/1bcaOeIYNdxuqxCd8-yPBHc5YiGUEYfRh" 
+                  alt="TS Logo" 
+                  className="h-8 w-auto object-contain"
+                  referrerPolicy="no-referrer"
+                />
+              </Link>
+            )}
+          </div>
+
+          {/* Center Action: App Title */}
+          <div className="absolute left-1/2 -translate-x-1/2 text-center pointer-events-none">
+            <span className="font-serif font-extrabold text-xs text-[#0F2D63] tracking-wide uppercase">
+              {mobileHeader.title}
+            </span>
+          </div>
+
+          {/* Right Action: Notifications or user profile avatar */}
+          <div className="flex items-center gap-2">
+            <button className="relative p-2 rounded-xl text-[#0F2D63] bg-[#0F2D63]/5 hover:bg-[#0F2D63]/10 transition-colors cursor-pointer">
+              <Bell className="w-3.5 h-3.5" />
+              <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+            </button>
+            <Link to="/contact" className="w-7 h-7 rounded-full border border-amber-500/20 bg-cover bg-center overflow-hidden shadow-sm" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop')" }} />
+          </div>
+        </div>
       </div>
 
-      {/* Mobile Drawer */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden bg-white border-t border-[#ECECEC] overflow-hidden"
-          >
-            <div className="px-6 py-6 flex flex-col gap-3 text-left">
-              {/* Home */}
-              <Link
-                to="/"
-                className="text-[#1B1B1B] font-semibold text-base hover:text-[#0F2D63] py-2.5 transition-colors border-b border-[#F8F9FC]"
-              >
-                Home
-              </Link>
+      {/* MOBILE APP PERSISTENT BOTTOM TAB BAR (Sticky Navigation) */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white/95 backdrop-blur-md border-t border-[#ECECEC]/70 flex items-center justify-around px-3 pb-safe shadow-[0_-4px_25px_rgba(0,0,0,0.05)] z-50">
+        {/* Tab 1: Home */}
+        <Link 
+          to="/" 
+          className={`flex flex-col items-center justify-center gap-1 w-16 py-1 transition-all ${
+            location.pathname === "/" ? "text-[#0F2D63] scale-105" : "text-[#5B6470] hover:text-[#0F2D63]"
+          }`}
+        >
+          <Home className={`w-5 h-5 transition-transform ${location.pathname === "/" ? "stroke-[2.5px] text-[#0F2D63]" : "stroke-[2px]"}`} />
+          <span className={`text-[9px] font-bold tracking-tight ${location.pathname === "/" ? "text-[#0F2D63]" : "text-[#5B6470]"}`}>Home</span>
+          {location.pathname === "/" && <span className="w-1 h-1 rounded-full bg-[#E5AF2B] -mt-0.5" />}
+        </Link>
 
-              {/* About */}
-              <Link
-                to="/about"
-                className="text-[#1B1B1B] font-semibold text-base hover:text-[#0F2D63] py-2.5 transition-colors border-b border-[#F8F9FC]"
-              >
-                About Us
-              </Link>
+        {/* Tab 2: Solutions */}
+        <Link 
+          to="/services" 
+          className={`flex flex-col items-center justify-center gap-1 w-16 py-1 transition-all ${
+            location.pathname.startsWith("/services") || [
+              "/digital-transformation", 
+              "/business-automation", 
+              "/artificial-intelligence", 
+              "/blockchain-solutions", 
+              "/smart-home-installation-services", 
+              "/solar-panel-installation"
+            ].includes(location.pathname) ? "text-[#0F2D63] scale-105" : "text-[#5B6470] hover:text-[#0F2D63]"
+          }`}
+        >
+          <LayoutGrid className={`w-5 h-5 transition-transform ${
+            location.pathname.startsWith("/services") || [
+              "/digital-transformation", 
+              "/business-automation", 
+              "/artificial-intelligence", 
+              "/blockchain-solutions", 
+              "/smart-home-installation-services", 
+              "/solar-panel-installation"
+            ].includes(location.pathname) ? "stroke-[2.5px] text-[#0F2D63]" : "stroke-[2px]"
+          }`} />
+          <span className={`text-[9px] font-bold tracking-tight ${
+            location.pathname.startsWith("/services") || [
+              "/digital-transformation", 
+              "/business-automation", 
+              "/artificial-intelligence", 
+              "/blockchain-solutions", 
+              "/smart-home-installation-services", 
+              "/solar-panel-installation"
+            ].includes(location.pathname) ? "text-[#0F2D63]" : "text-[#5B6470]"
+          }`}>Solutions</span>
+          {(location.pathname.startsWith("/services") || [
+            "/digital-transformation", 
+            "/business-automation", 
+            "/artificial-intelligence", 
+            "/blockchain-solutions", 
+            "/smart-home-installation-services", 
+            "/solar-panel-installation"
+          ].includes(location.pathname)) && <span className="w-1 h-1 rounded-full bg-[#E5AF2B] -mt-0.5" />}
+        </Link>
 
-              {/* Services Accordion */}
-              <div className="border-b border-[#F8F9FC]">
-                <button
-                  onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                  className="w-full flex justify-between items-center text-[#1B1B1B] font-semibold text-base hover:text-[#0F2D63] py-2.5 focus:outline-hidden"
-                >
-                  <span>Services</span>
-                  <ChevronDown className={`w-4 h-4 text-[#5B6470] transition-transform ${isMobileServicesOpen ? "rotate-180" : ""}`} />
-                </button>
-                <AnimatePresence>
-                  {isMobileServicesOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="pl-4 flex flex-col gap-2 pb-3 overflow-hidden"
-                    >
-                      {services.map((srv) => (
-                        <Link
-                          key={srv.id}
-                          to={srv.path}
-                          className="text-sm font-medium text-[#5B6470] hover:text-[#0F2D63] py-1.5 transition-colors block"
-                        >
-                          {srv.name}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+        {/* Tab 3: Blog */}
+        <Link 
+          to="/blog" 
+          className={`flex flex-col items-center justify-center gap-1 w-16 py-1 transition-all ${
+            location.pathname.startsWith("/blog") ? "text-[#0F2D63] scale-105" : "text-[#5B6470] hover:text-[#0F2D63]"
+          }`}
+        >
+          <BookOpen className={`w-5 h-5 transition-transform ${location.pathname.startsWith("/blog") ? "stroke-[2.5px] text-[#0F2D63]" : "stroke-[2px]"}`} />
+          <span className={`text-[9px] font-bold tracking-tight ${location.pathname.startsWith("/blog") ? "text-[#0F2D63]" : "text-[#5B6470]"}`}>Knowledge</span>
+          {location.pathname.startsWith("/blog") && <span className="w-1 h-1 rounded-full bg-[#E5AF2B] -mt-0.5" />}
+        </Link>
 
-              {/* Blog */}
-              <Link
-                to="/blog"
-                className="text-[#1B1B1B] font-semibold text-base hover:text-[#0F2D63] py-2.5 transition-colors border-b border-[#F8F9FC]"
-              >
-                Blog
-              </Link>
+        {/* Tab 4: Contact */}
+        <Link 
+          to="/contact" 
+          className={`flex flex-col items-center justify-center gap-1 w-16 py-1 transition-all ${
+            location.pathname === "/contact" ? "text-[#0F2D63] scale-105" : "text-[#5B6470] hover:text-[#0F2D63]"
+          }`}
+        >
+          <PhoneCall className={`w-5 h-5 transition-transform ${location.pathname === "/contact" ? "stroke-[2.5px] text-[#0F2D63]" : "stroke-[2px]"}`} />
+          <span className={`text-[9px] font-bold tracking-tight ${location.pathname === "/contact" ? "text-[#0F2D63]" : "text-[#5B6470]"}`}>Contact</span>
+          {location.pathname === "/contact" && <span className="w-1 h-1 rounded-full bg-[#E5AF2B] -mt-0.5" />}
+        </Link>
+      </div>
 
-              {/* Contact */}
-              <Link
-                to="/contact"
-                className="text-[#1B1B1B] font-semibold text-base hover:text-[#0F2D63] py-2.5 transition-colors border-b border-[#F8F9FC]"
-              >
-                Contact Us
-              </Link>
+      {/* DESKTOP HEADER NAVIGATION (Visible ONLY on lg screen size and above) */}
+      <motion.header
+        id="header-navigation"
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+          scrolled 
+            ? "bg-white/90 backdrop-blur-md shadow-[0_4px_25px_rgba(0,0,0,0.06)] border-b border-[#ECECEC]/60 py-2.5" 
+            : "bg-white border-b border-[#ECECEC]/75 py-4"
+        }`}
+      >
+        <div className="max-w-[1320px] mx-auto px-6 flex items-center justify-between">
+          {/* Logo - transparent background, dynamic size, completely clean */}
+          <Link to="/" className="flex items-center gap-3 group transition-transform duration-300 hover:scale-[1.02] active:scale-98">
+            <img 
+              src="https://lh3.googleusercontent.com/d/1bcaOeIYNdxuqxCd8-yPBHc5YiGUEYfRh" 
+              alt="Techno Solutions Logo" 
+              className={`w-auto object-contain transition-all duration-300 ${
+                scrolled ? "h-11 md:h-12" : "h-14 md:h-16"
+              }`}
+              referrerPolicy="no-referrer"
+            />
+          </Link>
 
-              {/* Action */}
-              <Link
-                to="/contact"
-                className="mt-4 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#0F2D63] text-white font-semibold text-sm transition-colors hover:bg-[#1a448c] text-center"
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-10">
+            {/* Home Link */}
+            <Link
+              to="/"
+              className={`py-1 transition-colors duration-200 ${getLinkColorClass("/")}`}
+            >
+              Home
+            </Link>
+
+            {/* About Link */}
+            <Link
+              to="/about"
+              className={`py-1 transition-colors duration-200 ${getLinkColorClass("/about")}`}
+            >
+              About Us
+            </Link>
+
+            {/* Services Dropdown Trigger */}
+            <div 
+              className="relative" 
+              ref={dropdownRef}
+              onMouseEnter={() => setIsDropdownOpen(true)}
+              onMouseLeave={() => setIsDropdownOpen(false)}
+            >
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="flex items-center gap-1 font-semibold text-[15px] text-[#E5AF2B] hover:text-[#d49f24] py-1 transition-colors duration-200 focus:outline-hidden cursor-pointer"
               >
-                Book Consultation
-                <ArrowRight className="w-4 h-4 text-white" />
-              </Link>
+                <span>Services</span>
+                <ChevronDown className="w-4 h-4 text-[#E5AF2B] transition-transform duration-300 group-hover:rotate-180" />
+              </button>
+
+              {/* Dropdown Card */}
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[450px] bg-white border border-[#ECECEC] shadow-xl rounded-2xl p-4 grid grid-cols-2 gap-2 text-left z-50"
+                  >
+                    <div className="col-span-2 px-3 pb-2 border-b border-[#F8F9FC] flex justify-between items-center mb-1">
+                      <span className="text-[10px] font-bold text-[#5B6470] uppercase tracking-wider font-mono">Our Solutions</span>
+                      <Sparkles className="w-3.5 h-3.5 text-[#E5AF2B]" />
+                    </div>
+                    {services.map((srv) => (
+                      <Link
+                        key={srv.id}
+                        to={srv.path}
+                        className="p-2.5 rounded-xl hover:bg-[#F8F9FC] border border-transparent hover:border-[#ECECEC]/30 transition-all flex items-start gap-3 group/item"
+                      >
+                        <div className="p-2 rounded-lg bg-[#0F2D63]/5 text-[#0F2D63] group-hover/item:bg-[#0F2D63] group-hover/item:text-white transition-all">
+                          {srv.icon}
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-xs font-bold text-[#1B1B1B] group-hover/item:text-[#0F2D63] transition-colors leading-tight">
+                            {srv.name}
+                          </span>
+                          <span className="text-[10px] text-[#5B6470] mt-0.5 leading-tight">
+                            {srv.desc}
+                          </span>
+                        </div>
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+
+            {/* Blog Link */}
+            <Link
+              to="/blog"
+              className={`py-1 transition-colors duration-200 ${getLinkColorClass("/blog")}`}
+            >
+              Blog
+            </Link>
+
+            {/* Contact Link */}
+            <Link
+              to="/contact"
+              className={`py-1 transition-colors duration-200 ${getLinkColorClass("/contact")}`}
+            >
+              Contact Us
+            </Link>
+          </nav>
+
+          {/* CTA Button */}
+          <div className="hidden lg:block">
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#0F2D63] text-white font-bold text-[15px] transition-all duration-300 hover:bg-[#1a448c] hover:shadow-lg hover:shadow-blue-950/15 active:scale-95 group"
+            >
+              <span>Book Consultation</span>
+              <ArrowRight className="w-4 h-4 text-white transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </div>
+        </div>
+      </motion.header>
+    </>
   );
 }
