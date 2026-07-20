@@ -705,40 +705,310 @@ export function BusinessAutomationContent() {
 export function BlockchainCryptoContent() {
   return (
     <div className="flex flex-col gap-10 text-left">
-      <div className="text-[#5B6470] text-sm md:text-base leading-relaxed flex flex-col gap-4">
-        <p>
-          Blockchain is a secure, transparent, and decentralized technology. We build decentralized architectures that establish immutable trust, automate multi-party compliance, and protect vital transaction logs. From deploying audited smart contracts to building custom Web3 portals and token networks, we help organizations eliminate single-point operational failures.
+      {/* Hero Header Card */}
+      <div className="bg-[#0F2D63] text-white p-8 md:p-10 rounded-3xl shadow-sm relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-20 -mt-20 blur-3xl pointer-events-none" />
+        <span className="text-xs font-bold uppercase tracking-widest text-[#E5AF2B] bg-[#E5AF2B]/10 px-3 py-1 rounded-full border border-[#E5AF2B]/20 inline-block mb-4">
+          Featured Solution
+        </span>
+        <h2 className="font-serif text-2xl md:text-4xl font-bold mb-3 text-white leading-tight">
+          Blockchain & AI Solutions
+        </h2>
+        <p className="text-[#E5AF2B] text-sm md:text-base font-semibold mb-6">
+          Your Technology Partner in Blockchain, AI, and Emerging Digital Innovation
+        </p>
+        <p className="text-white/85 text-xs md:text-sm leading-relaxed max-w-3xl">
+          At the forefront of digital transformation, we specialize in delivering cutting-edge solutions in Blockchain, Artificial Intelligence, Web & Mobile App Development, and more. From idea to execution, we help startups and enterprises build secure, scalable, and future-ready tech products.
         </p>
       </div>
 
-      {/* Services List Verbatim */}
-      <div className="flex flex-col gap-5 text-left">
-        <h3 className="font-serif font-extrabold text-xl text-[#0F2D63]">OUR BLOCKCHAIN SERVICES INCLUDE</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {/* Our Vision */}
+      <div className="bg-[#F8F9FC] border border-[#ECECEC] p-6 md:p-8 rounded-2xl flex flex-col gap-3">
+        <div className="flex items-center gap-2">
+          <span className="text-2xl">🌟</span>
+          <h3 className="font-serif font-extrabold text-lg md:text-xl text-[#0F2D63]">Our Vision</h3>
+        </div>
+        <p className="text-[#5B6470] text-xs md:text-sm leading-relaxed">
+          To empower businesses with intelligent, decentralized, and automated digital solutions that redefine industries and enhance user experiences.
+        </p>
+      </div>
+
+      {/* Core Expertise Header */}
+      <div className="flex flex-col gap-2 pt-4 border-t border-[#ECECEC]">
+        <div className="flex items-center gap-2">
+          <span className="text-2xl">⚡</span>
+          <h3 className="font-serif font-extrabold text-xl text-[#0F2D63]">Our Core Expertise – At a Glance</h3>
+        </div>
+      </div>
+
+      {/* 1. Blockchain & Cryptocurrency Development */}
+      <div className="flex flex-col gap-6">
+        <div className="flex items-center gap-2 border-b border-[#ECECEC] pb-3">
+          <span className="text-xl">🔗</span>
+          <h4 className="font-serif font-bold text-lg text-[#1B1B1B]">
+            Blockchain & Cryptocurrency Development
+          </h4>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
-            { t: "Blockchain Consulting", d: "Strategic roadmap planning and consensus design." },
-            { t: "Smart Contracts", d: "Audited execution codes and Solidity/Rust developments." },
-            { t: "Crypto Wallet Development", d: "Secure, non-custodial, and user-friendly wallet apps." },
-            { t: "Token Development", d: "Utility, security, and governance token integrations." },
-            { t: "NFT Platforms", d: "Digital asset management, minting portals, and marketplaces." },
-            { t: "Web3 Solutions", d: "Decentralized business applications and portal interfaces." },
-            { t: "Supply Chain Blockchain", d: "End-to-end transparent logistics and component trackings." },
-            { t: "Identity Management", d: "Decentralized and secured ID protocols (DIDs)." }
-          ].map((s, i) => (
-            <div key={i} className="p-4 bg-white border border-[#ECECEC] rounded-xl flex flex-col gap-1">
-              <strong className="text-xs font-bold text-[#1B1B1B]">{s.t}</strong>
-              <span className="text-xs text-[#5B6470]">{s.d}</span>
+            {
+              num: "1",
+              title: "Token & Coin Development",
+              desc: "We design and deploy customized cryptocurrencies and tokens using Solidity and Rust on platforms like Ethereum, BSC, Polygon, and Solana. Use cases include utility tokens, security tokens, and governance tokens."
+            },
+            {
+              num: "2",
+              title: "Smart Contract Development",
+              desc: "We build and audit secure, self-executing smart contracts using frameworks like Truffle and Hardhat to automate business logic, payments, or decentralized governance."
+            },
+            {
+              num: "3",
+              title: "Staking Platform Development",
+              desc: "Our staking platforms allow users to lock tokens and earn rewards. We integrate features like APY calculators, liquidity pools, and validator dashboards."
+            },
+            {
+              num: "4",
+              title: "MLM Platform Development",
+              desc: "We create transparent blockchain-based MLM systems with smart contract-based payout automation, multi-tier structures, and real-time tracking."
+            },
+            {
+              num: "5",
+              title: "ICO/IDO/IEO Platform Development",
+              desc: "We provide complete fundraising platforms including token development, investor dashboards, KYC/AML integration, and marketing support for successful public sales."
+            },
+            {
+              num: "6",
+              title: "NFT Marketplace Development",
+              desc: "We develop feature-rich NFT platforms supporting ERC-721/1155 tokens for digital art, music, real estate, gaming assets, and more with minting, trading, and wallet integration."
+            },
+            {
+              num: "7",
+              title: "Metaverse Development",
+              desc: "We build immersive virtual environments for events, retail, learning, and social interaction using Web3, blockchain, and 3D technologies."
+            },
+            {
+              num: "8",
+              title: "Wallet Development",
+              desc: "We design secure custodial and non-custodial wallets that support multi-chain, NFT, DeFi, and dApp interactions with private key encryption."
+            },
+            {
+              num: "9",
+              title: "dApp (Decentralized App) Development",
+              desc: "We build user-centric decentralized applications across industries such as DeFi, healthcare, supply chain, and gaming that operate on blockchain infrastructure."
+            },
+            {
+              num: "10",
+              title: "Blockchain Consulting",
+              desc: "From architecture design to security audits and use-case identification, we guide enterprises through their blockchain journey."
+            }
+          ].map((item, idx) => (
+            <div key={idx} className="p-5 bg-white border border-[#ECECEC] rounded-2xl shadow-xs hover:border-[#0F2D63]/30 transition-all">
+              <span className="font-mono text-xs font-bold text-[#E5AF2B] bg-[#E5AF2B]/10 px-2 py-0.5 rounded-md inline-block mb-2">
+                {item.num}
+              </span>
+              <h5 className="font-serif font-bold text-sm text-[#0F2D63] mb-2">{item.title}</h5>
+              <p className="text-xs text-[#5B6470] leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Strategic Framework */}
-      <div className="p-8 border border-[#ECECEC] bg-[#F8F9FC] rounded-3xl text-left">
-        <h3 className="font-serif font-extrabold text-xl text-[#0F2D63] mb-4">DECENTRALIZED COMPLIANCE & SECURITY</h3>
-        <p className="text-[#5B6470] text-xs leading-relaxed">
-          Our team focuses on producing audited codebases, secure private consortium ledgers, and automated compliance protocols that integrate seamlessly into CRM, ERP, and database frameworks.
+      {/* 2. AI & Machine Learning Development */}
+      <div className="flex flex-col gap-6 pt-6 border-t border-[#ECECEC]">
+        <div className="flex items-center gap-2 border-b border-[#ECECEC] pb-3">
+          <span className="text-xl">🤖</span>
+          <h4 className="font-serif font-bold text-lg text-[#1B1B1B]">
+            AI & Machine Learning Development
+          </h4>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            {
+              num: "1",
+              title: "AI & ML Development",
+              desc: "We develop intelligent systems using TensorFlow, PyTorch, Scikit-learn, and OpenCV that enhance business automation and analytics."
+            },
+            {
+              num: "2",
+              title: "Deep Learning Solutions",
+              desc: "Our team specializes in neural networks including CNNs (image processing), RNNs (sequence learning), GANs (content generation), and LSTMs (time-series forecasting)."
+            },
+            {
+              num: "3",
+              title: "Natural Language Processing (NLP)",
+              desc: "We implement solutions like AI chatbots, sentiment analysis engines, text summarization, translation systems, and speech-to-text tools to improve user interaction."
+            },
+            {
+              num: "4",
+              title: "Computer Vision",
+              desc: "We enable machines to interpret images through applications like facial recognition, OCR (Optical Character Recognition), object detection, and surveillance automation."
+            },
+            {
+              num: "5",
+              title: "Predictive Analytics & Data Science",
+              desc: "We use big data platforms and analytics tools to deliver dashboards and insights for customer behavior, operational efficiency, and business forecasting."
+            },
+            {
+              num: "6",
+              title: "AI-Powered Blockchain Solutions",
+              desc: "We enhance smart contracts and crypto systems using AI for fraud detection, market analysis, trading bots, and intelligent contract decision-making."
+            },
+            {
+              num: "7",
+              title: "AI for Web & Mobile Applications",
+              desc: "We develop AI-driven UI/UX components, voice-enabled apps, AI chatbots, and personalization engines for mobile and web platforms."
+            },
+            {
+              num: "8",
+              title: "AI in Gaming",
+              desc: "We apply AI for procedural content generation, player behavior prediction, and intelligent NPC (non-playable character) development, enhancing game interactivity and realism."
+            }
+          ].map((item, idx) => (
+            <div key={idx} className="p-5 bg-white border border-[#ECECEC] rounded-2xl shadow-xs hover:border-[#0F2D63]/30 transition-all">
+              <span className="font-mono text-xs font-bold text-[#E5AF2B] bg-[#E5AF2B]/10 px-2 py-0.5 rounded-md inline-block mb-2">
+                {item.num}
+              </span>
+              <h5 className="font-serif font-bold text-sm text-[#0F2D63] mb-2">{item.title}</h5>
+              <p className="text-xs text-[#5B6470] leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 3. Web & Mobile Application Development */}
+      <div className="flex flex-col gap-6 pt-6 border-t border-[#ECECEC]">
+        <div className="flex items-center gap-2 border-b border-[#ECECEC] pb-3">
+          <span className="text-xl">💻</span>
+          <h4 className="font-serif font-bold text-lg text-[#1B1B1B]">
+            Web & Mobile Application Development
+          </h4>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            {
+              num: "1",
+              title: "Web Development",
+              desc: "We build responsive, high-performance websites and web apps using HTML5, PHP, React.js, Node.js, and Laravel tailored for businesses, eCommerce, and custom portals."
+            },
+            {
+              num: "2",
+              title: "Mobile App Development",
+              desc: "We develop native and cross-platform mobile apps using Kotlin, Swift, Java, Flutter, and React Native, ensuring performance, UX, and scalability across iOS and Android platforms."
+            }
+          ].map((item, idx) => (
+            <div key={idx} className="p-5 bg-white border border-[#ECECEC] rounded-2xl shadow-xs hover:border-[#0F2D63]/30 transition-all">
+              <span className="font-mono text-xs font-bold text-[#E5AF2B] bg-[#E5AF2B]/10 px-2 py-0.5 rounded-md inline-block mb-2">
+                {item.num}
+              </span>
+              <h5 className="font-serif font-bold text-sm text-[#0F2D63] mb-2">{item.title}</h5>
+              <p className="text-xs text-[#5B6470] leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Technology Stack */}
+      <div className="flex flex-col gap-5 text-left bg-white border border-[#ECECEC] p-6 md:p-8 rounded-2xl">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-xl">🛠️</span>
+          <h3 className="font-serif font-bold text-lg text-[#0F2D63]">Technology Stack</h3>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+          {[
+            { cat: "Blockchain Platforms", items: ["Ethereum", "Solana", "BSC", "Polygon"] },
+            { cat: "Languages & Frameworks", items: ["Solidity", "Rust", "Truffle", "Hardhat"] },
+            { cat: "AI/ML Tools", items: ["TensorFlow", "PyTorch", "Scikit-learn", "OpenCV"] },
+            { cat: "Web", items: ["HTML5", "CSS3", "JavaScript", "React.js", "Node.js", "PHP"] },
+            { cat: "Mobile", items: ["Kotlin", "Swift", "Java", "Flutter", "React Native"] },
+            { cat: "Data & Analytics", items: ["Python", "Power BI", "Hadoop", "SQL"] }
+          ].map((st, i) => (
+            <div key={i} className="p-4 bg-[#F8F9FC] border border-[#ECECEC] rounded-xl">
+              <strong className="text-xs text-[#0F2D63] block mb-2">{st.cat}:</strong>
+              <div className="flex flex-wrap gap-1.5">
+                {st.items.map((it) => (
+                  <span key={it} className="bg-white px-2 py-0.5 rounded text-[11px] font-semibold text-[#1B1B1B] border border-[#ECECEC]">
+                    {it}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Why Choose Us */}
+      <div className="flex flex-col gap-5 pt-4">
+        <div className="flex items-center gap-2">
+          <span className="text-xl">💡</span>
+          <h3 className="font-serif font-extrabold text-xl text-[#0F2D63]">Why Choose Us</h3>
+        </div>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[
+            { t: "Innovation-Focused", d: "Stay ahead with future-ready tech." },
+            { t: "Expert Teams", d: "Blockchain, AI, and full-stack specialists." },
+            { t: "End-to-End Delivery", d: "From consulting to deployment and maintenance." },
+            { t: "Security & Scalability", d: "Enterprise-grade security & performance." },
+            { t: "Business-Driven Results", d: "We align technology with your business goals." }
+          ].map((item, i) => (
+            <li key={i} className="p-4 bg-white border border-[#ECECEC] rounded-xl text-left hover:border-[#E5AF2B] transition-colors">
+              <strong className="text-xs font-bold text-[#1B1B1B] block mb-1">{item.t}:</strong>
+              <span className="text-xs text-[#5B6470]">{item.d}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Partner with Us */}
+      <div className="bg-[#E5AF2B]/10 border border-[#E5AF2B]/30 p-6 md:p-8 rounded-2xl flex flex-col gap-4 text-left">
+        <div className="flex items-center gap-2">
+          <span className="text-xl">🤝</span>
+          <strong className="text-base font-bold text-[#0F2D63] font-serif">Partner with Us</strong>
+        </div>
+        <p className="text-[#1B1B1B] text-xs md:text-sm leading-relaxed">
+          Whether you're launching a Web3 product, building a next-gen mobile app, or leveraging AI to transform your operations — we’re your trusted development partner.
         </p>
+        <div className="flex items-center gap-2 mt-2 pt-2 border-t border-[#E5AF2B]/20">
+          <span className="text-xl">📞</span>
+          <strong className="text-xs font-bold text-[#0F2D63] font-serif uppercase tracking-wider">Let's Talk</strong>
+        </div>
+        <p className="text-[#5B6470] text-xs">
+          Connect with us today and turn your vision into a tech-powered reality.
+        </p>
+      </div>
+
+      {/* Focus Portfolio */}
+      <div className="flex flex-col gap-5 pt-4">
+        <div className="flex items-center gap-2">
+          <span className="text-xl">🌐</span>
+          <h3 className="font-serif font-extrabold text-xl text-[#0F2D63]">Company Focus Portfolio</h3>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            {
+              title: "General Company Portfolio",
+              desc: "Discover cutting-edge solutions in Blockchain, AI, and Digital Product Development. We specialize in token creation, smart contracts, NFT marketplaces, mobile apps, and AI-powered innovations for businesses worldwide."
+            },
+            {
+              title: "Blockchain & Cryptocurrency Focus",
+              desc: "Expert blockchain development company offering token development, smart contracts, NFT marketplaces, staking platforms, wallets, and decentralized applications built on Ethereum, BSC, Solana, and more."
+            },
+            {
+              title: "AI & Machine Learning Focus",
+              desc: "Empower your business with AI solutions including machine learning, deep learning, NLP, computer vision, and predictive analytics. We build intelligent systems for web, mobile, gaming, and blockchain applications."
+            },
+            {
+              title: "Web & Mobile Development Focus",
+              desc: "Custom web and mobile app development using React.js, Node.js, Kotlin, Swift, and Flutter. We deliver secure, scalable, and intuitive apps for businesses across industries."
+            }
+          ].map((port, idx) => (
+            <div key={idx} className="p-5 bg-white border border-[#ECECEC] rounded-2xl flex flex-col gap-2">
+              <h5 className="font-serif font-bold text-sm text-[#0F2D63] border-b border-[#ECECEC] pb-2 mb-1">
+                {port.title}
+              </h5>
+              <p className="text-xs text-[#5B6470] leading-relaxed">{port.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

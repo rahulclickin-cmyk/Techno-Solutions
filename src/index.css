@@ -10,10 +10,11 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-size: 106.25%; /* Increases base font size slightly across the entire website */
+    font-size: 12pt !important; /* Forces VERDANA 12 (12pt / 16px) across the entire website */
+    font-family: "Verdana", Geneva, sans-serif !important;
   }
   body {
-    font-family: var(--font-sans);
+    font-family: "Verdana", Geneva, sans-serif !important;
     color: #1b1b1b;
     background-color: #ffffff;
     overflow-x: hidden;

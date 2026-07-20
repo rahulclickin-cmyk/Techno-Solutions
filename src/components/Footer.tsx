@@ -160,8 +160,35 @@ export default function Footer() {
           </div>
 
           <p className="text-white/75 text-xs leading-relaxed max-w-xs">
-            Elite enterprise technology integrations, cloud automations, custom AI agents, and secure systems.
+            At Techno-Solutions, we help businesses modernize, automate, and grow using cutting-edge technologies.
           </p>
+
+          {/* Quick Links & Services Grid for mobile navigation */}
+          <div className="w-full grid grid-cols-2 gap-6 text-left py-4 my-2 border-y border-white/10">
+            <div>
+              <h4 className="font-serif font-bold text-[11px] uppercase tracking-wider text-[#E5AF2B] mb-3">Quick Links</h4>
+              <ul className="flex flex-col gap-2 text-[10px] text-white/60">
+                <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
+                <li><Link to="/about" className="hover:text-white transition-colors">About</Link></li>
+                <li><Link to="/services" className="hover:text-white transition-colors">Services</Link></li>
+                <li><a href="#industries" className="hover:text-white transition-colors">Industries</a></li>
+                <li><Link to="/services" className="hover:text-white transition-colors">Solutions</Link></li>
+                <li><Link to="/blog" className="hover:text-white transition-colors">Blog</Link></li>
+                <li><Link to="/contact" className="hover:text-white transition-colors">Careers</Link></li>
+                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-serif font-bold text-[11px] uppercase tracking-wider text-[#E5AF2B] mb-3">Services</h4>
+              <ul className="flex flex-col gap-2 text-[10px] text-white/60">
+                {servicesLinks.map((sl) => (
+                  <li key={sl.path}>
+                    <Link to={sl.path} className="hover:text-white transition-colors">{sl.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
 
           {/* Clean Contact Action Rows mimicking native settings list */}
           <div className="w-full flex flex-col gap-2 text-left">
@@ -191,21 +218,24 @@ export default function Footer() {
               </div>
               <div className="flex flex-col">
                 <span className="text-[9px] text-white/40 uppercase font-mono font-medium">Headquarters</span>
-                <span className="text-xs leading-normal text-white/80">AGCR Enclave, Delhi 110092 | India</span>
+                <span className="text-xs leading-normal text-white/80">218 AGCR Enclave, Near Karkardoma Metro Station, Delhi 110092 | India</span>
               </div>
             </div>
           </div>
 
           {/* Social icons */}
           <div className="flex items-center gap-4">
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-white/5 border border-white/8 text-white/70 hover:text-[#E5AF2B] transition-colors">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-white/5 border border-white/8 text-white/70 hover:text-[#E5AF2B] transition-colors" aria-label="LinkedIn">
               <Linkedin className="w-4 h-4" />
             </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-white/5 border border-white/8 text-white/70 hover:text-[#E5AF2B] transition-colors">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-white/5 border border-white/8 text-white/70 hover:text-[#E5AF2B] transition-colors" aria-label="Facebook">
               <Facebook className="w-4 h-4" />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-white/5 border border-white/8 text-white/70 hover:text-[#E5AF2B] transition-colors">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-white/5 border border-white/8 text-white/70 hover:text-[#E5AF2B] transition-colors" aria-label="Instagram">
               <Instagram className="w-4 h-4" />
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-white/5 border border-white/8 text-white/70 hover:text-[#E5AF2B] transition-colors" aria-label="YouTube">
+              <Youtube className="w-4 h-4" />
             </a>
           </div>
 
