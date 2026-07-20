@@ -32,7 +32,7 @@ export default function BlogListPage() {
             <span>KNOWLEDGE HUB & INSIGHTS</span>
           </div>
           <h1 className="font-serif text-4xl md:text-6xl font-bold tracking-tight">
-            Our Official Blog
+            Insights & Latest Updates
           </h1>
           <p className="text-white/80 text-lg md:text-xl max-w-2xl leading-relaxed">
             Stay updated with corporate insights on workflow automation, AI development, smart IoT, and solar sustainability.

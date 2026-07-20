@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { TECHNOLOGIES, WHY_CHOOSE_US } from "../data";
-import { Cpu, Terminal, Cloud, Settings, Check, Sparkles } from "lucide-react";
+import { Bot, Terminal, Cloud, Settings, Check, Sparkles } from "lucide-react";
 
 export default function TechnologiesStack() {
   const [activeCategory, setActiveCategory] = useState(0);
 
   const icons = [
-    <Cpu className="w-5 h-5" />,
+    <Bot className="w-5 h-5" />,
     <Terminal className="w-5 h-5" />,
     <Cloud className="w-5 h-5" />,
     <Settings className="w-5 h-5 text-[#0F2D63]" />

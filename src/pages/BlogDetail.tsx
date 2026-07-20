@@ -168,7 +168,7 @@ export default function BlogDetailPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Mail className="w-4 h-4 text-[#E5AF2B] shrink-0" />
-                    <span>info2sanjeev@gmail.com</span>
+                    <span>mail@techno-solutions.tech</span>
                   </div>
                 </div>
 

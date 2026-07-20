@@ -11,7 +11,10 @@ import {
   Building, 
   Building2, 
   Briefcase, 
-  Sparkles 
+  Sparkles,
+  Wifi,
+  Hotel,
+  Sun
 } from "lucide-react";
 
 export default function IndustriesServed() {
@@ -23,16 +26,22 @@ export default function IndustriesServed() {
         return <GraduationCap className={className} />;
       case "Manufacturing":
         return <Factory className={className} />;
-      case "Banking & Finance":
+      case "Banking":
         return <Landmark className={className} />;
-      case "Retail & E-Commerce":
+      case "Retail":
         return <ShoppingBag className={className} />;
-      case "Logistics & Supply Chain":
-        return <Truck className={className} />;
+      case "Telecom":
+        return <Wifi className={className} />;
       case "Government":
         return <Building className={className} />;
-      case "Real Estate & Smart Space":
+      case "Logistics":
+        return <Truck className={className} />;
+      case "Hospitality":
+        return <Hotel className={className} />;
+      case "Real Estate":
         return <Building2 className={className} />;
+      case "Energy":
+        return <Sun className={className} />;
       case "SMEs":
         return <Briefcase className={className} />;
       default:

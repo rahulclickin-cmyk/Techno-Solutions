@@ -2,14 +2,15 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Playfair Display", Georgia, serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-sans: "Verdana", Geneva, sans-serif;
+  --font-serif: "Verdana", Geneva, sans-serif;
+  --font-mono: "Verdana", Geneva, sans-serif;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    font-size: 106.25%; /* Increases base font size slightly across the entire website */
   }
   body {
     font-family: var(--font-sans);

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   ArrowRight, Check, Send, Sparkles, AlertCircle, CheckCircle, 
   Settings, Server, Cpu, ShieldCheck, Home, Sun, HelpCircle, ArrowLeft,
-  ChevronDown, BarChart, Clock, Award
+  ChevronDown, BarChart, Clock, Award, Bot
 } from "lucide-react";
 
 interface ServiceContent {
@@ -246,7 +246,23 @@ const SERVICES_DATA: Record<string, ServiceContent> = {
 
 export default function ServiceDetailPage() {
   const { id } = useParams<{ id: string }>();
-  const serviceId = id || "digital-transformation";
+  const location = useLocation();
+
+  const getResolvedServiceId = () => {
+    if (id) return id;
+    const fullPath = location.pathname + location.hash;
+    
+    if (fullPath.includes("digital-transformation")) return "digital-transformation";
+    if (fullPath.includes("business-automation")) return "business-automation";
+    if (fullPath.includes("artificial-intelligence")) return "ai-solutions";
+    if (fullPath.includes("blockchain-solutions")) return "blockchain-crypto";
+    if (fullPath.includes("smart-home-installation-services")) return "smart-home";
+    if (fullPath.includes("solar-panel-installation")) return "solar-energy";
+    
+    return "digital-transformation";
+  };
+
+  const serviceId = getResolvedServiceId();
   const service = SERVICES_DATA[serviceId];
 
   // Form submission state
@@ -278,7 +294,7 @@ export default function ServiceDetailPage() {
     switch (name) {
       case "Server": return <Server className={cls} />;
       case "Settings": return <Settings className={cls} />;
-      case "Cpu": return <Cpu className={cls} />;
+      case "Cpu": return <Bot className={cls} />;
       case "ShieldCheck": return <ShieldCheck className={cls} />;
       case "Home": return <Home className={cls} />;
       case "Sun": return <Sun className={cls} />;
@@ -558,7 +574,7 @@ export default function ServiceDetailPage() {
                   </div>
 
                   <div className="p-3 bg-[#F8F9FC] border border-[#ECECEC] rounded-xl text-left w-full text-[10px] font-mono flex flex-col gap-1 text-slate-600">
-                    <p><strong>RECIPIENT:</strong> info2sanjeev@gmail.com</p>
+                    <p><strong>RECIPIENT:</strong> mail@techno-solutions.tech</p>
                     <p><strong>SERVICE_TYPE:</strong> {serviceId}</p>
                     <p><strong>ITEMS:</strong> {formData.selectedRequirements.length || "Standard Full Package"}</p>
                     <p><strong>SLA:</strong> compilation_in_progress...</p>

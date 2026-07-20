@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 // Pages
 import Home from "./pages/Home";
 import About from "./pages/About";
+import ServicesMainPage from "./pages/ServicesMain";
 import ServiceDetail from "./pages/ServiceDetail";
 import BlogList from "./pages/BlogList";
 import BlogDetail from "./pages/BlogDetail";
@@ -39,7 +40,14 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/services" element={<ServicesMainPage />} />
             <Route path="/services/:id" element={<ServiceDetail />} />
+            <Route path="/digital-transformation" element={<ServiceDetail />} />
+            <Route path="/business-automation" element={<ServiceDetail />} />
+            <Route path="/artificial-intelligence" element={<ServiceDetail />} />
+            <Route path="/blockchain-solutions" element={<ServiceDetail />} />
+            <Route path="/smart-home-installation-services" element={<ServiceDetail />} />
+            <Route path="/solar-panel-installation" element={<ServiceDetail />} />
             <Route path="/blog" element={<BlogList />} />
             <Route path="/blog/:slug" element={<BlogDetail />} />
             <Route path="/contact" element={<Contact />} />

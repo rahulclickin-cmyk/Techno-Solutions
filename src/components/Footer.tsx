@@ -16,12 +16,12 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const servicesLinks = [
-    { name: "Digital Transformation", path: "/services/digital-transformation" },
-    { name: "Business Automation", path: "/services/business-automation" },
-    { name: "AI Solutions", path: "/services/ai-solutions" },
-    { name: "Blockchain & Crypto", path: "/services/blockchain-crypto" },
-    { name: "Smart Home", path: "/services/smart-home" },
-    { name: "Solar Installation", path: "/services/solar-energy" }
+    { name: "Digital Transformation", path: "/digital-transformation" },
+    { name: "Business Automation", path: "/business-automation" },
+    { name: "AI Solutions", path: "/artificial-intelligence" },
+    { name: "Blockchain & Crypto", path: "/blockchain-solutions" },
+    { name: "Smart Home", path: "/smart-home-installation-services" },
+    { name: "Solar Installation", path: "/solar-panel-installation" }
   ];
 
   return (
@@ -36,13 +36,15 @@ export default function Footer() {
           
           {/* Column 1: Brand Info */}
           <div className="lg:col-span-4 flex flex-col items-start gap-6 text-left">
-            <Link to="/" className="flex items-center gap-3 group">
-              <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-white text-[#0F2D63] shadow-lg">
-                <Cpu className="w-5 h-5 text-[#E5AF2B]" />
+            <Link to="/" className="flex items-center gap-3 group transition-transform duration-300 hover:scale-[1.03] active:scale-95">
+              <div className="relative flex items-center justify-center h-18 px-6 rounded-2xl bg-[#06183B] shadow-md border border-white/15">
+                <img 
+                  src="https://lh3.googleusercontent.com/d/1K1FUxdlG_9p-DY3utDu7pqDkR670Ekt_" 
+                  alt="Techno Solutions Footer Logo" 
+                  className="h-13 md:h-15 w-auto object-contain"
+                  referrerPolicy="no-referrer"
+                />
               </div>
-              <span className="font-serif font-bold text-lg md:text-xl tracking-tight text-white uppercase whitespace-nowrap">
-                TECHNO-SOLUTIONS<span className="text-[#E5AF2B]">.</span>
-              </span>
             </Link>
 
             <p className="text-white/60 text-xs leading-relaxed max-w-sm">
@@ -112,7 +114,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-[#E5AF2B] shrink-0" />
-                <a href="mailto:info2sanjeev@gmail.com" className="hover:text-white transition-colors">info2sanjeev@gmail.com</a>
+                <a href="mailto:mail@techno-solutions.tech" className="hover:text-white transition-colors">mail@techno-solutions.tech</a>
               </li>
             </ul>
           </div>
@@ -121,7 +123,10 @@ export default function Footer() {
 
         {/* Lower Footer Area */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/40">
-          <p>© {currentYear} Techno-Solutions. All Rights Reserved.</p>
+          <div>
+            <p>© {currentYear} Techno-Solutions. All Rights Reserved.</p>
+            <p className="mt-1 text-[11px] text-white/35">Website designed & developed by <span className="text-[#E5AF2B] font-medium">Clickin DMA by Rahul Singh</span></p>
+          </div>
           <div className="flex items-center gap-6">
             <Link to="/contact" className="hover:text-white transition-colors">SLA Assurance</Link>
             <Link to="/contact" className="hover:text-white transition-colors">Privacy Shield</Link>

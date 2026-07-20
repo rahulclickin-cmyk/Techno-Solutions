@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { SERVICES } from "../data";
 import { ServiceItem } from "../types";
-import { Monitor, Database, Settings, Home, Sun, Cpu, ArrowRight, CheckCircle, Sparkles, X } from "lucide-react";
+import { Monitor, Database, Settings, Home, Sun, Cpu, ArrowRight, CheckCircle, Sparkles, X, Bot } from "lucide-react";
 
 export default function ServicesGrid() {
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
@@ -21,9 +22,23 @@ export default function ServicesGrid() {
       case "Sun":
         return <Sun className={className} />;
       case "Cpu":
-        return <Cpu className={className} />;
+        return <Bot className={className} />;
       default:
         return <Monitor className={className} />;
+    }
+  };
+
+  const navigate = useNavigate();
+
+  const getServicePath = (id: string) => {
+    switch (id) {
+      case "digital-transformation": return "/digital-transformation";
+      case "business-automation": return "/business-automation";
+      case "ai-solutions": return "/artificial-intelligence";
+      case "blockchain-crypto": return "/blockchain-solutions";
+      case "smart-home": return "/smart-home-installation-services";
+      case "solar-energy": return "/solar-panel-installation";
+      default: return `/services/${id}`;
     }
   };
 
@@ -63,7 +78,7 @@ export default function ServicesGrid() {
                 borderColor: "rgba(15, 45, 99, 0.15)"
               }}
               className="bg-white rounded-[20px] p-6 border border-[#ECECEC] flex flex-col justify-between transition-all duration-300 group cursor-pointer h-full"
-              onClick={() => setSelectedService(service)}
+              onClick={() => navigate(getServicePath(service.id))}
             >
               <div>
                 {/* Image header with relative badge */}
@@ -100,7 +115,7 @@ export default function ServicesGrid() {
               <button 
                 onClick={(e) => {
                   e.stopPropagation();
-                  setSelectedService(service);
+                  navigate(getServicePath(service.id));
                 }}
                 className="w-full inline-flex items-center justify-between text-xs font-semibold text-[#0F2D63] group-hover:text-[#E5AF2B] transition-colors mt-auto pt-4 border-t border-[#F8F9FC]"
               >

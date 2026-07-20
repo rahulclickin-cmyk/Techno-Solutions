@@ -45,7 +45,7 @@ export default function CTABanner() {
               </div>
 
               <h2 className="font-serif text-3xl md:text-5xl font-bold leading-tight">
-                Ready to Transform Your Business?
+                Ready to Digitally Transform Your Business?
               </h2>
 
               <p className="text-white/70 text-sm leading-relaxed max-w-lg">
@@ -147,7 +147,7 @@ export default function CTABanner() {
                         <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                       ) : (
                         <>
-                          Request Blueprint & Consultation
+                          Schedule a Free Consultation
                           <ArrowRight className="w-4 h-4 text-[#E5AF2B] transition-transform duration-300 group-hover:translate-x-1" />
                         </>
                       )}
@@ -169,7 +169,7 @@ export default function CTABanner() {
                       Thank you <span className="font-bold text-[#1b1b1b]">{formData.name}</span>. Your request has been successfully processed and submitted to our consultants.
                     </p>
                     <div className="p-3 bg-[#F8F9FC] border border-[#ECECEC] rounded-xl text-left w-full text-xs font-mono flex flex-col gap-1 text-slate-600">
-                      <p><strong>RECIPIENT:</strong> info2sanjeev@gmail.com</p>
+                      <p><strong>RECIPIENT:</strong> mail@techno-solutions.tech</p>
                       <p><strong>ENCRYPT:</strong> AES-256 SECURE SHIELD</p>
                       <p><strong>SLA:</strong> response_within_24_hours</p>
                     </div>

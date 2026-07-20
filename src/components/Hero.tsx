@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "motion/react";
-import { ArrowRight, Sparkles, Cpu, Settings, Server, ShieldCheck, Home, Sun } from "lucide-react";
+import { ArrowRight, Sparkles, Settings, Server, ShieldCheck, Home, Sun, Bot } from "lucide-react";
 
 export default function Hero() {
+  const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('left');
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -23,11 +25,50 @@ export default function Hero() {
     }
   };
 
+  const sliderServices = [
+    { name: "Digital Transformation", icon: <Server className="w-3.5 h-3.5 text-[#E5AF2B]" /> },
+    { name: "Business Automation", icon: <Settings className="w-3.5 h-3.5 text-[#E5AF2B]" /> },
+    { name: "Robotic AI Solutions", icon: <Bot className="w-3.5 h-3.5 text-[#E5AF2B]" /> },
+    { name: "Blockchain & Crypto", icon: <ShieldCheck className="w-3.5 h-3.5 text-[#E5AF2B]" /> },
+    { name: "Smart Home Mesh", icon: <Home className="w-3.5 h-3.5 text-[#E5AF2B]" /> },
+    { name: "Solar Power Grid", icon: <Sun className="w-3.5 h-3.5 text-[#E5AF2B]" /> },
+  ];
+
   return (
-    <section id="home" className="relative min-h-screen pt-36 pb-20 flex items-center bg-gradient-to-br from-[#06183B] via-[#0A224E] to-[#113069] text-white overflow-hidden">
+    <section id="home" className="relative min-h-screen pt-36 pb-20 flex items-center bg-[#06183B] text-white overflow-hidden">
+      {/* Dynamic Marquee Styles */}
+      <style>{`
+        @keyframes slide-left {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-33.3333%); }
+        }
+        @keyframes slide-right {
+          0% { transform: translateX(-33.3333%); }
+          100% { transform: translateX(0); }
+        }
+        .animate-slide-left {
+          animation: slide-left 30s linear infinite;
+        }
+        .animate-slide-right {
+          animation: slide-right 30s linear infinite;
+        }
+      `}</style>
+
+      {/* Futuristic dark blue and purple digital landscape of a holographic neural network */}
+      <div className="absolute inset-0 -z-10">
+        <img 
+          src="https://images.unsplash.com/photo-1507668077129-56e32842fceb?auto=format&fit=crop&w=1600&q=80" 
+          alt="Holographic cyber network background" 
+          referrerPolicy="no-referrer"
+          className="w-full h-full object-cover opacity-20 mix-blend-screen scale-105"
+        />
+        {/* Deep navy, purple, and gold ambient light overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#06183B] via-[#0A224E]/90 to-[#2A0E4E]/80 mix-blend-multiply" />
+      </div>
+
       {/* Decorative Glowing Background Gradients */}
-      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl -z-10 pointer-events-none" />
-      <div className="absolute bottom-10 right-0 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-3xl -z-10 pointer-events-none" />
+      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-3xl -z-10 pointer-events-none" />
+      <div className="absolute bottom-10 right-0 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-3xl -z-10 pointer-events-none" />
       
       {/* High-tech subtle cybergrid background pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(229,175,43,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(229,175,43,0.025)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] -z-10 pointer-events-none" />
@@ -43,7 +84,6 @@ export default function Hero() {
           {/* Subtle Accent Gold Sparkle Badge */}
           <motion.div variants={itemVariants} className="inline-flex">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/12 text-xs text-[#E5AF2B] font-semibold tracking-wider font-mono uppercase">
-              <Sparkles className="w-3.5 h-3.5 text-[#E5AF2B] animate-pulse" />
               <span>TRANSFORM YOUR BUSINESS</span>
             </div>
           </motion.div>
@@ -53,15 +93,15 @@ export default function Hero() {
             variants={itemVariants}
             className="font-serif text-4xl sm:text-5xl md:text-[54px] text-white font-extrabold leading-[1.12] tracking-tight"
           >
-            Digital Transformation Consulting and Training
+            Transform Your Business with Intelligent Digital Solutions
           </motion.h1>
 
-          {/* Subheading */}
+          {/* Subheadline / Core Solutions */}
           <motion.h2 
             variants={itemVariants}
-            className="font-sans text-xl sm:text-2xl text-[#E5AF2B] font-semibold tracking-wide"
+            className="font-sans text-lg sm:text-xl text-[#E5AF2B] font-semibold tracking-wide"
           >
-            Transform Your Business with Intelligent Digital Solutions
+            Digital Transformation | Business Automation | Robotic AI | Blockchain | Solar | Smart Homes
           </motion.h2>
 
           {/* Primary Text */}
@@ -69,15 +109,7 @@ export default function Hero() {
             variants={itemVariants}
             className="text-white/85 text-base md:text-lg leading-relaxed max-w-2xl font-sans"
           >
-            At Techno-Solutions, we help businesses modernize, automate, and grow using cutting-edge technologies. Whether you are a startup, SME, enterprise, educational institution, or government organization, we deliver innovative solutions that improve efficiency, reduce costs, and accelerate digital transformation.
-          </motion.p>
-
-          {/* Supportive Subtext */}
-          <motion.p 
-            variants={itemVariants}
-            className="text-white/60 text-xs sm:text-sm font-mono tracking-wide leading-relaxed border-l-2 border-[#E5AF2B]/40 pl-4 max-w-xl"
-          >
-            Digital Transformation | Business Automation | Artificial Intelligence | Blockchain & Crypto | Smart Home Installation | Solar Panel Installation
+            We help organizations modernize, automate, and scale using cutting-edge robotic solutions and elite digital engineering. Whether you are a startup, SME, educational institution, or enterprise, we design tailored systems that boost operational efficiency, secure communications, and accelerate sustainable growth.
           </motion.p>
 
           {/* Action Buttons */}
@@ -114,8 +146,8 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Right-Side Image with Continuous Floating Animation */}
-        <div className="lg:col-span-5 relative flex items-center justify-center">
+        {/* Right-Side Column: Image + Robotic Slider */}
+        <div className="lg:col-span-5 relative flex flex-col items-center justify-center">
           <motion.div 
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -127,7 +159,7 @@ export default function Hero() {
 
             {/* Premium Animated Glass Card Wrapping the Image */}
             <motion.div 
-              animate={{ y: [0, -15, 0] }}
+              animate={{ y: [0, -12, 0] }}
               transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
               className="absolute inset-2 rounded-3xl bg-white/5 backdrop-blur-md border border-white/15 p-3.5 shadow-[0_25px_60px_rgba(0,0,0,0.35)] overflow-hidden flex items-center justify-center group"
             >
@@ -136,8 +168,8 @@ export default function Hero() {
 
               <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-inner">
                 <img 
-                  src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" 
-                  alt="Digital Transformation Consulting & Training" 
+                  src="https://images.unsplash.com/photo-1527474305487-b87b222841cc?auto=format&fit=crop&w=800&q=80" 
+                  alt="Futuristic glowing 3D AI brain and holographic neural network" 
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -149,15 +181,15 @@ export default function Hero() {
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between bg-black/40 backdrop-blur-md rounded-xl p-3 border border-white/10">
                   <div className="flex items-center gap-2.5">
                     <div className="p-1.5 rounded-lg bg-[#E5AF2B]/20 text-[#E5AF2B]">
-                      <Cpu className="w-4 h-4" />
+                      <Bot className="w-4 h-4 animate-bounce" />
                     </div>
                     <div className="text-left">
                       <p className="text-[9px] uppercase tracking-wider font-semibold text-white/50 font-mono">SYSTEM METRICS</p>
-                      <p className="font-serif font-bold text-[11px] text-white">Techno-Solutions Core</p>
+                      <p className="font-serif font-bold text-[11px] text-white">Robotic Neural Core</p>
                     </div>
                   </div>
-                  <span className="text-[10px] font-mono text-[#E5AF2B] font-semibold bg-[#E5AF2B]/10 px-2 py-0.5 rounded border border-[#E5AF2B]/20">
-                    ACTIVE
+                  <span className="text-[10px] font-mono text-[#E5AF2B] font-semibold bg-[#E5AF2B]/10 px-2 py-0.5 rounded border border-[#E5AF2B]/20 animate-pulse">
+                    ONLINE
                   </span>
                 </div>
               </div>
@@ -208,6 +240,67 @@ export default function Hero() {
               </div>
             </motion.div>
           </motion.div>
+
+          {/* Elegant Scrolling Services Slider (Right side under the image) */}
+          <div className="mt-14 w-full max-w-[460px] bg-[#0A224E]/40 backdrop-blur-md border border-white/10 rounded-2xl p-4 shadow-xl text-left overflow-hidden">
+            <div className="flex items-center justify-between mb-3 px-1">
+              <span className="text-[10px] text-white/60 font-semibold tracking-wider uppercase font-mono flex items-center gap-1.5">
+                <Bot className="w-3 h-3 text-[#E5AF2B]" />
+                CAPABILITIES TICKER
+              </span>
+              
+              {/* Direction Controls */}
+              <div className="flex items-center gap-1.5 bg-black/40 p-1 rounded-lg border border-white/10">
+                <button
+                  onClick={() => setSlideDirection('right')}
+                  className={`px-2 py-0.5 rounded-md transition-all text-[10px] font-semibold font-mono ${
+                    slideDirection === 'right' 
+                      ? 'bg-[#E5AF2B] text-[#06183B] shadow-sm font-bold' 
+                      : 'text-white/60 hover:text-white hover:bg-white/5'
+                  }`}
+                  title="Slide Left to Right"
+                >
+                  L → R
+                </button>
+                <button
+                  onClick={() => setSlideDirection('left')}
+                  className={`px-2 py-0.5 rounded-md transition-all text-[10px] font-semibold font-mono ${
+                    slideDirection === 'left' 
+                      ? 'bg-[#E5AF2B] text-[#06183B] shadow-sm font-bold' 
+                      : 'text-white/60 hover:text-white hover:bg-white/5'
+                  }`}
+                  title="Slide Right to Left"
+                >
+                  R ← L
+                </button>
+              </div>
+            </div>
+
+            {/* Slider Viewport with smooth slow marquee */}
+            <div className="relative w-full overflow-hidden rounded-xl bg-black/30 py-3 border border-white/5">
+              {/* Fade Edges */}
+              <div className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-[#06183B] to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[#06183B] to-transparent z-10 pointer-events-none" />
+              
+              <div 
+                className={`flex gap-3.5 whitespace-nowrap ${
+                  slideDirection === 'left' ? 'animate-slide-left' : 'animate-slide-right'
+                }`}
+                style={{ width: 'max-content' }}
+              >
+                {/* Triple the list to enable seamless infinite scroll looping */}
+                {[...sliderServices, ...sliderServices, ...sliderServices].map((srv, idx) => (
+                  <div 
+                    key={idx} 
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all cursor-default"
+                  >
+                    {srv.icon}
+                    <span className="text-[11px] font-bold text-white font-sans tracking-wide">{srv.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

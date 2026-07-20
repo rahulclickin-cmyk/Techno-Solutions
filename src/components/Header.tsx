@@ -2,29 +2,16 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { 
-  Menu, X, ArrowRight, Cpu, ChevronDown, Sparkles, 
-  Settings, Server, ShieldCheck, Home, Sun, Mail 
+  Menu, X, ArrowRight, ChevronDown, Sparkles, 
+  Settings, Server, ShieldCheck, Home, Sun, Mail, Bot 
 } from "lucide-react";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Close menus on page navigation
   useEffect(() => {
@@ -47,36 +34,42 @@ export default function Header() {
   const services = [
     {
       id: "digital-transformation",
+      path: "/digital-transformation",
       name: "Digital Transformation",
       desc: "Cloud migration & strategic roadmap",
       icon: <Server className="w-4 h-4 text-[#E5AF2B]" />
     },
     {
       id: "business-automation",
+      path: "/business-automation",
       name: "Business Automation",
       desc: "CRM, ERP & workflow automations",
       icon: <Settings className="w-4 h-4 text-[#E5AF2B]" />
     },
     {
       id: "ai-solutions",
+      path: "/artificial-intelligence",
       name: "AI Solutions",
       desc: "Generative AI, LLMs & Smart Agents",
-      icon: <Cpu className="w-4 h-4 text-[#E5AF2B]" />
+      icon: <Bot className="w-4 h-4 text-[#E5AF2B]" />
     },
     {
       id: "blockchain-crypto",
+      path: "/blockchain-solutions",
       name: "Blockchain & Crypto",
       desc: "Smart contracts & consensus ledgers",
       icon: <ShieldCheck className="w-4 h-4 text-[#E5AF2B]" />
     },
     {
       id: "smart-home",
+      path: "/smart-home-installation-services",
       name: "Smart Home",
       desc: "IoT secure mesh & biometrics fitting",
       icon: <Home className="w-4 h-4 text-[#E5AF2B]" />
     },
     {
       id: "solar-energy",
+      path: "/solar-panel-installation",
       name: "Solar Installation",
       desc: "Commercial rooftop & green telemetry",
       icon: <Sun className="w-4 h-4 text-[#E5AF2B]" />
@@ -89,59 +82,51 @@ export default function Header() {
     return false;
   };
 
+  const getLinkColorClass = (path: string) => {
+    const isActive = isLinkActive(path);
+    return isActive 
+      ? "text-[#0F2D63] font-bold text-[15px]" 
+      : "text-[#1B1B1B] hover:text-[#0F2D63] font-medium text-[15px]";
+  };
+
   return (
     <motion.header
       id="header-navigation"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled || location.pathname !== "/"
-          ? "bg-white/95 backdrop-blur-md shadow-md border-b border-[#ECECEC]/70 py-4" 
-          : "bg-transparent py-6"
-      }`}
+      className="fixed top-0 left-0 w-full z-50 bg-white shadow-[0_2px_15px_rgba(0,0,0,0.04)] border-b border-[#ECECEC]/75 py-4 transition-all duration-300"
     >
       <div className="max-w-[1320px] mx-auto px-6 flex items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 group">
-          <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-[#0F2D63] text-white shadow-lg transition-transform duration-300 group-hover:scale-105">
-            <Cpu className="w-5 h-5 text-[#E5AF2B] animate-pulse" />
-            <div className="absolute -inset-0.5 rounded-xl border border-[#E5AF2B]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </div>
-          <span className="font-serif font-bold text-lg md:text-xl text-[#0F2D63] tracking-tight whitespace-nowrap">
-            TECHNO-SOLUTIONS<span className="text-[#E5AF2B]">.</span>
-          </span>
+        {/* Logo - transparent background, increased size, completely clean */}
+        <Link to="/" className="flex items-center gap-3 group transition-transform duration-300 hover:scale-[1.02] active:scale-98">
+          <img 
+            src="https://lh3.googleusercontent.com/d/1bcaOeIYNdxuqxCd8-yPBHc5YiGUEYfRh" 
+            alt="Techno Solutions Logo" 
+            className="h-14 md:h-16 w-auto object-contain"
+            referrerPolicy="no-referrer"
+          />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-10">
           {/* Home Link */}
           <Link
             to="/"
-            className={`font-medium text-sm py-1 relative group transition-colors duration-200 ${
-              isLinkActive("/") ? "text-[#0F2D63] font-bold" : "text-[#5B6470] hover:text-[#0F2D63]"
-            }`}
+            className={`py-1 transition-colors duration-200 ${getLinkColorClass("/")}`}
           >
             Home
-            <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5AF2B] transition-all duration-300 ${
-              isLinkActive("/") ? "w-full" : "w-0 group-hover:w-full"
-            }`} />
           </Link>
 
           {/* About Link */}
           <Link
             to="/about"
-            className={`font-medium text-sm py-1 relative group transition-colors duration-200 ${
-              isLinkActive("/about") ? "text-[#0F2D63] font-bold" : "text-[#5B6470] hover:text-[#0F2D63]"
-            }`}
+            className={`py-1 transition-colors duration-200 ${getLinkColorClass("/about")}`}
           >
             About Us
-            <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5AF2B] transition-all duration-300 ${
-              isLinkActive("/about") ? "w-full" : "w-0 group-hover:w-full"
-            }`} />
           </Link>
 
-          {/* Services Dropdown Trigger */}
+          {/* Services Dropdown Trigger - styled in elegant gold to match the screenshot */}
           <div 
             className="relative" 
             ref={dropdownRef}
@@ -150,12 +135,10 @@ export default function Header() {
           >
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className={`flex items-center gap-1 font-medium text-sm py-1 transition-colors duration-200 focus:outline-hidden ${
-                location.pathname.startsWith("/services") ? "text-[#0F2D63] font-bold" : "text-[#5B6470] hover:text-[#0F2D63]"
-              }`}
+              className="flex items-center gap-1 font-semibold text-[15px] text-[#E5AF2B] hover:text-[#d49f24] py-1 transition-colors duration-200 focus:outline-hidden cursor-pointer"
             >
               <span>Services</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} />
+              <ChevronDown className="w-4 h-4 text-[#E5AF2B] transition-transform duration-300 group-hover:rotate-180" />
             </button>
 
             {/* Dropdown Card */}
@@ -169,13 +152,13 @@ export default function Header() {
                   className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[450px] bg-white border border-[#ECECEC] shadow-xl rounded-2xl p-4 grid grid-cols-2 gap-2 text-left z-50"
                 >
                   <div className="col-span-2 px-3 pb-2 border-b border-[#F8F9FC] flex justify-between items-center mb-1">
-                    <span className="text-[10px] font-bold text-[#5B6470] uppercase tracking-wider">Our Solutions</span>
+                    <span className="text-[10px] font-bold text-[#5B6470] uppercase tracking-wider font-mono">Our Solutions</span>
                     <Sparkles className="w-3.5 h-3.5 text-[#E5AF2B]" />
                   </div>
                   {services.map((srv) => (
                     <Link
                       key={srv.id}
-                      to={`/services/${srv.id}`}
+                      to={srv.path}
                       className="p-2.5 rounded-xl hover:bg-[#F8F9FC] border border-transparent hover:border-[#ECECEC]/30 transition-all flex items-start gap-3 group/item"
                     >
                       <div className="p-2 rounded-lg bg-[#0F2D63]/5 text-[#0F2D63] group-hover/item:bg-[#0F2D63] group-hover/item:text-white transition-all">
@@ -199,38 +182,28 @@ export default function Header() {
           {/* Blog Link */}
           <Link
             to="/blog"
-            className={`font-medium text-sm py-1 relative group transition-colors duration-200 ${
-              isLinkActive("/blog") ? "text-[#0F2D63] font-bold" : "text-[#5B6470] hover:text-[#0F2D63]"
-            }`}
+            className={`py-1 transition-colors duration-200 ${getLinkColorClass("/blog")}`}
           >
             Blog
-            <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5AF2B] transition-all duration-300 ${
-              isLinkActive("/blog") ? "w-full" : "w-0 group-hover:w-full"
-            }`} />
           </Link>
 
           {/* Contact Link */}
           <Link
             to="/contact"
-            className={`font-medium text-sm py-1 relative group transition-colors duration-200 ${
-              isLinkActive("/contact") ? "text-[#0F2D63] font-bold" : "text-[#5B6470] hover:text-[#0F2D63]"
-            }`}
+            className={`py-1 transition-colors duration-200 ${getLinkColorClass("/contact")}`}
           >
             Contact Us
-            <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5AF2B] transition-all duration-300 ${
-              isLinkActive("/contact") ? "w-full" : "w-0 group-hover:w-full"
-            }`} />
           </Link>
         </nav>
 
-        {/* CTA Button (Desktop Nav Link to Contact) */}
+        {/* CTA Button - Pill shaped deep blue button with white text and white arrow */}
         <div className="hidden lg:block">
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#0F2D63] text-white font-semibold text-sm transition-all duration-300 hover:bg-[#1a448c] hover:shadow-lg hover:shadow-blue-950/10 active:scale-95 group"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#0F2D63] text-white font-bold text-[15px] transition-all duration-300 hover:bg-[#1a448c] hover:shadow-lg hover:shadow-blue-950/15 active:scale-95 group"
           >
-            Book Consultation
-            <ArrowRight className="w-4 h-4 text-[#E5AF2B] transition-transform duration-300 group-hover:translate-x-1" />
+            <span>Book Consultation</span>
+            <ArrowRight className="w-4 h-4 text-white transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
 
@@ -291,7 +264,7 @@ export default function Header() {
                       {services.map((srv) => (
                         <Link
                           key={srv.id}
-                          to={`/services/${srv.id}`}
+                          to={srv.path}
                           className="text-sm font-medium text-[#5B6470] hover:text-[#0F2D63] py-1.5 transition-colors block"
                         >
                           {srv.name}
@@ -321,10 +294,10 @@ export default function Header() {
               {/* Action */}
               <Link
                 to="/contact"
-                className="mt-4 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#0F2D63] text-white font-semibold text-sm transition-colors hover:bg-[#1a448c] text-center"
+                className="mt-4 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#0F2D63] text-white font-semibold text-sm transition-colors hover:bg-[#1a448c] text-center"
               >
                 Book Consultation
-                <ArrowRight className="w-4 h-4 text-[#E5AF2B]" />
+                <ArrowRight className="w-4 h-4 text-white" />
               </Link>
             </div>
           </motion.div>

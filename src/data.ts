@@ -41,7 +41,7 @@ export const SERVICES: ServiceItem[] = [
     description: "Unlock the power of neural engines, Generative AI models, and custom Agentic systems.",
     longDescription: "Bridge manual operational gaps with the power of modern artificial intelligence. We develop customized strategies, implement ChatGPT/Gemini APIs, deploy self-guided AI agents, build intelligent document parsers (OCR), and configure deep computer-vision models tailored to your industry's telemetry.",
     iconName: "Cpu",
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?auto=format&fit=crop&w=800&q=80",
     badge: "Cognitive AI",
     details: [
       "AI Strategy Advisory & Implementation Support",
@@ -256,11 +256,14 @@ export const INDUSTRIES = [
   { name: "Healthcare", desc: "Patient registration, appointment schedules, medical billing, and telemedicine automation." },
   { name: "Education", desc: "Smart learning management, automated examinations, and e-governance workflows." },
   { name: "Manufacturing", desc: "Production scheduling, predictive telemetry audits, and quality control vision systems." },
-  { name: "Banking & Finance", desc: "Secured decentralized transactions, KYC validation, fraud triggers, and fintech tools." },
-  { name: "Retail & E-Commerce", desc: "Automated inventory management, POS integrations, and loyalty tracking." },
-  { name: "Logistics & Supply Chain", desc: "Real-time shipment telemetry, automated warehousing, and blockchain component chains." },
+  { name: "Banking", desc: "Secured decentralized transactions, KYC validation, fraud triggers, and fintech tools." },
+  { name: "Retail", desc: "Automated inventory management, POS integrations, and loyalty tracking." },
+  { name: "Telecom", desc: "High-speed network architecture support, automated billing routing, and customer operations." },
   { name: "Government", desc: "Citizen portals, secure database integration, and transparent e-office filing." },
-  { name: "Real Estate & Smart Space", desc: "Smart lighting mesh, thermal management, and encrypted access hubs." },
+  { name: "Logistics", desc: "Real-time shipment telemetry, automated warehousing, and blockchain component chains." },
+  { name: "Hospitality", desc: "Smart booking platforms, property management tools, and automated guest operations." },
+  { name: "Real Estate", desc: "Smart lighting mesh, thermal management, and encrypted access hubs." },
+  { name: "Energy", desc: "High-conversion solar energy grid management and intelligent battery monitoring." },
   { name: "SMEs", desc: "Affordable, customized business packages designed within budget boundaries." }
 ];
 
@@ -278,7 +281,7 @@ export const WHY_CHOOSE_US = [
     desc: "We manage the entire lifecycle—from first blueprint consulting workshops to coding, deployment, and ongoing 24/7 SLA support."
   },
   {
-    title: "Latest Technologies",
+    title: "Latest Technologies (AI, ML, Generative AI, Blockchain, Cloud, IoT, RPA etc.)",
     desc: "We stay on the absolute cutting edge, deploying Generative AI models, Agentic AI loops, high-conversion clean energy, and robust low-code tools."
   },
   {
@@ -286,7 +289,7 @@ export const WHY_CHOOSE_US = [
     desc: "We engineer enterprise-quality, ISO-level software structures optimized safely within your project’s financial parameters."
   },
   {
-    title: "Customer First Philosophy",
+    title: "Customer First Approach",
     desc: "We focus heavily on measurable business value, transparent documentation, and long-term retainer partnerships."
   }
 ];
@@ -330,7 +333,7 @@ export const BLOG_POSTS: BlogPost[] = [
     title: "The Rise of Generative AI: Choosing an AI Solutions Provider in India",
     slug: "ai-solutions-provider-india",
     summary: "Harnessing neural networks, Agentic AI, and Gemini/ChatGPT API custom setups to build real-world productivity gains and secure automation.",
-    category: "Artificial Intelligence",
+    category: "AI",
     date: "May 22, 2026",
     readTime: "7 min read",
     author: "Sanjeev Goel",
@@ -340,16 +343,55 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     id: "b4",
-    title: "Smart Homes & Solar Energy: Navigating Intelligent, Eco-Friendly Living in Delhi",
-    slug: "smart-homes-solar-energy-delhi",
-    summary: "Combining smart lighting, biometrics, and high-conversion rooftop solar panel grids for carbon-negative, fully secure residential and commercial spaces.",
-    category: "Smart Systems & Solar",
-    date: "May 10, 2026",
-    readTime: "8 min read",
+    title: "Blockchain & Web3: Restructuring Security for Modern Enterprise Ledgers",
+    slug: "blockchain-web3-enterprise-ledgers",
+    summary: "Exploring audited smart contracts, decentralized consensus, and private ledger integrations for secure financial tracking and inventory validation.",
+    category: "Blockchain",
+    date: "May 05, 2026",
+    readTime: "6 min read",
+    author: "Sanjeev Goel",
+    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=80",
+    keywords: ["Blockchain Solutions", "Smart Contracts Delhi", "Web3 Integration"],
+    content: "Secure decentralized technology is redefining trust in business transactions. At Techno-Solutions, we design audited blockchain networks and custom private consensus models that protect corporate IP, prevent inventory fraud, and create unalterable system logs.\n\n### The Security Core of Modern Blockchain Systems\n\n- **Consensus Mechanisms:** Distributing verification authority ensures no single point of network failure exists.\n- **Immutability:** Once logged, audit metrics cannot be altered or deleted, securing financial history.\n- **Smart Contract Automation:** Standardize and automate vendor escrow terms, royalty splits, and supply chain handshakes."
+  },
+  {
+    id: "b5",
+    title: "Intelligent Living: Smart Home Installation and IoT Security",
+    slug: "intelligent-living-smart-home-installation",
+    summary: "Upgrade your residential or commercial space with biometrics, mesh networks, and integrated CCTV for a secure environment.",
+    category: "Smart Home",
+    date: "April 18, 2026",
+    readTime: "5 min read",
     author: "Sanjeev Goel",
     image: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80",
-    keywords: ["Smart Home Installation Delhi", "Solar Panel Installation Services"],
-    content: "Rethink your living and working environments. Modern spaces demand double the efficiency: seamless automation alongside green energy. At Techno-Solutions, we design and install high-performance smart ecosystems tailored for Delhi NCR's unique environment.\n\n### Why Upgrading is Essential\n\n- **Significant Utility Reductions:** Commercial rooftop solar panels and net-metering can cut electric bills by up to 32%.\n- **Military-Grade Security:** Combine high-definition CCTV, video door phones, and encrypted biometric door locks for total peace of mind.\n- **Intelligent HVAC & Ambience:** Manage lights and climate voice controls, scheduling systems, and smart meshes."
+    keywords: ["Smart Home Installation Delhi", "IoT Security Mesh", "Home Automation"],
+    content: "Modern residential and commercial systems demand state-of-the-art security, ease of access, and ambient efficiency. Techno-Solutions delivers custom IoT integrations, secure biometrics, and intelligent lighting networks that blend into your architecture seamlessly.\n\n### Designing the Smart Home Environment\n\n1. **Unified Mesh Controls:** Control all local subsystems via an isolated, encrypted wireless mesh network.\n2. **Smart Security Locks:** Say goodbye to physical keys. Biometrics and temporary passcodes keep access fully recorded and highly secure.\n3. **Voice & Sensor Control:** Automate lighting schedules, air conditioning cycles, and backup power grids to maximize energy conservation."
+  },
+  {
+    id: "b6",
+    title: "Solar Power Integration: Reducing Overhead Expenses in Corporate Parks",
+    slug: "solar-panel-installation-carbon-negative",
+    summary: "Reduce monthly utility bills by up to 32% with commercial-grade hybrid solar panels and net-metering telemetry dashboards.",
+    category: "Solar",
+    date: "March 30, 2026",
+    readTime: "7 min read",
+    author: "Sanjeev Goel",
+    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=800&q=80",
+    keywords: ["Solar Panel Installation Services", "Green Tech Solutions", "Rooftop Solar Delhi"],
+    content: "With rising energy tariffs, commercial and residential operations in Delhi NCR can significantly benefit from custom solar integration. Techno-Solutions provides comprehensive consulting, structural mapping, high-conversion panel configuration, and green energy monitoring.\n\n### Core Benefits of Solar Integration\n\n- **High Return on Investment:** Transitioning to clean tech saves direct utility costs and offers clean energy incentives.\n- **Carbon-Negative Footprint:** Do your part in global sustainability efforts by moving standard building consumption to renewable networks.\n- **Real-Time Telemetry:** Track every watt generated, stored, or back-fed into the local power grid through a secure dashboard."
+  },
+  {
+    id: "b7",
+    title: "2026 Enterprise Tech Trends: Adapting to the Digital Frontier",
+    slug: "enterprise-tech-trends-2026",
+    summary: "A deep dive into emerging tech paradigms, from agentic AI loops to decentralized web portals and green technology integrations.",
+    category: "Industry Trends",
+    date: "February 12, 2026",
+    readTime: "8 min read",
+    author: "Sanjeev Goel",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
+    keywords: ["Enterprise Tech Trends 2026", "Corporate Digital Strategy", "Future Tech Solutions"],
+    content: "The year 2026 marks a milestone in deep tech integration. From standard cloud systems to highly proactive agent-based architectures, businesses must adapt fast or risk operational stagnation. Let’s explore the top paradigms driving corporate success this year.\n\n### Top 3 Paradigms to Watch\n\n1. **Agentic Workflows:** Moving beyond passive chat prompts into active systems that can manage research, email, and process automation with minimal human intervention.\n2. **Decentralized Data Anchors:** Securing critical company files and client transaction histories using unalterable cryptographically signed ledgers.\n3. **Hybrid Energy Networks:** Powering local servers and smart office parks using smart, carbon-negative local microgrids."
   }
 ];
 
