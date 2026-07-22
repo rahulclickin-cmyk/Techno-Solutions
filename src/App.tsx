@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import WhatsAppWidget from "./components/WhatsAppWidget";
@@ -27,7 +27,7 @@ function ScrollToTop() {
 
 export default function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ScrollToTop />
       <div className="relative min-h-screen overflow-x-hidden antialiased font-sans bg-white text-[#1B1B1B]">
         {/* Absolute Global Backdrop Effects */}
@@ -63,6 +63,6 @@ export default function App() {
         <WhatsAppWidget />
         <AIChatbot />
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
