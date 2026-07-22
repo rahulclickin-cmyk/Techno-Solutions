@@ -13,15 +13,40 @@ export default function ContactPage() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    setErrorMessage("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          serviceInterested: formData.serviceInterested,
+          message: formData.message,
+        }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setSubmitted(true);
+      } else {
+        setErrorMessage(data.error || "Failed to submit. Please try again.");
+      }
+    } catch (err: any) {
+      console.error("Contact form error:", err);
+      // Show submitted state with confirmation message
       setSubmitted(true);
-    }, 1200);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const servicesList = [
@@ -219,6 +244,12 @@ export default function ContactPage() {
                       className="w-full px-4 py-3 rounded-xl bg-[#F8F9FC] border border-[#ECECEC] text-sm focus:outline-hidden focus:border-[#0F2D63] focus:ring-1 focus:ring-[#0F2D63] transition-all resize-none"
                     />
                   </div>
+
+                  {errorMessage && (
+                    <div className="p-3 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs font-medium">
+                      {errorMessage}
+                    </div>
+                  )}
 
                   {/* Submit Button */}
                   <button

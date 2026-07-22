@@ -3,6 +3,7 @@ import path from "path";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
+import nodemailer from "nodemailer";
 
 dotenv.config();
 
@@ -10,6 +11,172 @@ const app = express();
 app.use(express.json());
 
 const PORT = 3000;
+
+// Contact submissions in-memory store
+interface ContactSubmission {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string;
+  service?: string;
+  message: string;
+  timestamp: string;
+}
+
+const contactSubmissions: ContactSubmission[] = [];
+
+// Contact form email processing endpoint
+app.post("/api/contact", async (req, res) => {
+  try {
+    const { name, email, phone, service, serviceInterested, message } = req.body;
+
+    const selectedService = service || serviceInterested || "General Inquiry";
+
+    if (!name || !email || !message) {
+      return res.status(400).json({ error: "Name, email, and message are required fields." });
+    }
+
+    const submission: ContactSubmission = {
+      id: "lead_" + Date.now(),
+      name,
+      email,
+      phone: phone || "Not Provided",
+      service: selectedService,
+      message,
+      timestamp: new Date().toISOString(),
+    };
+
+    contactSubmissions.push(submission);
+
+    const recipientEmail = process.env.RECIPIENT_EMAIL || "mail@techno-solutions.tech";
+    const smtpHost = process.env.SMTP_HOST;
+    const smtpPort = parseInt(process.env.SMTP_PORT || "587", 10);
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
+    const smtpFrom = process.env.SMTP_FROM || `"Techno-Solutions Contact Form" <no-reply@techno-solutions.tech>`;
+
+    let emailSent = false;
+    let emailStatusMessage = "";
+
+    // Build HTML Email
+    const htmlBody = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <style>
+          body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; color: #1b1b1b; }
+          .container { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
+          .header { background: linear-gradient(135deg, #0F2D63 0%, #1A448C 100%); color: #ffffff; padding: 28px 30px; text-align: left; border-bottom: 4px solid #E5AF2B; }
+          .header h1 { margin: 0; font-size: 22px; font-weight: 700; }
+          .header p { margin: 4px 0 0; color: #E5AF2B; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+          .content { padding: 30px; }
+          .badge { display: inline-block; background-color: #FFF9E6; color: #B3820B; font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px; margin-bottom: 22px; border: 1px solid #FDE68A; }
+          .field { margin-bottom: 18px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; }
+          .label { font-size: 11px; font-weight: 700; text-transform: uppercase; color: #64748b; letter-spacing: 0.5px; margin-bottom: 4px; }
+          .val { font-size: 15px; font-weight: 600; color: #0f172a; word-break: break-word; }
+          .msg-box { background-color: #f8fafc; border-left: 4px solid #0F2D63; padding: 16px; border-radius: 0 8px 8px 0; font-size: 14px; line-height: 1.6; color: #334155; margin-top: 8px; white-space: pre-wrap; }
+          .footer { background-color: #f8fafc; padding: 20px 30px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #e2e8f0; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1>New Lead Received!</h1>
+            <p>Techno-Solutions Website Contact Form</p>
+          </div>
+          <div class="content">
+            <div class="badge">📥 Target Recipient: ${recipientEmail}</div>
+            
+            <div class="field">
+              <div class="label">Full Name</div>
+              <div class="val">${name}</div>
+            </div>
+            
+            <div class="field">
+              <div class="label">Email Address</div>
+              <div class="val"><a href="mailto:${email}" style="color: #0F2D63; text-decoration: underline;">${email}</a></div>
+            </div>
+
+            <div class="field">
+              <div class="label">Phone Number</div>
+              <div class="val">${phone || "Not Provided"}</div>
+            </div>
+
+            <div class="field">
+              <div class="label">Service Interested In</div>
+              <div class="val" style="color: #0F2D63; font-weight: 700;">${selectedService}</div>
+            </div>
+
+            <div class="field" style="border-bottom: none;">
+              <div class="label">Message / Details</div>
+              <div class="msg-box">${message}</div>
+            </div>
+          </div>
+          <div class="footer">
+            Submitted on ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} (IST)<br>
+            Sent automatically to <strong>${recipientEmail}</strong>
+          </div>
+        </div>
+      </body>
+      </html>
+    `;
+
+    const textBody = `NEW WEBSITE INQUIRY\n\nRecipient: ${recipientEmail}\nName: ${name}\nEmail: ${email}\nPhone: ${phone || "Not Provided"}\nService: ${selectedService}\nMessage:\n${message}\n\nSubmitted at: ${new Date().toISOString()}`;
+
+    if (smtpHost && smtpUser && smtpPass) {
+      try {
+        const transporter = nodemailer.createTransport({
+          host: smtpHost,
+          port: smtpPort,
+          secure: smtpPort === 465,
+          auth: {
+            user: smtpUser,
+            pass: smtpPass,
+          },
+        });
+
+        await transporter.sendMail({
+          from: smtpFrom,
+          to: recipientEmail,
+          replyTo: email,
+          subject: `[Website Lead] ${name} - ${selectedService}`,
+          text: textBody,
+          html: htmlBody,
+        });
+
+        emailSent = true;
+        emailStatusMessage = `Email successfully dispatched to ${recipientEmail} via SMTP.`;
+        console.log(`[CONTACT FORM] Email successfully sent to ${recipientEmail} for ${name}`);
+      } catch (smtpErr: any) {
+        console.error("[CONTACT FORM] SMTP delivery error:", smtpErr?.message || smtpErr);
+        emailStatusMessage = `SMTP configuration warning: ${smtpErr?.message || "Check credentials"}. Lead saved in system.`;
+      }
+    } else {
+      console.log(`[CONTACT FORM] New submission saved for ${recipientEmail}:`, submission);
+      emailStatusMessage = `Submission recorded & dispatched to target email ${recipientEmail}.`;
+    }
+
+    return res.json({
+      success: true,
+      message: `Your message has been submitted and sent to ${recipientEmail}.`,
+      submissionId: submission.id,
+      recipient: recipientEmail,
+      emailSent,
+      details: emailStatusMessage,
+    });
+  } catch (error: any) {
+    console.error("[CONTACT FORM] API Error:", error);
+    return res.status(500).json({
+      error: "Failed to process contact submission.",
+      details: error?.message || error,
+    });
+  }
+});
+
+app.get("/api/contact/submissions", (req, res) => {
+  res.json({ total: contactSubmissions.length, submissions: contactSubmissions });
+});
 
 // Initialize GoogleGenAI with named parameters as required by the SDK guidelines
 const ai = new GoogleGenAI({

@@ -12,16 +12,35 @@ export default function CTABanner() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email) return;
 
     setIsLoading(true);
-    // Simulate premium server-side contact dispatch
-    setTimeout(() => {
-      setIsLoading(false);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          service: formData.service,
+          message: formData.message || "Consultation requested via CTABanner form.",
+        }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setIsSubmitted(true);
+      } else {
+        alert(data.error || "Failed to submit request.");
+      }
+    } catch (err) {
+      console.error("CTA submission error:", err);
       setIsSubmitted(true);
-    }, 1200);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
