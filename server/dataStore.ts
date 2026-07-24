@@ -102,8 +102,8 @@ function generateSalt(): string {
   return crypto.randomBytes(16).toString("hex");
 }
 
-const DEFAULT_SALT = "techno_admin_salt_2026";
-const DEFAULT_PASSWORD_HASH = hashPassword("admin123", DEFAULT_SALT);
+export const DEFAULT_SALT = "techno_admin_salt_2026";
+export const DEFAULT_PASSWORD_HASH = hashPassword("admin123", DEFAULT_SALT);
 
 const INITIAL_SETTINGS: SiteSettings = {
   websiteName: "Techno-Solutions",
@@ -221,11 +221,11 @@ function initDataStore(): DataStore {
       const fileData = fs.readFileSync(DB_FILE, "utf-8");
       const parsed = JSON.parse(fileData);
       return {
-        adminAccount: parsed.adminAccount || {
-          username: "admin",
-          passwordHash: DEFAULT_PASSWORD_HASH,
-          salt: DEFAULT_SALT,
-          lastLogin: null,
+        adminAccount: {
+          username: parsed.adminAccount?.username || "admin",
+          passwordHash: parsed.adminAccount?.passwordHash || DEFAULT_PASSWORD_HASH,
+          salt: parsed.adminAccount?.salt || DEFAULT_SALT,
+          lastLogin: parsed.adminAccount?.lastLogin || null,
         },
         blogs: parsed.blogs || INITIAL_BLOGS,
         contacts: parsed.contacts || [],
