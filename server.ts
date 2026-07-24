@@ -49,11 +49,11 @@ app.post("/api/contact", async (req, res) => {
     contactSubmissions.push(submission);
 
     const recipientEmail = process.env.RECIPIENT_EMAIL || "mail@techno-solutions.tech";
-    const smtpHost = process.env.SMTP_HOST;
+    const smtpHost = process.env.SMTP_HOST || "smtp-relay.brevo.com";
     const smtpPort = parseInt(process.env.SMTP_PORT || "587", 10);
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
-    const smtpFrom = process.env.SMTP_FROM || `"Techno-Solutions Contact Form" <no-reply@techno-solutions.tech>`;
+    const smtpUser = process.env.SMTP_USER || "b31d35001@smtp-brevo.com";
+    const smtpPass = process.env.SMTP_PASS || "3WPg8v17HKLkQnbj";
+    const smtpFrom = process.env.SMTP_FROM || `"Techno Solutions" <mail@techno-solutions.tech>`;
 
     let emailSent = false;
     let emailStatusMessage = "";
