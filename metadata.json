@@ -1,6 +1,6 @@
 {
-  "name": "Enterprise Landing Page",
-  "description": "A premium corporate and technology landing page with interactive elements, responsive bento grids, process timelines, and a high-fidelity visual design compatible with Elementor-style modular containers.",
+  "name": "Techno Solutions - IT Consulting & Automation",
+  "description": "Enterprise IT consultancy, digital transformation, business automation, AI, and smart tech website with an integrated secure Admin Panel for blog and contact management.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

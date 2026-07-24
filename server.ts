@@ -4,28 +4,111 @@ import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
+import { getStore, saveDataStore, logActivity, ContactEnquiry } from "./server/dataStore";
+import adminRoutes from "./server/adminRoutes";
 
 dotenv.config();
 
 const app = express();
-app.use(express.json());
+app.use(express.json({ limit: "25mb" }));
+app.use(express.urlencoded({ extended: true, limit: "25mb" }));
 
 const PORT = 3000;
 
-// Contact submissions in-memory store
-interface ContactSubmission {
-  id: string;
-  name: string;
-  email: string;
-  phone?: string;
-  service?: string;
-  message: string;
-  timestamp: string;
-}
+// Mount Admin API Router
+app.use("/api/admin", adminRoutes);
 
-const contactSubmissions: ContactSubmission[] = [];
+// ---------------- PUBLIC API ENDPOINTS ----------------
 
-// Contact form email processing endpoint
+// Public Settings & Homepage Config
+app.get("/api/settings", (req, res) => {
+  const store = getStore();
+  res.json({ settings: store.settings });
+});
+
+// Public Published Blogs List
+app.get("/api/blogs", (req, res) => {
+  const store = getStore();
+  const search = ((req.query.search as string) || "").toLowerCase();
+  const category = req.query.category as string;
+
+  let published = store.blogs.filter((b) => b.status === "published");
+
+  if (search) {
+    published = published.filter(
+      (b) =>
+        b.title.toLowerCase().includes(search) ||
+        b.summary.toLowerCase().includes(search) ||
+        b.category.toLowerCase().includes(search) ||
+        (b.keywords && b.keywords.some((k) => k.toLowerCase().includes(search)))
+    );
+  }
+
+  if (category && category !== "All") {
+    published = published.filter((b) => b.category === category);
+  }
+
+  res.json({ blogs: published, total: published.length });
+});
+
+// Public Single Blog by Slug
+app.get("/api/blogs/:slug", (req, res) => {
+  const { slug } = req.params;
+  const store = getStore();
+
+  const blog = store.blogs.find((b) => b.slug === slug || b.id === slug);
+  if (!blog) {
+    return res.status(404).json({ error: "Blog post not found." });
+  }
+
+  res.json({ blog });
+});
+
+// Dynamic Robots.txt
+app.get("/robots.txt", (req, res) => {
+  const store = getStore();
+  res.type("text/plain");
+  res.send(store.settings.seo.robotsTxt || "User-agent: *\nAllow: /\nDisallow: /admin/");
+});
+
+// Dynamic Sitemap.xml
+app.get("/sitemap.xml", (req, res) => {
+  const store = getStore();
+  if (!store.settings.seo.sitemapEnabled) {
+    return res.status(404).send("Sitemap is disabled.");
+  }
+
+  const baseUrl = process.env.APP_URL || "https://techno-solutions.tech";
+  const publishedBlogs = store.blogs.filter((b) => b.status === "published");
+
+  const urls = [
+    `${baseUrl}/`,
+    `${baseUrl}/about`,
+    `${baseUrl}/services`,
+    `${baseUrl}/blog`,
+    `${baseUrl}/contact`,
+    ...publishedBlogs.map((b) => `${baseUrl}/blog/${b.slug}`),
+  ];
+
+  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls
+  .map(
+    (url) => `  <url>
+    <loc>${url}</loc>
+    <lastmod>${new Date().toISOString().split("T")[0]}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`
+  )
+  .join("\n")}
+</urlset>`;
+
+  res.type("application/xml");
+  res.send(sitemapXml);
+});
+
+// Contact form email processing & admin storage endpoint
 app.post("/api/contact", async (req, res) => {
   try {
     const { name, email, phone, service, serviceInterested, message } = req.body;
@@ -36,7 +119,9 @@ app.post("/api/contact", async (req, res) => {
       return res.status(400).json({ error: "Name, email, and message are required fields." });
     }
 
-    const submission: ContactSubmission = {
+    const store = getStore();
+
+    const submission: ContactEnquiry = {
       id: "lead_" + Date.now(),
       name,
       email,
@@ -44,11 +129,14 @@ app.post("/api/contact", async (req, res) => {
       service: selectedService,
       message,
       timestamp: new Date().toISOString(),
+      status: "unread",
     };
 
-    contactSubmissions.push(submission);
+    store.contacts.unshift(submission);
+    saveDataStore(store);
+    logActivity("New Contact Enquiry", `Received contact submission from ${name} (${email})`);
 
-    const recipientEmail = process.env.RECIPIENT_EMAIL || "mail@techno-solutions.tech";
+    const recipientEmail = process.env.RECIPIENT_EMAIL || store.settings.email || "mail@techno-solutions.tech";
     const smtpHost = process.env.SMTP_HOST || "smtp-relay.brevo.com";
     const smtpPort = parseInt(process.env.SMTP_PORT || "587", 10);
     const smtpUser = process.env.SMTP_USER || "b31d35001@smtp-brevo.com";
@@ -150,11 +238,11 @@ app.post("/api/contact", async (req, res) => {
         console.log(`[CONTACT FORM] Email successfully sent to ${recipientEmail} for ${name}`);
       } catch (smtpErr: any) {
         console.error("[CONTACT FORM] SMTP delivery error:", smtpErr?.message || smtpErr);
-        emailStatusMessage = `SMTP configuration warning: ${smtpErr?.message || "Check credentials"}. Lead saved in system.`;
+        emailStatusMessage = `SMTP configuration warning: ${smtpErr?.message || "Check credentials"}. Lead saved in Admin Panel.`;
       }
     } else {
-      console.log(`[CONTACT FORM] New submission saved for ${recipientEmail}:`, submission);
-      emailStatusMessage = `Submission recorded & dispatched to target email ${recipientEmail}.`;
+      console.log(`[CONTACT FORM] New submission saved in Admin Panel for ${recipientEmail}:`, submission);
+      emailStatusMessage = `Submission saved in Admin Panel & target email ${recipientEmail}.`;
     }
 
     return res.json({
@@ -175,18 +263,25 @@ app.post("/api/contact", async (req, res) => {
 });
 
 app.get("/api/contact/submissions", (req, res) => {
-  res.json({ total: contactSubmissions.length, submissions: contactSubmissions });
+  const store = getStore();
+  res.json({ total: store.contacts.length, submissions: store.contacts });
 });
 
-// Initialize GoogleGenAI with named parameters as required by the SDK guidelines
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-  httpOptions: {
-    headers: {
-      "User-Agent": "aistudio-build",
-    },
-  },
-});
+let aiClient: GoogleGenAI | null = null;
+
+function getAIClient(): GoogleGenAI {
+  if (!aiClient) {
+    aiClient = new GoogleGenAI({
+      apiKey: process.env.GEMINI_API_KEY || "dummy_key",
+      httpOptions: {
+        headers: {
+          "User-Agent": "aistudio-build",
+        },
+      },
+    });
+  }
+  return aiClient;
+}
 
 // Seed system prompt from your data or custom training
 const SYSTEM_INSTRUCTION = `You are "Techno-Solutions Assistant", a highly professional, polite, 24/7 AI Chatbot for Techno-Solutions.
@@ -254,7 +349,10 @@ app.post("/api/chat", async (req, res) => {
 
     let aiResponseText = "";
     try {
-      const response = await ai.models.generateContent({
+      if (!process.env.GEMINI_API_KEY) {
+        throw new Error("GEMINI_API_KEY environment variable is not set.");
+      }
+      const response = await getAIClient().models.generateContent({
         model: "gemini-2.5-flash",
         contents: contents,
         config: {
