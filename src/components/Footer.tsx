@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Cpu, Phone, Mail, MapPin, Facebook, Linkedin, Instagram, Youtube, ArrowRight, CheckCircle } from "lucide-react";
 
 export default function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const [settings, setSettings] = useState<any>(null);
+
+  useEffect(() => {
+    fetch("/api/settings")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.settings) setSettings(data.settings);
+      })
+      .catch((err) => console.error("Failed to load settings in footer:", err));
+  }, []);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -14,6 +24,15 @@ export default function Footer() {
   };
 
   const currentYear = new Date().getFullYear();
+
+  const logoSrc = settings?.logoUrl || "https://lh3.googleusercontent.com/d/1K1FUxdlG_9p-DY3utDu7pqDkR670Ekt_";
+  const displayPhone = settings?.phone || "+91 9811841782";
+  const displayEmail = settings?.email || "mail@techno-solutions.tech";
+  const displayAddress = settings?.address || "218 AGCR Enclave, Near Karkardoma Metro Station, Delhi 110092 | India";
+  const fbLink = settings?.socialLinks?.facebook || "https://facebook.com";
+  const instaLink = settings?.socialLinks?.instagram || "https://instagram.com";
+  const linkedinLink = settings?.socialLinks?.linkedin || "https://linkedin.com";
+  const ytLink = settings?.socialLinks?.youtube || "https://youtube.com";
 
   const servicesLinks = [
     { name: "Digital Transformation", path: "/digital-transformation" },
@@ -39,7 +58,7 @@ export default function Footer() {
             <Link to="/" className="flex items-center gap-3 group transition-transform duration-300 hover:scale-[1.03] active:scale-95">
               <div className="relative flex items-center justify-center h-18 px-6 rounded-2xl bg-[#06183B] shadow-md border border-white/15">
                 <img 
-                  src="https://lh3.googleusercontent.com/d/1K1FUxdlG_9p-DY3utDu7pqDkR670Ekt_" 
+                  src={logoSrc} 
                   alt="Techno Solutions Footer Logo" 
                   className="h-13 md:h-15 w-auto object-contain"
                   referrerPolicy="no-referrer"
@@ -53,16 +72,16 @@ export default function Footer() {
 
             {/* Social Links */}
             <div className="flex items-center gap-3">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 border border-white/10 text-white/70 hover:text-[#E5AF2B] hover:bg-white/10 transition-all" aria-label="LinkedIn">
+              <a href={linkedinLink} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 border border-white/10 text-white/70 hover:text-[#E5AF2B] hover:bg-white/10 transition-all" aria-label="LinkedIn">
                 <Linkedin className="w-4 h-4" />
               </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 border border-white/10 text-white/70 hover:text-[#E5AF2B] hover:bg-white/10 transition-all" aria-label="Facebook">
+              <a href={fbLink} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 border border-white/10 text-white/70 hover:text-[#E5AF2B] hover:bg-white/10 transition-all" aria-label="Facebook">
                 <Facebook className="w-4 h-4" />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 border border-white/10 text-white/70 hover:text-[#E5AF2B] hover:bg-white/10 transition-all" aria-label="Instagram">
+              <a href={instaLink} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 border border-white/10 text-white/70 hover:text-[#E5AF2B] hover:bg-white/10 transition-all" aria-label="Instagram">
                 <Instagram className="w-4 h-4" />
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 border border-white/10 text-white/70 hover:text-[#E5AF2B] hover:bg-white/10 transition-all" aria-label="YouTube">
+              <a href={ytLink} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 border border-white/10 text-white/70 hover:text-[#E5AF2B] hover:bg-white/10 transition-all" aria-label="YouTube">
                 <Youtube className="w-4 h-4" />
               </a>
             </div>
@@ -118,15 +137,15 @@ export default function Footer() {
             <ul className="flex flex-col gap-4 text-xs text-white/60">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-[#E5AF2B] shrink-0" />
-                <span>218 AGCR Enclave, Near Karkardoma Metro Station, Delhi 110092 | India</span>
+                <span>{displayAddress}</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-[#E5AF2B] shrink-0" />
-                <a href="tel:+919811841782" className="hover:text-white transition-colors">+91 9811841782</a>
+                <a href={`tel:${displayPhone.replace(/\s+/g, "")}`} className="hover:text-white transition-colors">{displayPhone}</a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-[#E5AF2B] shrink-0" />
-                <a href="mailto:mail@techno-solutions.tech" className="hover:text-white transition-colors">mail@techno-solutions.tech</a>
+                <a href={`mailto:${displayEmail}`} className="hover:text-white transition-colors">{displayEmail}</a>
               </li>
             </ul>
           </div>
