@@ -52,27 +52,36 @@ export function requireAdminAuth(req: Request, res: Response, next: NextFunction
 
 // Login
 router.post("/login", (req: Request, res: Response) => {
-  const { username, password } = req.body;
-  const store = getStore();
+  try {
+    const { username, password } = req.body || {};
+    const store = getStore();
 
-  if (username !== store.adminAccount.username || !verifyAdminPassword(password)) {
-    return res.status(400).json({ error: "Invalid admin username or password." });
+    if (!username || !password) {
+      return res.status(400).json({ error: "Username and password are required." });
+    }
+
+    if (username !== store.adminAccount.username || !verifyAdminPassword(password)) {
+      return res.status(400).json({ error: "Invalid admin username or password." });
+    }
+
+    const token = generateToken();
+    const expiresAt = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
+    activeAdminTokens.set(token, { username: store.adminAccount.username, expiresAt });
+
+    store.adminAccount.lastLogin = new Date().toISOString();
+    saveDataStore(store);
+    logActivity("Admin Login", `Admin logged in successfully from IP ${req.ip}`);
+
+    return res.json({
+      success: true,
+      token,
+      username: store.adminAccount.username,
+      lastLogin: store.adminAccount.lastLogin,
+    });
+  } catch (err: any) {
+    console.error("Login error:", err);
+    return res.status(500).json({ error: "Internal server error during login: " + (err?.message || "Unknown error") });
   }
-
-  const token = generateToken();
-  const expiresAt = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
-  activeAdminTokens.set(token, { username: store.adminAccount.username, expiresAt });
-
-  store.adminAccount.lastLogin = new Date().toISOString();
-  saveDataStore(store);
-  logActivity("Admin Login", `Admin logged in successfully from IP ${req.ip}`);
-
-  return res.json({
-    success: true,
-    token,
-    username: store.adminAccount.username,
-    lastLogin: store.adminAccount.lastLogin,
-  });
 });
 
 // Check Auth Status

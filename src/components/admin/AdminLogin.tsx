@@ -23,7 +23,14 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
         body: JSON.stringify({ username, password }),
       });
 
-      const data = await res.json();
+      const text = await res.text();
+      let data: any = {};
+      try {
+        data = text ? JSON.parse(text) : {};
+      } catch {
+        throw new Error(`Server returned an invalid response (${res.status} ${res.statusText})`);
+      }
+
       if (!res.ok || !data.success) {
         throw new Error(data.error || "Login failed. Please check credentials.");
       }
@@ -111,7 +118,10 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
           </button>
         </form>
 
-        <div className="mt-8 pt-6 border-t border-slate-800 text-center">
+        <div className="mt-8 pt-6 border-t border-slate-800 text-center space-y-2">
+          <div className="inline-block px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700/50 text-[11px] text-slate-300">
+            Default Credentials: <span className="font-mono text-[#E5AF2B]">Username: admin</span> | <span className="font-mono text-[#E5AF2B]">Password: admin123</span>
+          </div>
           <p className="text-[11px] text-slate-500">
             🔒 Protected Private URL Route &bull; Authorized Personnel Only
           </p>
