@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BLOG_POSTS } from "../data";
 import { Search, Calendar, Clock, User, ArrowRight, Sparkles } from "lucide-react";
@@ -6,16 +6,43 @@ import { Search, Calendar, Clock, User, ArrowRight, Sparkles } from "lucide-reac
 export default function BlogListPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [allPosts, setAllPosts] = useState<any[]>(BLOG_POSTS);
 
-  const categories = ["All", ...Array.from(new Set(BLOG_POSTS.map(post => post.category)))];
+  useEffect(() => {
+    async function loadBlogs() {
+      try {
+        const res = await fetch("/api/blogs");
+        if (res.ok) {
+          const text = await res.text();
+          const data = text ? JSON.parse(text) : null;
+          if (data && Array.isArray(data.blogs) && data.blogs.length > 0) {
+            // Merge dynamic blogs with static ones, avoiding duplicates by id/slug
+            const serverBlogs = data.blogs;
+            const staticBlogs = BLOG_POSTS.filter(
+              (sb) => !serverBlogs.some((db: any) => db.id === sb.id || db.slug === sb.slug)
+            );
+            setAllPosts([...serverBlogs, ...staticBlogs]);
+          }
+        }
+      } catch (err) {
+        console.warn("Using default blog list:", err);
+      }
+    }
+    loadBlogs();
+  }, []);
 
-  const filteredPosts = BLOG_POSTS.filter(post => {
-    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                          post.summary.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          post.keywords.some(kw => kw.toLowerCase().includes(searchTerm.toLowerCase()));
-    
+  const categories = ["All", ...Array.from(new Set(allPosts.map((post) => post.category)))];
+
+  const filteredPosts = allPosts.filter((post) => {
+    const titleMatch = post.title?.toLowerCase().includes(searchTerm.toLowerCase());
+    const summaryMatch = post.summary?.toLowerCase().includes(searchTerm.toLowerCase());
+    const keywordsMatch = Array.isArray(post.keywords)
+      ? post.keywords.some((kw: string) => kw.toLowerCase().includes(searchTerm.toLowerCase()))
+      : false;
+
+    const matchesSearch = titleMatch || summaryMatch || keywordsMatch;
     const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
-    
+
     return matchesSearch && matchesCategory;
   });
 

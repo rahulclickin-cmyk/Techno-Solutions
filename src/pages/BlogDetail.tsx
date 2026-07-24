@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { BLOG_POSTS } from "../data";
 import { Calendar, Clock, ArrowLeft, Send, Sparkles, ShieldCheck, Mail, Phone, MapPin } from "lucide-react";
@@ -7,11 +7,38 @@ export default function BlogDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
 
-  const post = BLOG_POSTS.find(p => p.slug === slug);
+  const [post, setPost] = useState<any>(() => BLOG_POSTS.find((p) => p.slug === slug || p.id === slug));
+  const [loading, setLoading] = useState(!post);
 
-  // Scroll to top on load
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
+
+    async function loadPost() {
+      if (!slug) return;
+      try {
+        const res = await fetch(`/api/blogs/${encodeURIComponent(slug)}`);
+        if (res.ok) {
+          const text = await res.text();
+          const data = text ? JSON.parse(text) : null;
+          if (data && data.blog) {
+            setPost(data.blog);
+            setLoading(false);
+            return;
+          }
+        }
+      } catch (err) {
+        console.warn("Error loading single blog from API:", err);
+      }
+
+      // Fallback: check static posts
+      const found = BLOG_POSTS.find((p) => p.slug === slug || p.id === slug);
+      if (found) {
+        setPost(found);
+      }
+      setLoading(false);
+    }
+
+    loadPost();
   }, [slug]);
 
   if (!post) {
