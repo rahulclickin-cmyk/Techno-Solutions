@@ -41,7 +41,14 @@ export default function SecurityManager({ token, username }: SecurityManagerProp
         body: JSON.stringify({ currentPassword, newPassword }),
       });
 
-      const data = await res.json();
+      let data: any = {};
+      try {
+        const text = await res.text();
+        data = text ? JSON.parse(text) : {};
+      } catch {
+        data = {};
+      }
+
       if (!res.ok || !data.success) {
         throw new Error(data.error || "Failed to update admin password.");
       }

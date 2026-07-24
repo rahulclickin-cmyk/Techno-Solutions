@@ -22,7 +22,13 @@ export default function HomepageContentManager({ token }: HomepageContentManager
     setLoading(true);
     try {
       const res = await fetch("/api/settings");
-      const data = await res.json();
+      let data: any = {};
+      try {
+        const text = await res.text();
+        data = text ? JSON.parse(text) : {};
+      } catch {
+        data = {};
+      }
       if (data.settings && data.settings.homepage) {
         const hp = data.settings.homepage;
         setHeroHeading(hp.heroHeading || "");

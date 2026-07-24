@@ -34,10 +34,17 @@ export default function MediaManager({ token }: MediaManagerProps) {
       const res = await fetch(`/api/admin/media?search=${encodeURIComponent(searchTerm)}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      const data = await res.json();
+      let data: any = {};
+      try {
+        const text = await res.text();
+        data = text ? JSON.parse(text) : {};
+      } catch {
+        data = {};
+      }
       setMedia(data.media || []);
     } catch (err) {
       console.error("Error loading media:", err);
+      setMedia([]);
     } finally {
       setLoading(false);
     }

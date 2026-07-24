@@ -38,10 +38,17 @@ export default function ContactManager({ token }: ContactManagerProps) {
       const res = await fetch(`/api/admin/contacts?${query.toString()}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      const data = await res.json();
+      let data: any = {};
+      try {
+        const text = await res.text();
+        data = text ? JSON.parse(text) : {};
+      } catch {
+        data = {};
+      }
       setContacts(data.contacts || []);
     } catch (err) {
       console.error("Error loading contact submissions:", err);
+      setContacts([]);
     } finally {
       setLoading(false);
     }

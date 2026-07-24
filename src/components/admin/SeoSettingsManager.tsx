@@ -71,7 +71,13 @@ export default function SeoSettingsManager({ token }: SeoSettingsManagerProps) {
     setLoading(true);
     try {
       const res = await fetch("/api/settings");
-      const data = await res.json();
+      let data: any = {};
+      try {
+        const text = await res.text();
+        data = text ? JSON.parse(text) : {};
+      } catch {
+        data = {};
+      }
       if (data.settings && data.settings.seo) {
         const seo = data.settings.seo;
         setSiteTitle(seo.siteTitle || "Techno-Solutions | Digital Transformation & Web3 Engineering");

@@ -28,7 +28,13 @@ export default function SiteSettingsManager({ token }: SiteSettingsManagerProps)
     setLoading(true);
     try {
       const res = await fetch("/api/settings");
-      const data = await res.json();
+      let data: any = {};
+      try {
+        const text = await res.text();
+        data = text ? JSON.parse(text) : {};
+      } catch {
+        data = {};
+      }
       if (data.settings) {
         const s = data.settings;
         setWebsiteName(s.websiteName || "");

@@ -486,6 +486,11 @@ function getLocalFallbackResponse(userMessage: string): string {
   return `**Welcome to Techno-Solutions!** 👋\n\nI am your 24/7 digital assistant. I can guide you through our major tech capabilities:\n\n1. **Blockchain & Cryptocurrency Solutions**\n2. **AI & Machine Learning Development**\n3. **Web & Mobile Application Development**\n4. **Smart Home Automation & CCTV Installations**\n5. **Solar Panel setups**\n\nFeel free to ask me anything about our services, office location, process, or contact details. You can also reach our main office directly at **+91 9811841782** or fill out our contact form!`;
 }
 
+// Ensure any unmatched /api/* endpoint returns JSON, NEVER HTML index.html
+app.use("/api/*", (req, res) => {
+  res.status(404).json({ error: "API endpoint not found." });
+});
+
 // Vite middleware setup
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {

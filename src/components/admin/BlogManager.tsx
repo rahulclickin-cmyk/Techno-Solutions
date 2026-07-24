@@ -65,10 +65,17 @@ export default function BlogManager({ token }: BlogManagerProps) {
       const res = await fetch(`/api/admin/blogs?${query.toString()}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      const data = await res.json();
+      let data: any = {};
+      try {
+        const text = await res.text();
+        data = text ? JSON.parse(text) : {};
+      } catch {
+        data = {};
+      }
       setBlogs(data.blogs || []);
     } catch (err) {
       console.error("Error loading blogs:", err);
+      setBlogs([]);
     } finally {
       setLoading(false);
     }
