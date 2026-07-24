@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import WhatsAppWidget from "./components/WhatsAppWidget";
 import AIChatbot from "./components/AIChatbot";
+import SEOHead from "./components/SEOHead";
 
 // Pages
 import Home from "./pages/Home";
@@ -33,7 +34,7 @@ function MainLayout() {
   if (isAdmin) {
     return (
       <Routes>
-        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/admin/*" element={<AdminPage />} />
       </Routes>
     );
   }
@@ -63,6 +64,7 @@ function MainLayout() {
           <Route path="/blog" element={<BlogList />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<Home />} />
         </Routes>
       </main>
 
@@ -79,6 +81,7 @@ function MainLayout() {
 export default function App() {
   return (
     <BrowserRouter>
+      <SEOHead />
       <ScrollToTop />
       <MainLayout />
     </BrowserRouter>

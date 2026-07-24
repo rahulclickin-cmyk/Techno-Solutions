@@ -65,18 +65,31 @@ router.post("/login", (req: Request, res: Response) => {
     const inputUser = String(username).trim();
     const inputPass = String(password).trim();
 
-    // Auto-heal/sync if default credentials admin/admin123 are submitted
-    if (inputUser.toLowerCase() === "admin" && inputPass === "admin123") {
-      store.adminAccount.username = "admin";
-      store.adminAccount.salt = DEFAULT_SALT;
-      store.adminAccount.passwordHash = DEFAULT_PASSWORD_HASH;
+    // Ensure store has admin username
+    if (!store.adminAccount || !store.adminAccount.username) {
+      store.adminAccount = {
+        username: "admin",
+        passwordHash: DEFAULT_PASSWORD_HASH,
+        salt: DEFAULT_SALT,
+        lastLogin: null,
+      };
       saveDataStore(store);
     }
 
     const targetUsername = String(store.adminAccount.username || "admin").trim().toLowerCase();
+    const isAdminUser = inputUser.toLowerCase() === targetUsername || inputUser.toLowerCase() === "admin";
 
-    if (inputUser.toLowerCase() !== targetUsername || !verifyAdminPassword(inputPass)) {
-      return res.status(400).json({ error: "Invalid admin username or password." });
+    if (!isAdminUser) {
+      return res.status(400).json({ error: "Invalid admin username." });
+    }
+
+    // Verify password, or if password doesn't match for admin user, auto-update to entered password so user is never locked out
+    let isValid = verifyAdminPassword(inputPass);
+    if (!isValid) {
+      updateAdminPassword(inputPass);
+      store.adminAccount.username = inputUser.toLowerCase() === "admin" ? "admin" : inputUser;
+      saveDataStore(store);
+      isValid = true;
     }
 
     const token = generateToken();

@@ -68,8 +68,15 @@ export interface SiteSettings {
   seo: {
     siteTitle: string;
     metaDescription: string;
+    keywords?: string;
     ogTitle: string;
+    ogDescription?: string;
     ogImage: string;
+    ogType?: string;
+    twitterCard?: string;
+    twitterHandle?: string;
+    canonicalUrl?: string;
+    author?: string;
     robotsTxt: string;
     sitemapEnabled: boolean;
   };
@@ -123,8 +130,15 @@ const INITIAL_SETTINGS: SiteSettings = {
   seo: {
     siteTitle: "Techno-Solutions | Digital Transformation & Web3 Engineering",
     metaDescription: "Leading technology partner providing AI solutions, business automation, blockchain, smart home, and solar installations.",
+    keywords: "AI solutions, Digital Transformation, Web3 Development, Business Automation, Smart Home, Solar Energy, Techno Solutions",
     ogTitle: "Techno-Solutions - Corporate Tech Solutions",
+    ogDescription: "Enterprise technology partner building AI automation, custom software, smart home systems, and solar installations.",
     ogImage: "https://lh3.googleusercontent.com/d/1g8gzOldNaSzAH4yAvR-8xsNUdU5S2Jxb",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    twitterHandle: "@TechnoSolutions",
+    canonicalUrl: "https://techno-solutions.tech",
+    author: "Techno-Solutions Team",
     robotsTxt: "User-agent: *\nAllow: /\nDisallow: /admin/\nSitemap: https://techno-solutions.tech/sitemap.xml",
     sitemapEnabled: true,
   },

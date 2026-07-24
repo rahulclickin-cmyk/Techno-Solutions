@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Lock, User, ArrowRight, ShieldCheck, KeyRound, AlertCircle } from "lucide-react";
+import { Lock, User, ArrowRight, ShieldCheck, KeyRound, AlertCircle, Eye, EyeOff, Zap } from "lucide-react";
 
 interface AdminLoginProps {
   onLoginSuccess: (token: string, username: string) => void;
@@ -8,11 +8,11 @@ interface AdminLoginProps {
 export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
   const [username, setUsername] = useState("admin");
   const [password, setPassword] = useState("admin123");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleLogin = async (u: string, p: string) => {
     setLoading(true);
     setError("");
 
@@ -20,7 +20,7 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
       const res = await fetch("/api/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: username.trim(), password: password.trim() }),
+        body: JSON.stringify({ username: u.trim(), password: p.trim() }),
       });
 
       const text = await res.text();
@@ -41,6 +41,17 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    handleLogin(username, password);
+  };
+
+  const handleQuickLogin = () => {
+    setUsername("admin");
+    setPassword("admin123");
+    handleLogin("admin", "admin123");
   };
 
   return (
@@ -91,31 +102,51 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
             <div className="relative">
               <Lock className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-950/80 border border-slate-800 text-slate-100 text-sm focus:outline-hidden focus:border-[#E5AF2B] focus:ring-1 focus:ring-[#E5AF2B] transition-all"
+                className="w-full pl-10 pr-10 py-3 rounded-xl bg-slate-950/80 border border-slate-800 text-slate-100 text-sm focus:outline-hidden focus:border-[#E5AF2B] focus:ring-1 focus:ring-[#E5AF2B] transition-all"
                 placeholder="Enter password"
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 transition-colors p-1"
+                title={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
             </div>
           </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-[#0F2D63] to-[#1A448C] hover:from-[#11326c] hover:to-[#1e4da0] text-white font-semibold text-sm shadow-lg border border-white/10 flex items-center justify-center gap-2 transition-all cursor-pointer disabled:opacity-50"
-          >
-            {loading ? (
-              <span>Authenticating...</span>
-            ) : (
-              <>
-                <KeyRound className="w-4 h-4 text-[#E5AF2B]" />
-                <span>Sign In to Admin Panel</span>
-                <ArrowRight className="w-4 h-4 ml-1" />
-              </>
-            )}
-          </button>
+          <div className="space-y-3 pt-1">
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-[#0F2D63] to-[#1A448C] hover:from-[#11326c] hover:to-[#1e4da0] text-white font-semibold text-sm shadow-lg border border-white/10 flex items-center justify-center gap-2 transition-all cursor-pointer disabled:opacity-50"
+            >
+              {loading ? (
+                <span>Authenticating...</span>
+              ) : (
+                <>
+                  <KeyRound className="w-4 h-4 text-[#E5AF2B]" />
+                  <span>Sign In to Admin Panel</span>
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </>
+              )}
+            </button>
+
+            <button
+              type="button"
+              onClick={handleQuickLogin}
+              disabled={loading}
+              className="w-full py-2.5 px-4 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-[#E5AF2B] border border-[#E5AF2B]/30 font-medium text-xs flex items-center justify-center gap-2 transition-all cursor-pointer disabled:opacity-50"
+            >
+              <Zap className="w-3.5 h-3.5" />
+              <span>One-Click Instant Admin Login</span>
+            </button>
+          </div>
         </form>
 
         <div className="mt-8 pt-6 border-t border-slate-800 text-center space-y-2">
