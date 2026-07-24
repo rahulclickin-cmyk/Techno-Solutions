@@ -60,7 +60,10 @@ router.post("/login", (req: Request, res: Response) => {
       return res.status(400).json({ error: "Username and password are required." });
     }
 
-    if (username !== store.adminAccount.username || !verifyAdminPassword(password)) {
+    const trimmedUsername = String(username).trim().toLowerCase();
+    const targetUsername = String(store.adminAccount.username || "admin").trim().toLowerCase();
+
+    if (trimmedUsername !== targetUsername || !verifyAdminPassword(String(password).trim())) {
       return res.status(400).json({ error: "Invalid admin username or password." });
     }
 
