@@ -2,31 +2,45 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BLOG_POSTS } from "../data";
 import { Search, Calendar, Clock, User, ArrowRight, Sparkles } from "lucide-react";
+import { getStoredBlogs } from "../utils/adminStorage";
 
 export default function BlogListPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [allPosts, setAllPosts] = useState<any[]>(BLOG_POSTS);
+  const [allPosts, setAllPosts] = useState<any[]>(() => {
+    const stored = getStoredBlogs();
+    const published = stored.filter((p) => p.status === "published");
+    return published.length > 0 ? published : BLOG_POSTS;
+  });
 
   useEffect(() => {
     async function loadBlogs() {
+      // Load local stored blogs first
+      const stored = getStoredBlogs().filter((p) => p.status === "published");
+      
       try {
         const res = await fetch("/api/blogs");
         if (res.ok) {
           const text = await res.text();
           const data = text ? JSON.parse(text) : null;
           if (data && Array.isArray(data.blogs) && data.blogs.length > 0) {
-            // Merge dynamic blogs with static ones, avoiding duplicates by id/slug
-            const serverBlogs = data.blogs;
-            const staticBlogs = BLOG_POSTS.filter(
-              (sb) => !serverBlogs.some((db: any) => db.id === sb.id || db.slug === sb.slug)
-            );
-            setAllPosts([...serverBlogs, ...staticBlogs]);
+            const serverBlogs = data.blogs.filter((b: any) => b.status === "published");
+            const mergedMap = new Map<string, any>();
+            stored.forEach((sb) => mergedMap.set(sb.id, sb));
+            serverBlogs.forEach((sb: any) => {
+              if (!mergedMap.has(sb.id)) {
+                mergedMap.set(sb.id, sb);
+              }
+            });
+            setAllPosts(Array.from(mergedMap.values()));
+            return;
           }
         }
       } catch (err) {
-        console.warn("Using default blog list:", err);
+        console.warn("Using persistent local blog list:", err);
       }
+
+      setAllPosts(stored);
     }
     loadBlogs();
   }, []);

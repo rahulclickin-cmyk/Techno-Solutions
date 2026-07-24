@@ -2,12 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { BLOG_POSTS } from "../data";
 import { Calendar, Clock, ArrowLeft, Send, Sparkles, ShieldCheck, Mail, Phone, MapPin } from "lucide-react";
+import { getStoredBlogs } from "../utils/adminStorage";
 
 export default function BlogDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
 
-  const [post, setPost] = useState<any>(() => BLOG_POSTS.find((p) => p.slug === slug || p.id === slug));
+  const [post, setPost] = useState<any>(() => {
+    const stored = getStoredBlogs();
+    return stored.find((p) => p.slug === slug || p.id === slug) || BLOG_POSTS.find((p) => p.slug === slug || p.id === slug);
+  });
   const [loading, setLoading] = useState(!post);
 
   useEffect(() => {
@@ -15,6 +19,15 @@ export default function BlogDetailPage() {
 
     async function loadPost() {
       if (!slug) return;
+
+      // Check persistent local storage first
+      const stored = getStoredBlogs();
+      const localFound = stored.find((p) => p.slug === slug || p.id === slug);
+      if (localFound) {
+        setPost(localFound);
+        setLoading(false);
+      }
+
       try {
         const res = await fetch(`/api/blogs/${encodeURIComponent(slug)}`);
         if (res.ok) {
@@ -30,10 +43,11 @@ export default function BlogDetailPage() {
         console.warn("Error loading single blog from API:", err);
       }
 
-      // Fallback: check static posts
-      const found = BLOG_POSTS.find((p) => p.slug === slug || p.id === slug);
-      if (found) {
-        setPost(found);
+      if (!localFound) {
+        const found = BLOG_POSTS.find((p) => p.slug === slug || p.id === slug);
+        if (found) {
+          setPost(found);
+        }
       }
       setLoading(false);
     }

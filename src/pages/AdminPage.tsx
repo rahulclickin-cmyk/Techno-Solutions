@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { HashRouter, Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   FileText,
@@ -12,7 +13,6 @@ import {
   ExternalLink,
   Menu,
   X,
-  Sparkles,
 } from "lucide-react";
 
 import AdminLogin from "../components/admin/AdminLogin";
@@ -24,59 +24,21 @@ import SiteSettingsManager from "../components/admin/SiteSettingsManager";
 import HomepageContentManager from "../components/admin/HomepageContentManager";
 import SeoSettingsManager from "../components/admin/SeoSettingsManager";
 import SecurityManager from "../components/admin/SecurityManager";
+import AdminShadowScope from "../components/admin/AdminShadowScope";
 
-export default function AdminPage() {
-  const [token, setToken] = useState<string | null>(
-    localStorage.getItem("admin_token")
-  );
-  const [username, setUsername] = useState<string>(
-    localStorage.getItem("admin_username") || "admin"
-  );
-  const [activeTab, setActiveTab] = useState<string>("dashboard");
+interface AdminPortalInnerProps {
+  token: string;
+  username: string;
+  onLogout: () => void;
+}
+
+function AdminPortalInner({ token, username, onLogout }: AdminPortalInnerProps) {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
-  useEffect(() => {
-    // Validate session if token exists
-    if (token) {
-      if (token.startsWith("adm_fallback_") || token.startsWith("adm_sess_")) {
-        return; // Valid active session
-      }
-      fetch("/api/admin/me", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-        .then((res) => {
-          if (!res.ok && res.status === 401) {
-            handleLogout();
-          }
-        })
-        .catch(() => {
-          // Do not log out on network glitch or static hosting
-        });
-    }
-  }, [token]);
-
-  const handleLoginSuccess = (newToken: string, newUsername: string) => {
-    localStorage.setItem("admin_token", newToken);
-    localStorage.setItem("admin_username", newUsername);
-    setToken(newToken);
-    setUsername(newUsername);
-  };
-
-  const handleLogout = () => {
-    if (token) {
-      fetch("/api/admin/logout", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-      }).catch(() => {});
-    }
-    localStorage.removeItem("admin_token");
-    localStorage.removeItem("admin_username");
-    setToken(null);
-  };
-
-  if (!token) {
-    return <AdminLogin onLoginSuccess={handleLoginSuccess} />;
-  }
+  // Derives current active tab from Hash route (e.g. "/blogs" -> "blogs")
+  const currentTab = location.pathname.replace(/^\//, "") || "dashboard";
 
   const navItems = [
     { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -109,11 +71,11 @@ export default function AdminPage() {
           <nav className="p-4 space-y-1">
             {navItems.map((item) => {
               const Icon = item.icon;
-              const isActive = activeTab === item.id;
+              const isActive = currentTab === item.id;
               return (
                 <button
                   key={item.id}
-                  onClick={() => setActiveTab(item.id)}
+                  onClick={() => navigate(`/${item.id}`)}
                   className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                     isActive
                       ? "bg-[#0F2D63] text-white shadow-md border border-white/10"
@@ -139,7 +101,7 @@ export default function AdminPage() {
           </div>
 
           <button
-            onClick={handleLogout}
+            onClick={onLogout}
             className="w-full flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-semibold border border-red-500/20 transition-all cursor-pointer"
           >
             <LogOut className="w-3.5 h-3.5" />
@@ -170,12 +132,12 @@ export default function AdminPage() {
         <div className="md:hidden bg-slate-950 text-slate-300 p-4 border-b border-slate-800 space-y-2 sticky top-[65px] z-30">
           {navItems.map((item) => {
             const Icon = item.icon;
-            const isActive = activeTab === item.id;
+            const isActive = currentTab === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => {
-                  setActiveTab(item.id);
+                  navigate(`/${item.id}`);
                   setMobileNavOpen(false);
                 }}
                 className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold ${
@@ -189,7 +151,7 @@ export default function AdminPage() {
           })}
 
           <button
-            onClick={handleLogout}
+            onClick={onLogout}
             className="w-full flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-red-500/10 text-red-400 text-xs font-semibold mt-4"
           >
             <LogOut className="w-3.5 h-3.5" />
@@ -205,7 +167,7 @@ export default function AdminPage() {
           <div className="flex items-center gap-3 text-xs text-slate-500">
             <span className="font-bold text-slate-800 uppercase tracking-wider">Admin Panel</span>
             <span>/</span>
-            <span className="font-semibold text-[#0F2D63] capitalize">{activeTab}</span>
+            <span className="font-semibold text-[#0F2D63] capitalize">{currentTab}</span>
           </div>
 
           <div className="flex items-center gap-4">
@@ -230,20 +192,80 @@ export default function AdminPage() {
           </div>
         </header>
 
-        {/* Dynamic Tab Body */}
+        {/* Dynamic Sub-Routed Body using HashRouter */}
         <main className="p-4 md:p-8 flex-1 max-w-7xl w-full mx-auto">
-          {activeTab === "dashboard" && (
-            <AdminDashboard token={token} onNavigateTab={(tab) => setActiveTab(tab)} />
-          )}
-          {activeTab === "blogs" && <BlogManager token={token} />}
-          {activeTab === "contacts" && <ContactManager token={token} />}
-          {activeTab === "media" && <MediaManager token={token} />}
-          {activeTab === "settings" && <SiteSettingsManager token={token} />}
-          {activeTab === "homepage" && <HomepageContentManager token={token} />}
-          {activeTab === "seo" && <SeoSettingsManager token={token} />}
-          {activeTab === "security" && <SecurityManager token={token} username={username} />}
+          <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route
+              path="/dashboard"
+              element={<AdminDashboard token={token} onNavigateTab={(tab) => navigate(`/${tab}`)} />}
+            />
+            <Route path="/blogs" element={<BlogManager token={token} />} />
+            <Route path="/contacts" element={<ContactManager token={token} />} />
+            <Route path="/media" element={<MediaManager token={token} />} />
+            <Route path="/settings" element={<SiteSettingsManager token={token} />} />
+            <Route path="/homepage" element={<HomepageContentManager token={token} />} />
+            <Route path="/seo" element={<SeoSettingsManager token={token} />} />
+            <Route path="/security" element={<SecurityManager token={token} username={username} />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
         </main>
       </div>
     </div>
+  );
+}
+
+export default function AdminPage() {
+  const [token, setToken] = useState<string | null>(localStorage.getItem("admin_token"));
+  const [username, setUsername] = useState<string>(
+    localStorage.getItem("admin_username") || "admin"
+  );
+
+  useEffect(() => {
+    if (token) {
+      if (token.startsWith("adm_fallback_") || token.startsWith("adm_sess_")) {
+        return;
+      }
+      fetch("/api/admin/me", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+        .then((res) => {
+          if (!res.ok && res.status === 401) {
+            handleLogout();
+          }
+        })
+        .catch(() => {});
+    }
+  }, [token]);
+
+  const handleLoginSuccess = (newToken: string, newUsername: string) => {
+    localStorage.setItem("admin_token", newToken);
+    localStorage.setItem("admin_username", newUsername);
+    setToken(newToken);
+    setUsername(newUsername);
+  };
+
+  const handleLogout = () => {
+    if (token) {
+      fetch("/api/admin/logout", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+      }).catch(() => {});
+    }
+    localStorage.removeItem("admin_token");
+    localStorage.removeItem("admin_username");
+    setToken(null);
+  };
+
+  return (
+    <AdminShadowScope>
+      {!token ? (
+        <AdminLogin onLoginSuccess={handleLoginSuccess} />
+      ) : (
+        <HashRouter>
+          <AdminPortalInner token={token} username={username} onLogout={handleLogout} />
+        </HashRouter>
+      )}
+    </AdminShadowScope>
   );
 }

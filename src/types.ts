@@ -54,5 +54,6 @@ export interface BlogPost {
   author: string;
   image: string;
   keywords: string[];
+  tags?: string[];
 }
 

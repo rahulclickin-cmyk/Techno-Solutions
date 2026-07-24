@@ -14,23 +14,33 @@ import {
   MessageSquare,
   Send,
 } from "lucide-react";
+import {
+  getStoredContacts,
+  updateContactStatus,
+  deleteStoredContact,
+  saveStoredContacts,
+  StoredContact,
+} from "../../utils/adminStorage";
 
 interface ContactManagerProps {
   token: string;
 }
 
 export default function ContactManager({ token }: ContactManagerProps) {
-  const [contacts, setContacts] = useState<any[]>([]);
+  const [contacts, setContacts] = useState<StoredContact[]>(() => getStoredContacts());
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
 
-  const [selectedContact, setSelectedContact] = useState<any | null>(null);
+  const [selectedContact, setSelectedContact] = useState<StoredContact | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
   const fetchContacts = async () => {
     setLoading(true);
     try {
+      const local = getStoredContacts();
+      setContacts(local);
+
       const query = new URLSearchParams({
         search: searchTerm,
         status: statusFilter,
@@ -45,10 +55,22 @@ export default function ContactManager({ token }: ContactManagerProps) {
       } catch {
         data = {};
       }
-      setContacts(data.contacts || []);
+
+      if (data && Array.isArray(data.contacts) && data.contacts.length > 0) {
+        const serverContacts = data.contacts;
+        const mergedMap = new Map<string, StoredContact>();
+        local.forEach((c) => mergedMap.set(c.id, c));
+        serverContacts.forEach((sc: any) => {
+          if (!mergedMap.has(sc.id)) {
+            mergedMap.set(sc.id, sc);
+          }
+        });
+        const mergedList = Array.from(mergedMap.values());
+        saveStoredContacts(mergedList);
+        setContacts(mergedList);
+      }
     } catch (err) {
-      console.error("Error loading contact submissions:", err);
-      setContacts([]);
+      console.warn("Backend fetch contacts notice (using persistent local storage):", err);
     } finally {
       setLoading(false);
     }
@@ -61,20 +83,22 @@ export default function ContactManager({ token }: ContactManagerProps) {
   const toggleStatus = async (id: string, currentStatus: string) => {
     const newStatus = currentStatus === "unread" ? "read" : "unread";
     try {
-      const res = await fetch(`/api/admin/contacts/${id}`, {
+      updateContactStatus(id, newStatus);
+      if (selectedContact && selectedContact.id === id) {
+        setSelectedContact({ ...selectedContact, status: newStatus });
+      }
+
+      // Best-effort server sync
+      fetch(`/api/admin/contacts/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ status: newStatus }),
-      });
-      if (res.ok) {
-        if (selectedContact && selectedContact.id === id) {
-          setSelectedContact({ ...selectedContact, status: newStatus });
-        }
-        fetchContacts();
-      }
+      }).catch((e) => console.warn("Backend status update notice:", e));
+
+      setContacts(getStoredContacts());
     } catch (err) {
       console.error("Failed to update status:", err);
     }
@@ -83,17 +107,19 @@ export default function ContactManager({ token }: ContactManagerProps) {
   const handleDelete = async () => {
     if (!deleteId) return;
     try {
-      const res = await fetch(`/api/admin/contacts/${deleteId}`, {
+      deleteStoredContact(deleteId);
+
+      // Best-effort server delete
+      fetch(`/api/admin/contacts/${deleteId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
-      });
-      if (res.ok) {
-        setDeleteId(null);
-        if (selectedContact && selectedContact.id === deleteId) {
-          setSelectedContact(null);
-        }
-        fetchContacts();
+      }).catch((e) => console.warn("Backend delete notice:", e));
+
+      if (selectedContact && selectedContact.id === deleteId) {
+        setSelectedContact(null);
       }
+      setDeleteId(null);
+      setContacts(getStoredContacts());
     } catch (err) {
       console.error("Error deleting contact lead:", err);
     }
